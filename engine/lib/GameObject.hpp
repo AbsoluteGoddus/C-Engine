@@ -12,6 +12,24 @@ namespace engine {
     class GameObject {
     private:
         ObjectList<BehaviorPTR> Behaviors;
+
+    public:
+
+        void init() {
+
+        }
+
+        void preUpdate() {
+
+        }
+
+        void update() {
+
+        }
+
+        void postUpdate() {
+
+        }
     };
 }
 

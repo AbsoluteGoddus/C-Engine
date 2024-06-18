@@ -17,6 +17,10 @@ namespace engine {
 
         int _nextID = 1;
     public:
+        class iterator {
+
+        };
+
         void addObject(OL_Type object, std::string name, int ID) {
             _idMap.insert(name, ID);
             _list.insert(ID, object);
@@ -57,7 +61,7 @@ namespace engine {
             return nullptr;
         }
 
-        OL_Type& operator[](int ID) {
+        OL_Type &operator[](int ID) {
             auto it = _list.find(ID);
 
             if (it != _list.end()) {
@@ -66,6 +70,10 @@ namespace engine {
 
             return nullptr;
         }
-    }
 
+        size_t size() {
+            return _list.size();
+        }
+    }
+}
 #endif //C_ENGINE_OBJECTLIST_HPP
