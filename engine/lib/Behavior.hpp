@@ -14,7 +14,7 @@ namespace engine {
         virtual void preUpdate() {};
         virtual void update() {};
         virtual void postUpdate() {};
-        virtual void onEvent(const engine::Event &e) {};
+        virtual void onEvent(engine::Event &e) {};
     };
 
     class BehaviorPTR {
@@ -49,7 +49,7 @@ namespace engine {
         }
 
         ~BehaviorPTR() {
-            const engine::Event e("BPTR_MemoryFree", "Deletion of Memory through the Garbage Collector or manual deletion.");
+            engine::Event e("BPTR_MemoryFree", "Deletion of Memory through the Garbage Collector or manual deletion.");
             _b->onEvent(e);
             delete _b;
         }

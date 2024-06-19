@@ -40,7 +40,7 @@ namespace engine {
         }
 
         void onEvent(engine::Event &e) {
-            for (auto &b : ehaviors) {
+            for (auto &b : Behaviors) {
                 b.onEvent(e);
             }
         }
