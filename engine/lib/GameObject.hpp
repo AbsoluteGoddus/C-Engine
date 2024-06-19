@@ -11,24 +11,38 @@
 namespace engine {
     class GameObject {
     private:
-        ObjectList<BehaviorPTR> Behaviors;
-
     public:
 
-        void init() {
+        ObjectList<BehaviorPTR> Behaviors;
 
+        void init() {
+            for (auto &b : Behaviors) {
+                b.init();
+            }
         }
 
         void preUpdate() {
-
+            for (auto &b : Behaviors) {
+                b.preUpdate();
+            }
         }
 
         void update() {
-
+            for (auto &b : Behaviors) {
+                b.update();
+            }
         }
 
         void postUpdate() {
+            for (auto &b : Behaviors) {
+                b.postUpdate();
+            }
+        }
 
+        void onEvent(engine::Event &e) {
+            for (auto &b : ehaviors) {
+                b.onEvent(e);
+            }
         }
     };
 }

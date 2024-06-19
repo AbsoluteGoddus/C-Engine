@@ -17,63 +17,94 @@ namespace engine {
 
         int _nextID = 1;
     public:
-        class iterator {
+        // Custom iterator class
+        class Iterator {
+        private:
+            typename std::unordered_map<int, OL_Type>::iterator _it;
+            typename std::unordered_map<int, OL_Type>::iterator _end;
 
+        public:
+            Iterator(typename std::unordered_map<int, OL_Type>::iterator it,
+                     typename std::unordered_map<int, OL_Type>::iterator end)
+                    : _it(it), _end(end) {}
+
+            bool operator!=(const Iterator &other) const {
+                return _it != other._it;
+            }
+
+            OL_Type &operator*() {
+                return _it->second;
+            }
+
+            const Iterator &operator++() {
+                ++_it;
+                return *this;
+            }
         };
 
-        void addObject(OL_Type object, std::string name, int ID) {
-            _idMap.insert(name, ID);
-            _list.insert(ID, object);
+        void addObject(const OL_Type &object, const std::string &name, int ID) {
+            _idMap[name] = ID;
+            _list[ID] = object;
         }
 
-        void addObject(OL_Type object, int ID) {
-            _idMap.insert(std::to_string(ID), ID);
-            _list.insert(ID, object);
+        void addObject(const OL_Type &object, int ID) {
+            std::string name = std::to_string(ID);
+            _idMap[name] = ID;
+            _list[ID] = object;
         }
 
-        void addObject(OL_Type object, std::string name) {
-            _idMap.insert(name, std::stoi(name));
-            _list.insert(ID, object);
+        void addObject(const OL_Type &object, const std::string &name) {
+            int ID = _nextID++;
+            _idMap[name] = ID;
+            _list[ID] = object;
         }
 
-        void removeObject(std::string name) {
-            if (_idMap.find(name) != _idMap.end()) {
-                int ID = _idMap.at(name);
+        void removeObject(const std::string &name) {
+            auto it = _idMap.find(name);
+            if (it != _idMap.end()) {
+                int ID = it->second;
                 _list.erase(ID);
-                _idMap.erase(name);
+                _idMap.erase(it);
             }
         }
 
         void removeObject(int ID) {
-            if (_list.find(ID) != _list.end()) {
-                std::string name = std::to_string(ID);
-                _list.erase(ID);
+            std::string name = std::to_string(ID);
+            auto it = _list.find(ID);
+            if (it != _list.end()) {
+                _list.erase(it);
                 _idMap.erase(name);
             }
         }
 
-        OL_Type &operator[](const std::string &name) {
+        OL_Type *getObject(const std::string &name) {
             auto it = _idMap.find(name);
             if (it != _idMap.end()) {
-                return _list.at(it->second);
+                return &_list[it->second];
             }
-
             return nullptr;
         }
 
-        OL_Type &operator[](int ID) {
+        OL_Type *getObject(int ID) {
             auto it = _list.find(ID);
-
             if (it != _list.end()) {
-                return it->second;
+                return &it->second;
             }
-
             return nullptr;
         }
 
-        size_t size() {
+        size_t size() const {
             return _list.size();
         }
-    }
+
+        Iterator begin() {
+            return Iterator(_list.begin(), _list.end());
+        }
+
+        Iterator end() {
+            return Iterator(_list.end(), _list.end());
+        }
+    };
 }
+
 #endif //C_ENGINE_OBJECTLIST_HPP
