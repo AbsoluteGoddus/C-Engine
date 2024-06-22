@@ -5,7 +5,7 @@
 #ifndef C_ENGINE_EVENT_HPP
 #define C_ENGINE_EVENT_HPP
 
-#include "string"
+#include <string>
 
 namespace engine {
     class Event {

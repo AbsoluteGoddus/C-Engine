@@ -6,6 +6,7 @@
 #define C_ENGINE_SCENE_HPP
 
 #include "GameObject.hpp"
+#include <iostream>
 
 namespace engine {
     class Scene {
