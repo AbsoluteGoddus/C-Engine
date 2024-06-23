@@ -49,6 +49,7 @@ namespace engine {
 
         void addObject(const OL_Type &object, int ID) {
             std::string name = std::to_string(ID);
+            _nextID = ID + 1;
             _idMap[name] = ID;
             _list[ID] = object;
         }
@@ -103,6 +104,14 @@ namespace engine {
 
         Iterator end() {
             return Iterator(_list.end(), _list.end());
+        }
+
+        OL_Type *operator[](int ID) {
+            return getObject(ID);
+        }
+
+        OL_Type *operator[](std::string name) {
+            return getObject(name);
         }
     };
 }
