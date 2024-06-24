@@ -6,6 +6,8 @@
 #define C_ENGINE_EVENT_HPP
 
 #include <string>
+#include <any>
+#include "ObjectList.hpp"
 
 namespace engine {
     class Event {
@@ -13,7 +15,11 @@ namespace engine {
         std::string _type;
         std::string _cause;
 
+        engine::ObjectList<std::any> _data;
+        engine::ObjectList<std::any> _response;
+
     public:
+
         Event(std::string what, std::string why) { _type = what; _cause = why; }
 
         std::string what() {
@@ -26,6 +32,22 @@ namespace engine {
 
         std::string whole() {
             return _type + ": " + _cause;
+        }
+
+        void setData(engine::ObjectList<std::any> &ol) {
+            _data = ol;
+        }
+
+        engine::ObjectList<std::any> &getData() {
+            return _data;
+        }
+
+        void setResponse(engine::ObjectList<std::any> &ol) {
+            _response = ol;
+        }
+
+        engine::ObjectList<std::any> &getResponse() {
+            return _data;
         }
     };
 }

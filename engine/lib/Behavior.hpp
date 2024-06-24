@@ -5,6 +5,7 @@
 #ifndef C_ENGINE_BEHAVIOR_HPP
 #define C_ENGINE_BEHAVIOR_HPP
 
+#include <stdexcept>
 #include "Event.hpp"
 
 namespace engine {

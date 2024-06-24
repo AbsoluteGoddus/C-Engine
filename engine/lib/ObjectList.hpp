@@ -15,7 +15,7 @@ namespace engine {
         std::unordered_map<std::string, int> _idMap;
         std::unordered_map<int, OL_Type> _list;
 
-        int _nextID = 1;
+        int _nextID = 0;
     public:
         // Custom iterator class
         class Iterator {
