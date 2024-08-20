@@ -1,127 +1,254 @@
-// CFG.hpp
-
 #ifndef CFG_HPP
 #define CFG_HPP
 
+#include <string>
+#include <fstream>
+#include <sstream>
 #include <iostream>
 
-#include "Util.hpp"
 #include "Node.hpp"
 
-class CFG {
-//private:
-public:
-    std::string cleanedData;
-
-    /*
-     * Cleans up Human-Readable .CFG code into .CFG-Intermediate code.
+namespace engine {
+    /**
+     * @brief Gets a token
+     *
+     * Gets a token from a string str. the token ends if the function finds a space.
+     *
+     * @param str The string to process
+     * @param pos The starting position
+     * @return The end of the Token
      */
-    void cleanup(std::string &f) {
-        size_t pos = 0;
-        size_t tmp = 0;
-        bool curr_var = false;
-        int tkidx = 0;
-        while (pos < f.size()) {
-            pos = 0;
-            if (std::isspace(f[pos])) {
-                tmp = pos;
-                util::skipEmpty(f, pos);
-                util::remove(f, tmp, pos - tmp);
-                pos = tmp;
-            } else if (f[pos] == '/' && f[pos + 1] == '*') {
-                tmp = pos;
-                util::skipComment(f, pos);
-                util::remove(f, tmp, pos - tmp);
-                pos = tmp;
-            } else if ( tkidx >= 2 || (f[pos] != '{' && f[pos] != '}')){
-                if (tkidx < 2) {
-                    tmp = pos;
-                    util::skipToken(f, pos);
-                    std::string stmp = util::remove(f, tmp, pos - tmp);
-                    if (f[0] == ':') {
-                        util::remove(f, 0, 1);
-                        if (tkidx != 0) {
-                            cleanedData += '$';
-                        } else {
-                            cleanedData += '%';
-                        }
-                    }
-                    if (stmp == "$") {
-                        curr_var = true;
-                    } else {
-                        cleanedData += stmp + ' ';
-                    }
-                } else {
-                    tmp = pos;
-                    util::skipValueArray(f, pos);
-                    cleanedData += util::remove(f, tmp, pos - tmp) + ' ';
-                    curr_var = false;
+    size_t getToken(const std::string& str, size_t pos) {
+        size_t idx = pos;
+        while (!std::isspace(str[idx])) {
+            idx++;
+        }
+        return idx;
+    }
+
+    std::string getTokenStr(const std::string& str, size_t pos) {
+        std::string buffer;
+
+        size_t idx = pos;
+
+        while (!std::isspace(str[idx])) {
+            buffer += str[idx];
+            idx++;
+        }
+
+        return buffer;
+    }
+
+    size_t getScope(const std::string& str, size_t pos) {
+        size_t idx = pos;
+
+        if (str[pos] != '{') {
+            throw std::runtime_error("Unable to search scope: Unknown start\nCFG.hpp:46");
+        }
+
+        size_t scopeIdx = 1;
+
+        while (scopeIdx != 0) {
+            if (str[++idx] == '}') {
+                scopeIdx--;
+            } else if (str[idx] == '{') {
+                scopeIdx++;
+            }
+        }
+
+        return idx;
+    }
+
+    std::string getScopeStr(const std::string &str, size_t pos) {
+        std::string buffer;
+
+        size_t idx = pos;
+
+        if (str[pos] != '{') {
+            std::cerr << str[pos];
+            throw std::runtime_error("Unable to search scope: Unknown start\nCFG.hpp:69");
+        }
+
+        size_t scopeIdx = 1;
+
+        while (scopeIdx != 0) {
+            buffer += str[idx];
+            if (str[++idx] == '}') {
+                scopeIdx--;
+            } else if (str[idx] == '{') {
+                scopeIdx++;
+            }
+        }
+
+        buffer += str[idx];
+
+        return buffer;
+    }
+
+    std::vector<std::any> getValuesFromArray(const std::string& str) {
+        return {str};
+    };
+
+    std::vector<std::any> processArray(const std::string& str) {
+        std::vector<std::any> values;
+        std::string pureArray = str.substr(1, str.size() - 1).substr(0, str.size() - 2);
+
+        std::string buffer;
+        std::string valType;
+
+        size_t ptr = 0;
+
+        while (ptr < pureArray.size()) {
+            char c = pureArray[ptr];
+
+            if (c == '\"') {
+                ptr++;
+                while (pureArray[ptr] != '\"' || pureArray[ptr - 1] == ':') {
+                    buffer += (pureArray[ptr] == ':' && pureArray[ptr + 1] == '\"') ? '\"' : pureArray[ptr];
+                    ptr++;
                 }
-                if (curr_var) {
-                    tkidx++;
-                } else {
-                    tkidx = 0;
+                values.emplace_back(buffer);
+                buffer.clear();
+                ptr += 3;
+            } else {
+                while (pureArray[ptr] != ':') {
+                    valType += pureArray[ptr];
+                    ptr++;
                 }
-            } else if (f[pos] == '}') {
-                util::remove(f, 0, 1);
-                cleanedData += "# ";
-            } else if (f[pos] == '{') {
-                util::remove(f, 0, 1);
+                ptr += 2;
+
+                while (!std::isspace(pureArray[ptr]) && pureArray[ptr] != ',' && pureArray[ptr] != '}' && pureArray[ptr] != '\000' && pureArray[ptr] != '\253') {
+                    buffer += pureArray[ptr];
+                    ptr++;
+                }
+                ptr += 2;
+
+                if (valType == "int") {
+                    values.emplace_back(std::stoi(buffer));
+                } else if (valType == "double") {
+                    values.emplace_back(std::stod(buffer));
+                } else if (valType == "bool") {
+                    bool tmp = (buffer == "true");
+                    values.emplace_back(tmp);
+                }
+                valType.clear();
+                buffer.clear();
+            }
+        }
+
+        return values;
+    }
+
+    std::string anyArray_to_stringArray(const std::vector<std::any>& v) {
+        std::string buffer = "{";
+        bool first = true;
+
+        for (const auto& a : v) {
+            if (a.type() == typeid(std::string)) {
+                buffer += (first) ? "" : ", ";
+                buffer += "\"" + std::any_cast<std::string>(a) + "\"";
+                first = false;
+            } else if (a.type() == typeid(int)) {
+                buffer += (first) ? "" : ", ";
+                buffer += "int: " + std::to_string(std::any_cast<int>(a));
+                first = false;
+            } else if (a.type() == typeid(double)) {
+                buffer += (first) ? "" : ", ";
+                buffer += "double: " + std::to_string(std::any_cast<double>(a));
+                first = false;
+            } else if (a.type() == typeid(bool)) {
+                buffer += (first) ? "" : ", ";
+                buffer += "bool: " + std::to_string(std::any_cast<bool>(a));
+                first = false;
+            }
+        }
+
+        buffer += '}';
+
+        return buffer;
+    }
+
+    /**
+     * Parses .cfg code into a node
+     * @param str The .cfg code to be parsed
+     * @param n The node in which the output should be placed
+     */
+    void cfg_parse(const std::string& str, Node& n) {
+        Node *curr = &n;
+        nodeValue tmp;
+
+        for (size_t i = 0; i < str.size(); ++i) {
+            char c = str[i];
+
+            // Variable
+            if (c == '$') {
+                std::string valName = getTokenStr(str, i + 2);
+                valName = valName.substr(0, valName.size() - 1);
+                tmp = nodeValue(valName, processArray(getScopeStr(str, getToken(str, i + 2) + 1)));
+                curr->pushValue(tmp.first, tmp.second);
+                i = getScope(str, getToken(str, i + 2) + 1);
+                continue;
+            } else if (c == '}') {
+                curr = curr->getParent();
+            } else if (c == '{') {
+              continue;
+            } else if (!std::isspace(c)) {
+                std::string scopeName = getTokenStr(str, i);
+                scopeName = scopeName.substr(0, scopeName.size() - 1);
+                curr = &(*curr)[scopeName];
+                i = getToken(str, i);
             }
         }
     }
 
-    /*
-     * Parses .CFG-Intermediate code into a Node
+    /**
+     * Makes a string out of chars
+     * @param c the char to be chained together to a string
+     * @param times How many times the char should be chained together
+     * @return The resulting string
      */
-    void parse(std::string &f, Node *root) {
-        nodeValue tmpVal;
-        size_t pos = 0;
-        size_t tmp = 0;
-        std::string token;
-        Node *currentNode = root;
-        bool isValue = false;
-        while (pos < f.size() - 1) {
-            // Get the Token
-            if (!isValue) {
-                /*
-                * Explanation: Cleanup always puts a space, and then a token, so we can MOSTLY extract it very easily
-                */
-                util::skipEmpty(f, pos);
-                tmp = pos;
-                util::skipToken(f, pos);
-                token = f.substr(tmp, pos - tmp);
-            }else {
-                /*
-                 * Explanation: If we find that this token is a value / array beforehand, we can simply extract it without other shenanigans.
-                 */
-                util::skipEmpty(f, pos);
-                tmp = pos;
-                util::skipValueArray(f, pos);
-
-                // Push tempVal into root
-                std::string _tmp = f.substr(tmp, pos - tmp);
-                tmpVal.second = util::getValueArray(_tmp);
-
-                *currentNode < tmpVal;
-            }
-            if (!isValue) {
-                if (token[0] == '$') {
-                    tmpVal.first = token.substr(1, token.size() - 1);
-                    isValue = true;
-                }else if (token[0] == '%') {
-                    std::string nName = token.substr(1, token.size() - 1);
-                    currentNode = &(*currentNode)[nName];
-                }else if (token[0] == '#') {
-                    currentNode = currentNode->getParent();
-                }
-            }else {
-                isValue = false;
-            }
+    std::string charString(const char& c, size_t times) {
+        std::string out;
+        for (int i = 0; i < times; ++i) {
+            out += c;
         }
+        return out;
     }
 
-public:
-};
+    /**
+     * Serializes a Node-tree into a string containing .cfg code
+     * @param root The root of the Node-tree to be serialized
+     * @return The serialized .cfg code
+     */
+    std::string cfg_serialize(const Node& root) {
+        std::string out = root.getName() + ": { ";
+        for (const auto& v : root.getValues()) {
+            out += "$ " + v.first + ": " + anyArray_to_stringArray(std::any_cast<std::vector<std::any>>(v.second)) + " ";
+        }
+        for (const auto &n : root.getSubNodes()) {
+            out += cfg_serialize(n.second);
+        }
+        out += "} ";
+        return out;
+    }
 
-#endif //CFG_HPP
+    /**
+     * Serializes a Node-tree into a string containing .cfg code. Also indents the string and inserts newlines to make the string more Human-readable
+     * @param root The root of the Node-tree to be serialized
+     * @param indents The number of tas te current level should put before it.
+     * @return The serialized .cfg code
+     */
+    std::string cfg_serialize(const Node& root, const size_t& indents) {
+        std::string out = charString('\t', indents) + root.getName() + ": {\n";
+        for (const auto& v : root.getValues()) {
+            out += charString('\t', indents + 1) + "$ " + v.first + ": " + anyArray_to_stringArray(std::any_cast<std::vector<std::any>>(v.second)) + "\n";
+        }
+        for (const auto &n : root.getSubNodes()) {
+            out += cfg_serialize(n.second, indents + 1);
+        }
+        out += charString('\t', indents) + "}\n";
+        return out;
+    }
+}
+
+#endif // CFG_HPP

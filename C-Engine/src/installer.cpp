@@ -14,6 +14,30 @@ void createDirectoryIfNotExists(const std::string& path) {
     }
 }
 
+void createFileIfNotExists(const std::string& path) {
+    namespace fs = std::filesystem;
+
+    // Check if the file exists
+    if(fs::exists(path)) {
+        return;
+    }
+
+    // Ensure parent directories exist
+    fs::path filePath(path);
+    if(!fs::create_directories(filePath.parent_path())) {
+        throw std::runtime_error("Unable to create file: " + path);
+    }
+
+    // Attempt to create the file
+    std::ofstream file(path, std::ios::out);
+    if(file.is_open()) {
+        file.close(); // Close the file after creation
+        return;
+    }
+
+    throw std::runtime_error("Unable to create file: " + path);
+}
+
 void writeFile(const std::string& filePath, const std::string& data) {
     std::ofstream outFile(filePath, std::ios::binary);
     if (outFile) {
@@ -88,19 +112,12 @@ size_t WriteCallback(void* ptr, size_t size, size_t nmemb, void* stream) {
 
 // Function to download a file from a URL
 bool installFile(const std::string& destination, const std::string& URL) {
-    // Create directories if they do not exist
-    fs::path destPath(destination);
-    if (!fs::exists(destPath.parent_path())) {
-        if (!fs::create_directories(destPath.parent_path())) {
-            std::cerr << "Unable to create directories: " << destPath.parent_path() << std::endl;
-            return false;
-        }
-    }
 
     CURL* curl;
     CURLcode res;
     curl = curl_easy_init();
     if (curl) {
+        createFileIfNotExists(destination);
         std::ofstream outFile(destination, std::ios::binary);
         if (!outFile.is_open()) {
             std::cerr << "Unable to open file for writing: " << destination << std::endl;
@@ -133,6 +150,8 @@ int main(int argc, char** argv) {
         std::cerr << "Usage: " << argv[0] << " <version>" << std::endl;
         return 1;
     }
+
+    createDirectoryIfNotExists("C:/C-Engine/Build/");
 
     for (auto &p : fs::directory_iterator("C:/C-Engine/Build/")) {
         if (fs::is_directory(p) && p.path().filename() == argv[1]) {

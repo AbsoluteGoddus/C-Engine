@@ -8,12 +8,16 @@
 #include <string>
 #include <unordered_map>
 #include <utility>
+#include <iterator>
 #include <stdexcept>
 
 using nodeValue = std::pair<std::string, std::any>;
 
 class Node {
 private:
+    using nodeType = std::unordered_map<std::string, Node>;
+    using valueType = std::unordered_map<std::string, std::any>;
+
     std::string _name;  // Name of the node
 
     // Sub-nodes and values stored in unordered maps
@@ -23,8 +27,9 @@ private:
     Node *_parent = nullptr;
 
 public:
+
     // Constructor to initialize node name
-    Node(const std::string& name = "") : _name(name) {}
+    Node(const std::string& name = "root") : _name(name) {}
 
     size_t size() const {
         size_t base = _values.size() + _subNodes.size();
@@ -59,6 +64,11 @@ public:
     // Add a value
     void pushValue(const std::string& name, std::any value) {
         _values.insert({name, std::move(value)});
+    }
+
+    // Checks if the node contains a value
+    bool contains(const std::string& key) {
+        return _values.contains(key);
     }
 
     // Overloaded insertion operators for convenience
