@@ -9,6 +9,9 @@
 #include "Behavior.hpp"
 
 namespace engine {
+    /**
+     * Class for containing and executing Behaviors
+     */
     class GameObject {
     private:
     public:

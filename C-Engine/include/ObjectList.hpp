@@ -9,6 +9,10 @@
 #include <string>
 
 namespace engine {
+    /**
+     * A simple manager to contain and manage objects.
+     * @tparam OL_Type
+     */
     template<class OL_Type>
     class ObjectList {
     private:

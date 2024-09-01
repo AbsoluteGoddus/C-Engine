@@ -1,0 +1,17 @@
+GENERATE_TREEVIEW      = YES # required!
+DISABLE_INDEX          = NO
+FULL_SIDEBAR           = NO
+HTML_EXTRA_STYLESHEET  = doxygen-awesome-css/doxygen-awesome.css \
+                        doxygen-awesome-css/doxygen-awesome-sidebar-only.css
+HTML_COLORSTYLE        = LIGHT # required with Doxygen >= 1.9.5
+PROJECT_NAME           = C-Engine
+PROJECT_NUMBER         = 0.3
+PROJECT_BRIEF          = "A Game engine made from scratch using cxx"
+OUTPUT_DIRECTORY       = docs
+CREATE_SUBDIRS         = YES
+EXCLUDE                = libsrc \
+                        src \
+                        bin \
+                        doxygen-awesome-css
+INPUT                  = include
+RECURSIVE              = YES
