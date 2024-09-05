@@ -284,8 +284,14 @@ int main(int argc, char** argv) {
 
         installExtension(args[2]);
     } else if (args[1] == "-build") {
-        fs::create_directory(fs::current_path().string() + "/build");
         Node root;
+        engine::cfg_parse(getFile(fs::current_path().string() + "/application.cfg"), root);
+        if (root.size() <= 1) {
+            std::cerr << "No application.cfg found in: " << fs::current_path().string() << "\n";
+            exit(4);
+        }
+        std::cout << "Building...\n";
+        std::cout << "Success\n";
     } else if (args[1] == "-new") {
         Node root;
         Node application;
