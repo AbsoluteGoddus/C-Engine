@@ -1,0 +1,7 @@
+[Fri Sep 27 13:16:52 2024] | [VULKAN]: loader_add_layer_properties: 'layers' tag not supported until file version 1.0.1, but C:\Windows\System32\DriverStore\FileRepository\nv_dispui.inf_amd64_4bc3192b17b6123a\nv-vk64.json is reporting version 1
+[Fri Sep 27 13:16:52 2024] | [VULKAN]: windows_get_device_registry_files: GUID for 2 is not SoftwareComponent skipping
+[Fri Sep 27 13:16:52 2024] | [VULKAN]: windows_get_device_registry_files: GUID for 3 is not SoftwareComponent skipping
+[Fri Sep 27 13:16:52 2024] | [VULKAN]: Searching for ICD drivers named .\nvoglv64.dll
+[Fri Sep 27 13:16:52 2024] | [VULKAN]: Loading layer library C:\VulkanSDK\1.3.290.0\Bin\.\VkLayer_khronos_validation.dll
+[Fri Sep 27 13:16:52 2024] | [VULKAN]: Loading layer library C:\ProgramData\obs-studio-hook\.\graphics-hook64.dll
+[Fri Sep 27 13:16:52 2024] | [VULKAN]: Loading layer library C:\Windows\System32\DriverStore\FileRepository\nv_dispui.inf_amd64_4bc3192b17b6123a\.\nvoglv64.dll

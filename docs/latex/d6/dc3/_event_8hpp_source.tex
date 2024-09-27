@@ -1,0 +1,52 @@
+\doxysection{Event.\+hpp}
+\hypertarget{_event_8hpp_source}{}\label{_event_8hpp_source}\index{include/Event.hpp@{include/Event.hpp}}
+\mbox{\hyperlink{_event_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ Created\ by\ absol\ on\ 6/17/2024.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#ifndef\ C\_ENGINE\_EVENT\_HPP}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#define\ C\_ENGINE\_EVENT\_HPP}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <any>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_object_list_8hpp}{ObjectList.hpp}}"{}}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceengine}{engine}}\ \{}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classengine_1_1_event}{Event}}\ \{}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ std::string\ \mbox{\hyperlink{classengine_1_1_event_a0296b8baada44a97e50ccb5a09a29075}{\_type}};\ \ }
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ std::string\ \mbox{\hyperlink{classengine_1_1_event_af7d669fcbd5ad0521111d4152426fa09}{\_cause}};\ }
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classengine_1_1_object_list}{engine::ObjectList<std::any>}}\ \mbox{\hyperlink{classengine_1_1_event_a67258c3a939134f0faf2d9054ad92531}{\_data}};\ \ \ \ \ }
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classengine_1_1_object_list}{engine::ObjectList<std::any>}}\ \mbox{\hyperlink{classengine_1_1_event_ae3d94ecb8d148cacf4790f1688cd7141}{\_response}};\ }
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classengine_1_1_event_ae33808c14be823689db213cc424d09f1}{Event}}(std::string\ \mbox{\hyperlink{classengine_1_1_event_a53e4048d267ca6ea045f4c0134de1f4b}{what}},\ std::string\ \mbox{\hyperlink{classengine_1_1_event_a0dbe1043fc77addf23c605d17c28a93b}{why}})\ \{\ \mbox{\hyperlink{classengine_1_1_event_a0296b8baada44a97e50ccb5a09a29075}{\_type}}\ =\ \mbox{\hyperlink{classengine_1_1_event_a53e4048d267ca6ea045f4c0134de1f4b}{what}};\ \mbox{\hyperlink{classengine_1_1_event_af7d669fcbd5ad0521111d4152426fa09}{\_cause}}\ =\ \mbox{\hyperlink{classengine_1_1_event_a0dbe1043fc77addf23c605d17c28a93b}{why}};\ \}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ std::string\ \mbox{\hyperlink{classengine_1_1_event_a53e4048d267ca6ea045f4c0134de1f4b}{what}}()\ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classengine_1_1_event_a0296b8baada44a97e50ccb5a09a29075}{\_type}};}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ std::string\ \mbox{\hyperlink{classengine_1_1_event_a0dbe1043fc77addf23c605d17c28a93b}{why}}()\ \{}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classengine_1_1_event_af7d669fcbd5ad0521111d4152426fa09}{\_cause}};}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ std::string\ \mbox{\hyperlink{classengine_1_1_event_a48a1d617d52faf14d951a35d248af838}{whole}}()\ \{}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classengine_1_1_event_a0296b8baada44a97e50ccb5a09a29075}{\_type}}\ +\ \textcolor{stringliteral}{"{}:\ "{}}\ +\ \mbox{\hyperlink{classengine_1_1_event_af7d669fcbd5ad0521111d4152426fa09}{\_cause}};}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classengine_1_1_event_a03a2dd508ac3845c649c57ee081928d7}{setData}}(\mbox{\hyperlink{classengine_1_1_object_list}{engine::ObjectList<std::any>}}\ \&ol)\ \{}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classengine_1_1_event_a67258c3a939134f0faf2d9054ad92531}{\_data}}\ =\ ol;}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classengine_1_1_object_list}{engine::ObjectList<std::any>}}\ \&\mbox{\hyperlink{classengine_1_1_event_afa642911e47f91ac7dad92bfffb0b336}{getData}}()\ \{}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classengine_1_1_event_a67258c3a939134f0faf2d9054ad92531}{\_data}};}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00085\ \ \ \ \ \};}
+\DoxyCodeLine{00086\ \}}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//C\_ENGINE\_EVENT\_HPP}}
+
+\end{DoxyCode}

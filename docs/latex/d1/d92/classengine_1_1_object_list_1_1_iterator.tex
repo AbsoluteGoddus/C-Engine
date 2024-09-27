@@ -1,0 +1,129 @@
+\doxysection{engine\+::Object\+List\texorpdfstring{$<$}{<} OL\+\_\+\+Type \texorpdfstring{$>$}{>}\+::Iterator Class Reference}
+\hypertarget{classengine_1_1_object_list_1_1_iterator}{}\label{classengine_1_1_object_list_1_1_iterator}\index{engine::ObjectList$<$ OL\_Type $>$::Iterator@{engine::ObjectList$<$ OL\_Type $>$::Iterator}}
+
+
+Custom iterator class for \doxylink{classengine_1_1_object_list}{Object\+List}.  
+
+
+
+
+{\ttfamily \#include $<$Object\+List.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classengine_1_1_object_list_1_1_iterator_aef7b74e41e421038f5b25f2adab95d07}{Iterator}} (typename std\+::unordered\+\_\+map$<$ int, OL\+\_\+\+Type $>$\+::iterator it, typename std\+::unordered\+\_\+map$<$ int, OL\+\_\+\+Type $>$\+::iterator \mbox{\hyperlink{classengine_1_1_object_list_a0afa8815e4c851b3f6be5d6d3e3e2588}{end}})
+\begin{DoxyCompactList}\small\item\em Constructs an \doxylink{classengine_1_1_object_list_1_1_iterator}{Iterator}. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classengine_1_1_object_list_1_1_iterator_a7147d2f82a364ae825a758bc581c9e8b}{operator!=}} (const \mbox{\hyperlink{classengine_1_1_object_list_1_1_iterator}{Iterator}} \&other) const
+\begin{DoxyCompactList}\small\item\em Checks if two iterators are not equal. \end{DoxyCompactList}\item 
+OL\+\_\+\+Type \& \mbox{\hyperlink{classengine_1_1_object_list_1_1_iterator_a2bc3fd5222e08f29eb271470195def60}{operator\texorpdfstring{$\ast$}{*}}} ()
+\begin{DoxyCompactList}\small\item\em Dereferences the iterator to access the object. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{classengine_1_1_object_list_1_1_iterator}{Iterator}} \& \mbox{\hyperlink{classengine_1_1_object_list_1_1_iterator_aaa5c69f3e22944351bf281117bd00ddb}{operator++}} ()
+\begin{DoxyCompactList}\small\item\em Advances the iterator to the next object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::unordered\+\_\+map$<$ int, OL\+\_\+\+Type $>$\+::iterator \mbox{\hyperlink{classengine_1_1_object_list_1_1_iterator_a4d5f212cfcff21189bfe9845758ab8b2}{\+\_\+it}}
+\item 
+std\+::unordered\+\_\+map$<$ int, OL\+\_\+\+Type $>$\+::iterator \mbox{\hyperlink{classengine_1_1_object_list_1_1_iterator_a944e6a7504673328293aa0220674d9d8}{\+\_\+end}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class OL\+\_\+\+Type$>$\newline
+class engine\+::\+Object\+List$<$ OL\+\_\+\+Type $>$\+::\+Iterator}
+Custom iterator class for \doxylink{classengine_1_1_object_list}{Object\+List}. 
+
+The \doxylink{classengine_1_1_object_list_1_1_iterator}{Iterator} class is used to iterate over the objects in the \doxylink{classengine_1_1_object_list}{Object\+List}. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classengine_1_1_object_list_1_1_iterator_aef7b74e41e421038f5b25f2adab95d07}\index{engine::ObjectList$<$ OL\_Type $>$::Iterator@{engine::ObjectList$<$ OL\_Type $>$::Iterator}!Iterator@{Iterator}}
+\index{Iterator@{Iterator}!engine::ObjectList$<$ OL\_Type $>$::Iterator@{engine::ObjectList$<$ OL\_Type $>$::Iterator}}
+\doxysubsubsection{\texorpdfstring{Iterator()}{Iterator()}}
+{\footnotesize\ttfamily \label{classengine_1_1_object_list_1_1_iterator_aef7b74e41e421038f5b25f2adab95d07} 
+template$<$class OL\+\_\+\+Type $>$ \\
+\mbox{\hyperlink{classengine_1_1_object_list}{engine\+::\+Object\+List}}$<$ OL\+\_\+\+Type $>$\+::\+Iterator\+::\+Iterator (\begin{DoxyParamCaption}\item[{typename std\+::unordered\+\_\+map$<$ int, OL\+\_\+\+Type $>$\+::iterator}]{it}{, }\item[{typename std\+::unordered\+\_\+map$<$ int, OL\+\_\+\+Type $>$\+::iterator}]{end}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs an \doxylink{classengine_1_1_object_list_1_1_iterator}{Iterator}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em it} & \doxylink{classengine_1_1_object_list_1_1_iterator}{Iterator} to the current object. \\
+\hline
+{\em end} & \doxylink{classengine_1_1_object_list_1_1_iterator}{Iterator} to the end of the list. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classengine_1_1_object_list_1_1_iterator_a7147d2f82a364ae825a758bc581c9e8b}\index{engine::ObjectList$<$ OL\_Type $>$::Iterator@{engine::ObjectList$<$ OL\_Type $>$::Iterator}!operator"!=@{operator"!=}}
+\index{operator"!=@{operator"!=}!engine::ObjectList$<$ OL\_Type $>$::Iterator@{engine::ObjectList$<$ OL\_Type $>$::Iterator}}
+\doxysubsubsection{\texorpdfstring{operator"!=()}{operator!=()}}
+{\footnotesize\ttfamily \label{classengine_1_1_object_list_1_1_iterator_a7147d2f82a364ae825a758bc581c9e8b} 
+template$<$class OL\+\_\+\+Type $>$ \\
+bool \mbox{\hyperlink{classengine_1_1_object_list}{engine\+::\+Object\+List}}$<$ OL\+\_\+\+Type $>$\+::\+Iterator\+::operator!= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classengine_1_1_object_list_1_1_iterator}{Iterator}} \&}]{other}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Checks if two iterators are not equal. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & The other iterator to compare with. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if the iterators are not equal, otherwise {\ttfamily false}. 
+\end{DoxyReturn}
+\Hypertarget{classengine_1_1_object_list_1_1_iterator_a2bc3fd5222e08f29eb271470195def60}\index{engine::ObjectList$<$ OL\_Type $>$::Iterator@{engine::ObjectList$<$ OL\_Type $>$::Iterator}!operator\texorpdfstring{$\ast$}{*}@{operator\texorpdfstring{$\ast$}{*}}}
+\index{operator\texorpdfstring{$\ast$}{*}@{operator\texorpdfstring{$\ast$}{*}}!engine::ObjectList$<$ OL\_Type $>$::Iterator@{engine::ObjectList$<$ OL\_Type $>$::Iterator}}
+\doxysubsubsection{\texorpdfstring{operator\texorpdfstring{$\ast$}{*}()}{operator*()}}
+{\footnotesize\ttfamily \label{classengine_1_1_object_list_1_1_iterator_a2bc3fd5222e08f29eb271470195def60} 
+template$<$class OL\+\_\+\+Type $>$ \\
+OL\+\_\+\+Type \& \mbox{\hyperlink{classengine_1_1_object_list}{engine\+::\+Object\+List}}$<$ OL\+\_\+\+Type $>$\+::\+Iterator\+::operator\texorpdfstring{$\ast$}{*} (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Dereferences the iterator to access the object. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the object. 
+\end{DoxyReturn}
+\Hypertarget{classengine_1_1_object_list_1_1_iterator_aaa5c69f3e22944351bf281117bd00ddb}\index{engine::ObjectList$<$ OL\_Type $>$::Iterator@{engine::ObjectList$<$ OL\_Type $>$::Iterator}!operator++@{operator++}}
+\index{operator++@{operator++}!engine::ObjectList$<$ OL\_Type $>$::Iterator@{engine::ObjectList$<$ OL\_Type $>$::Iterator}}
+\doxysubsubsection{\texorpdfstring{operator++()}{operator++()}}
+{\footnotesize\ttfamily \label{classengine_1_1_object_list_1_1_iterator_aaa5c69f3e22944351bf281117bd00ddb} 
+template$<$class OL\+\_\+\+Type $>$ \\
+const \mbox{\hyperlink{classengine_1_1_object_list_1_1_iterator}{Iterator}} \& \mbox{\hyperlink{classengine_1_1_object_list}{engine\+::\+Object\+List}}$<$ OL\+\_\+\+Type $>$\+::\+Iterator\+::operator++ (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Advances the iterator to the next object. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the updated iterator. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classengine_1_1_object_list_1_1_iterator_a944e6a7504673328293aa0220674d9d8}\index{engine::ObjectList$<$ OL\_Type $>$::Iterator@{engine::ObjectList$<$ OL\_Type $>$::Iterator}!\_end@{\_end}}
+\index{\_end@{\_end}!engine::ObjectList$<$ OL\_Type $>$::Iterator@{engine::ObjectList$<$ OL\_Type $>$::Iterator}}
+\doxysubsubsection{\texorpdfstring{\_end}{\_end}}
+{\footnotesize\ttfamily \label{classengine_1_1_object_list_1_1_iterator_a944e6a7504673328293aa0220674d9d8} 
+template$<$class OL\+\_\+\+Type $>$ \\
+std\+::unordered\+\_\+map$<$int,OL\+\_\+\+Type$>$\+::iterator \mbox{\hyperlink{classengine_1_1_object_list}{engine\+::\+Object\+List}}$<$ OL\+\_\+\+Type $>$\+::\+Iterator\+::\+\_\+end\hspace{0.3cm}{\ttfamily [private]}}
+
+\doxylink{classengine_1_1_object_list_1_1_iterator}{Iterator} to the end of the list. \Hypertarget{classengine_1_1_object_list_1_1_iterator_a4d5f212cfcff21189bfe9845758ab8b2}\index{engine::ObjectList$<$ OL\_Type $>$::Iterator@{engine::ObjectList$<$ OL\_Type $>$::Iterator}!\_it@{\_it}}
+\index{\_it@{\_it}!engine::ObjectList$<$ OL\_Type $>$::Iterator@{engine::ObjectList$<$ OL\_Type $>$::Iterator}}
+\doxysubsubsection{\texorpdfstring{\_it}{\_it}}
+{\footnotesize\ttfamily \label{classengine_1_1_object_list_1_1_iterator_a4d5f212cfcff21189bfe9845758ab8b2} 
+template$<$class OL\+\_\+\+Type $>$ \\
+std\+::unordered\+\_\+map$<$int,OL\+\_\+\+Type$>$\+::iterator \mbox{\hyperlink{classengine_1_1_object_list}{engine\+::\+Object\+List}}$<$ OL\+\_\+\+Type $>$\+::\+Iterator\+::\+\_\+it\hspace{0.3cm}{\ttfamily [private]}}
+
+\doxylink{classengine_1_1_object_list_1_1_iterator}{Iterator} to the current object. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{_object_list_8hpp}{Object\+List.\+hpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,92 @@
+\doxysection{engine\+::Scene Class Reference}
+\hypertarget{classengine_1_1_scene}{}\label{classengine_1_1_scene}\index{engine::Scene@{engine::Scene}}
+
+
+Manages a collection of Game\+Objects and provides methods to initialize, update, and clean up the scene.  
+
+
+
+
+{\ttfamily \#include $<$Scene.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classengine_1_1_scene_a31ca8e2378244423d27b0971ceba7235}{init}} ()
+\begin{DoxyCompactList}\small\item\em Initializes all Game\+Objects in the scene. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classengine_1_1_scene_aa61930d578b5f3fef2ba19666c9f73f5}{update}} ()
+\begin{DoxyCompactList}\small\item\em Updates all Game\+Objects in the scene. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classengine_1_1_scene_a4d76692cd98518c67683cd1b1ad38d54}{cleanup}} ()
+\begin{DoxyCompactList}\small\item\em Cleans up the scene by sending a cleanup event to all Game\+Objects. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classengine_1_1_scene_a09443d03331e9a1275c0a695e3f5e7d5}{\texorpdfstring{$\sim$}{\string~}\+Scene}} ()
+\begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{classengine_1_1_scene}{Scene} class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classengine_1_1_object_list}{Object\+List}}$<$ \mbox{\hyperlink{classengine_1_1_game_object}{Game\+Object}} $>$ \mbox{\hyperlink{classengine_1_1_scene_a046e4c129238627b9f91df39acb1cd93}{Objects}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Manages a collection of Game\+Objects and provides methods to initialize, update, and clean up the scene. 
+
+The \doxylink{classengine_1_1_scene}{Scene} class contains a list of Game\+Objects and provides methods to initialize, update, and clean up these objects. It also handles events related to the cleanup and destruction of the scene. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classengine_1_1_scene_a09443d03331e9a1275c0a695e3f5e7d5}\index{engine::Scene@{engine::Scene}!````~Scene@{\texorpdfstring{$\sim$}{\string~}Scene}}
+\index{````~Scene@{\texorpdfstring{$\sim$}{\string~}Scene}!engine::Scene@{engine::Scene}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Scene()}{\string~Scene()}}
+{\footnotesize\ttfamily \label{classengine_1_1_scene_a09443d03331e9a1275c0a695e3f5e7d5} 
+engine\+::\+Scene\+::\texorpdfstring{$\sim$}{\string~}\+Scene (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Destructor for the \doxylink{classengine_1_1_scene}{Scene} class. 
+
+Sends a destroy event to all Game\+Objects when the scene is destroyed. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classengine_1_1_scene_a4d76692cd98518c67683cd1b1ad38d54}\index{engine::Scene@{engine::Scene}!cleanup@{cleanup}}
+\index{cleanup@{cleanup}!engine::Scene@{engine::Scene}}
+\doxysubsubsection{\texorpdfstring{cleanup()}{cleanup()}}
+{\footnotesize\ttfamily \label{classengine_1_1_scene_a4d76692cd98518c67683cd1b1ad38d54} 
+void engine\+::\+Scene\+::cleanup (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Cleans up the scene by sending a cleanup event to all Game\+Objects. 
+
+\Hypertarget{classengine_1_1_scene_a31ca8e2378244423d27b0971ceba7235}\index{engine::Scene@{engine::Scene}!init@{init}}
+\index{init@{init}!engine::Scene@{engine::Scene}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily \label{classengine_1_1_scene_a31ca8e2378244423d27b0971ceba7235} 
+void engine\+::\+Scene\+::init (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Initializes all Game\+Objects in the scene. 
+
+\Hypertarget{classengine_1_1_scene_aa61930d578b5f3fef2ba19666c9f73f5}\index{engine::Scene@{engine::Scene}!update@{update}}
+\index{update@{update}!engine::Scene@{engine::Scene}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily \label{classengine_1_1_scene_aa61930d578b5f3fef2ba19666c9f73f5} 
+void engine\+::\+Scene\+::update (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Updates all Game\+Objects in the scene. 
+
+This method performs a pre-\/update, update, and post-\/update step for each \doxylink{classengine_1_1_game_object}{Game\+Object} in the scene. 
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classengine_1_1_scene_a046e4c129238627b9f91df39acb1cd93}\index{engine::Scene@{engine::Scene}!Objects@{Objects}}
+\index{Objects@{Objects}!engine::Scene@{engine::Scene}}
+\doxysubsubsection{\texorpdfstring{Objects}{Objects}}
+{\footnotesize\ttfamily \label{classengine_1_1_scene_a046e4c129238627b9f91df39acb1cd93} 
+\mbox{\hyperlink{classengine_1_1_object_list}{Object\+List}}$<$\mbox{\hyperlink{classengine_1_1_game_object}{Game\+Object}}$>$ engine\+::\+Scene\+::\+Objects}
+
+List of Game\+Objects in the scene. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{_scene_8hpp}{Scene.\+hpp}}\end{DoxyCompactItemize}

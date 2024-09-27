@@ -1,0 +1,353 @@
+\doxysection{Node Class Reference}
+\hypertarget{class_node}{}\label{class_node}\index{Node@{Node}}
+
+
+Represents a node that can contain sub-\/nodes and values.  
+
+
+
+
+{\ttfamily \#include $<$Node.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_node_aaae322d07df385b0c878d47744021ad6}{Node}} (const std\+::string \&name="{}root"{})
+\begin{DoxyCompactList}\small\item\em Initializes the \doxylink{class_node}{Node} with a name. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{class_node_aa105e475c97b08f0a9d828ece9009272}{size}} () const
+\begin{DoxyCompactList}\small\item\em Returns the size of the node. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_node_aa1ff9329c0796383d34d55ff5aacec8e}{set\+Parent}} (\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*}\+\_\+p)
+\begin{DoxyCompactList}\small\item\em Sets the parent of the \doxylink{class_node}{Node}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_node_a3cad655320d50751c43c5cec9356dcf3}{get\+Parent}} () const
+\begin{DoxyCompactList}\small\item\em Gets the parent of the \doxylink{class_node}{Node}. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{class_node_a74c1599164111ab218858bbe0748a812}{get\+Name}} () const
+\begin{DoxyCompactList}\small\item\em Gets the name of the \doxylink{class_node}{Node}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_node_a519730c66b26e65c6539a908e6905edc}{set\+Name}} (const std\+::string \&name)
+\begin{DoxyCompactList}\small\item\em Sets the name of the \doxylink{class_node}{Node}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_node_acad25f4d76e4ac1e9ab0818632c86a4d}{push\+Node}} (\mbox{\hyperlink{class_node}{Node}} n)
+\begin{DoxyCompactList}\small\item\em Adds a sub-\/node to this node. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_node_a1485ff9916134a99242696b6ca9d791f}{push\+Value}} (const std\+::string \&name, std\+::any value)
+\begin{DoxyCompactList}\small\item\em Adds a value to this node. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_node_a1769b0fc98b217de8762a01bbda27e1a}{contains}} (const std\+::string \&key)
+\begin{DoxyCompactList}\small\item\em Checks whether a certain value exists in the node. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_node_a4372c1c2c80c2af1d5ca5db76bbc6c8e}{operator$<$$<$}} (\mbox{\hyperlink{class_node}{Node}} n)
+\begin{DoxyCompactList}\small\item\em Inserts a sub-\/node into the \doxylink{class_node}{Node} using the insertion operator. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_node_a07179f101c8070a55cf85dd78bbbcb1e}{operator$<$}} (\mbox{\hyperlink{_node_8hpp_a3028a290902852171d6e59f9c3a87505}{node\+Value}} value)
+\begin{DoxyCompactList}\small\item\em Inserts a value into the \doxylink{class_node}{Node} using the insertion operator. \end{DoxyCompactList}\item 
+std\+::any \& \mbox{\hyperlink{class_node_aa77bd3ab8999b489899247d044da1457}{operator()}} (const std\+::string \&key)
+\begin{DoxyCompactList}\small\item\em Gets a value reference from the \doxylink{class_node}{Node}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_node}{Node}} \& \mbox{\hyperlink{class_node_a172d1a28bf0e0f46f8978c143254d0f8}{operator\mbox{[}$\,$\mbox{]}}} (const std\+::string \&key)
+\begin{DoxyCompactList}\small\item\em Gets a sub-\/node reference from the \doxylink{class_node}{Node}. \end{DoxyCompactList}\item 
+const std\+::unordered\+\_\+map$<$ std\+::string, \mbox{\hyperlink{class_node}{Node}} $>$ \& \mbox{\hyperlink{class_node_a15f7db80ea48cb02383c43d07380447d}{get\+Sub\+Nodes}} () const
+\begin{DoxyCompactList}\small\item\em Gets the sub-\/nodes map. \end{DoxyCompactList}\item 
+const std\+::unordered\+\_\+map$<$ std\+::string, std\+::any $>$ \& \mbox{\hyperlink{class_node_ad28859619682e0e96e97e9ae2f9a9765}{get\+Values}} () const
+\begin{DoxyCompactList}\small\item\em Gets the values map. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{class_node_a86eede863d7a1f8d4b3a73cd253d9976}{node\+Type}} = std\+::unordered\+\_\+map$<$std\+::string, \mbox{\hyperlink{class_node}{Node}}$>$
+\item 
+using \mbox{\hyperlink{class_node_a87e899d7e347dc7a0ec57e2bc2b6294c}{value\+Type}} = std\+::unordered\+\_\+map$<$std\+::string, std\+::any$>$
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{class_node_a7fb92ed8ca02f47ffa4dfe83500b7fd0}{\+\_\+name}}
+\item 
+std\+::unordered\+\_\+map$<$ std\+::string, \mbox{\hyperlink{class_node}{Node}} $>$ \mbox{\hyperlink{class_node_a127116ed000452ab764a8d526945cbdf}{\+\_\+sub\+Nodes}}
+\item 
+std\+::unordered\+\_\+map$<$ std\+::string, std\+::any $>$ \mbox{\hyperlink{class_node_a3524e2035a5afdfbfa62709bcaf38055}{\+\_\+values}}
+\item 
+\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_node_a4609e1daa55bd61615102d7ca6e439d6}{\+\_\+parent}} = nullptr
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a node that can contain sub-\/nodes and values. 
+
+The \doxylink{class_node}{Node} class is used to create a hierarchical structure of nodes, where each node can contain sub-\/nodes and values. Each node has a name and can have a parent node. 
+
+\doxysubsection{Member Typedef Documentation}
+\Hypertarget{class_node_a86eede863d7a1f8d4b3a73cd253d9976}\index{Node@{Node}!nodeType@{nodeType}}
+\index{nodeType@{nodeType}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{nodeType}{nodeType}}
+{\footnotesize\ttfamily \label{class_node_a86eede863d7a1f8d4b3a73cd253d9976} 
+using \mbox{\hyperlink{class_node_a86eede863d7a1f8d4b3a73cd253d9976}{Node\+::node\+Type}} = std\+::unordered\+\_\+map$<$std\+::string, \mbox{\hyperlink{class_node}{Node}}$>$\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_node_a87e899d7e347dc7a0ec57e2bc2b6294c}\index{Node@{Node}!valueType@{valueType}}
+\index{valueType@{valueType}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{valueType}{valueType}}
+{\footnotesize\ttfamily \label{class_node_a87e899d7e347dc7a0ec57e2bc2b6294c} 
+using \mbox{\hyperlink{class_node_a87e899d7e347dc7a0ec57e2bc2b6294c}{Node\+::value\+Type}} = std\+::unordered\+\_\+map$<$std\+::string, std\+::any$>$\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_node_aaae322d07df385b0c878d47744021ad6}\index{Node@{Node}!Node@{Node}}
+\index{Node@{Node}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{Node()}{Node()}}
+{\footnotesize\ttfamily \label{class_node_aaae322d07df385b0c878d47744021ad6} 
+Node\+::\+Node (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name}{ = {\ttfamily "{}root"{}}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Initializes the \doxylink{class_node}{Node} with a name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name to be used for the node. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_node_a1769b0fc98b217de8762a01bbda27e1a}\index{Node@{Node}!contains@{contains}}
+\index{contains@{contains}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{contains()}{contains()}}
+{\footnotesize\ttfamily \label{class_node_a1769b0fc98b217de8762a01bbda27e1a} 
+bool Node\+::contains (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{key}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Checks whether a certain value exists in the node. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The name of the value to check. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if the value exists, otherwise {\ttfamily false}. 
+\end{DoxyReturn}
+\Hypertarget{class_node_a74c1599164111ab218858bbe0748a812}\index{Node@{Node}!getName@{getName}}
+\index{getName@{getName}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{getName()}{getName()}}
+{\footnotesize\ttfamily \label{class_node_a74c1599164111ab218858bbe0748a812} 
+std\+::string Node\+::get\+Name (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the name of the \doxylink{class_node}{Node}. 
+
+\begin{DoxyReturn}{Returns}
+The name of the \doxylink{class_node}{Node}. 
+\end{DoxyReturn}
+\Hypertarget{class_node_a3cad655320d50751c43c5cec9356dcf3}\index{Node@{Node}!getParent@{getParent}}
+\index{getParent@{getParent}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{getParent()}{getParent()}}
+{\footnotesize\ttfamily \label{class_node_a3cad655320d50751c43c5cec9356dcf3} 
+\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} Node\+::get\+Parent (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the parent of the \doxylink{class_node}{Node}. 
+
+\begin{DoxyReturn}{Returns}
+A pointer to the parent node. 
+\end{DoxyReturn}
+\Hypertarget{class_node_a15f7db80ea48cb02383c43d07380447d}\index{Node@{Node}!getSubNodes@{getSubNodes}}
+\index{getSubNodes@{getSubNodes}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{getSubNodes()}{getSubNodes()}}
+{\footnotesize\ttfamily \label{class_node_a15f7db80ea48cb02383c43d07380447d} 
+const std\+::unordered\+\_\+map$<$ std\+::string, \mbox{\hyperlink{class_node}{Node}} $>$ \& Node\+::get\+Sub\+Nodes (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the sub-\/nodes map. 
+
+\begin{DoxyReturn}{Returns}
+A const reference to the sub-\/nodes map. 
+\end{DoxyReturn}
+\Hypertarget{class_node_ad28859619682e0e96e97e9ae2f9a9765}\index{Node@{Node}!getValues@{getValues}}
+\index{getValues@{getValues}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{getValues()}{getValues()}}
+{\footnotesize\ttfamily \label{class_node_ad28859619682e0e96e97e9ae2f9a9765} 
+const std\+::unordered\+\_\+map$<$ std\+::string, std\+::any $>$ \& Node\+::get\+Values (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the values map. 
+
+\begin{DoxyReturn}{Returns}
+A const reference to the values map. 
+\end{DoxyReturn}
+\Hypertarget{class_node_aa77bd3ab8999b489899247d044da1457}\index{Node@{Node}!operator()@{operator()}}
+\index{operator()@{operator()}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily \label{class_node_aa77bd3ab8999b489899247d044da1457} 
+std\+::any \& Node\+::operator() (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{key}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets a value reference from the \doxylink{class_node}{Node}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The name of the value to be returned. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the value. 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::out\+\_\+of\+\_\+range} & if the key is not found. \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{class_node_a07179f101c8070a55cf85dd78bbbcb1e}\index{Node@{Node}!operator$<$@{operator$<$}}
+\index{operator$<$@{operator$<$}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{operator$<$()}{operator<()}}
+{\footnotesize\ttfamily \label{class_node_a07179f101c8070a55cf85dd78bbbcb1e} 
+void Node\+::operator$<$ (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_node_8hpp_a3028a290902852171d6e59f9c3a87505}{node\+Value}}}]{value}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Inserts a value into the \doxylink{class_node}{Node} using the insertion operator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & The value to be inserted. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_node_a4372c1c2c80c2af1d5ca5db76bbc6c8e}\index{Node@{Node}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$()}{operator<<()}}
+{\footnotesize\ttfamily \label{class_node_a4372c1c2c80c2af1d5ca5db76bbc6c8e} 
+void Node\+::operator$<$$<$ (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_node}{Node}}}]{n}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Inserts a sub-\/node into the \doxylink{class_node}{Node} using the insertion operator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & The \doxylink{class_node}{Node} to be inserted. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_node_a172d1a28bf0e0f46f8978c143254d0f8}\index{Node@{Node}!operator\mbox{[}\mbox{]}@{operator[]}}
+\index{operator\mbox{[}\mbox{]}@{operator[]}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{operator[]()}{operator[]()}}
+{\footnotesize\ttfamily \label{class_node_a172d1a28bf0e0f46f8978c143254d0f8} 
+\mbox{\hyperlink{class_node}{Node}} \& Node\+::operator\mbox{[}$\,$\mbox{]} (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{key}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets a sub-\/node reference from the \doxylink{class_node}{Node}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The name of the sub-\/node. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the sub-\/node. 
+\end{DoxyReturn}
+\Hypertarget{class_node_acad25f4d76e4ac1e9ab0818632c86a4d}\index{Node@{Node}!pushNode@{pushNode}}
+\index{pushNode@{pushNode}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{pushNode()}{pushNode()}}
+{\footnotesize\ttfamily \label{class_node_acad25f4d76e4ac1e9ab0818632c86a4d} 
+void Node\+::push\+Node (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_node}{Node}}}]{n}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Adds a sub-\/node to this node. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & The node to be added as a sub-\/node. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_node_a1485ff9916134a99242696b6ca9d791f}\index{Node@{Node}!pushValue@{pushValue}}
+\index{pushValue@{pushValue}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{pushValue()}{pushValue()}}
+{\footnotesize\ttfamily \label{class_node_a1485ff9916134a99242696b6ca9d791f} 
+void Node\+::push\+Value (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name}{, }\item[{std\+::any}]{value}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Adds a value to this node. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the new value. \\
+\hline
+{\em value} & The value to be added. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_node_a519730c66b26e65c6539a908e6905edc}\index{Node@{Node}!setName@{setName}}
+\index{setName@{setName}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{setName()}{setName()}}
+{\footnotesize\ttfamily \label{class_node_a519730c66b26e65c6539a908e6905edc} 
+void Node\+::set\+Name (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Sets the name of the \doxylink{class_node}{Node}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The new name for the node. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_node_aa1ff9329c0796383d34d55ff5aacec8e}\index{Node@{Node}!setParent@{setParent}}
+\index{setParent@{setParent}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{setParent()}{setParent()}}
+{\footnotesize\ttfamily \label{class_node_aa1ff9329c0796383d34d55ff5aacec8e} 
+void Node\+::set\+Parent (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*}}]{\+\_\+p}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Sets the parent of the \doxylink{class_node}{Node}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+p} & The node to be set as the parent. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_node_aa105e475c97b08f0a9d828ece9009272}\index{Node@{Node}!size@{size}}
+\index{size@{size}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{size()}{size()}}
+{\footnotesize\ttfamily \label{class_node_aa105e475c97b08f0a9d828ece9009272} 
+size\+\_\+t Node\+::size (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the size of the node. 
+
+Recursively calculates and returns the size of the current node, including all sub-\/nodes.
+
+\begin{DoxyReturn}{Returns}
+The total size of the node and its sub-\/nodes. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_node_a7fb92ed8ca02f47ffa4dfe83500b7fd0}\index{Node@{Node}!\_name@{\_name}}
+\index{\_name@{\_name}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{\_name}{\_name}}
+{\footnotesize\ttfamily \label{class_node_a7fb92ed8ca02f47ffa4dfe83500b7fd0} 
+std\+::string Node\+::\+\_\+name\hspace{0.3cm}{\ttfamily [private]}}
+
+The name of the node. \Hypertarget{class_node_a4609e1daa55bd61615102d7ca6e439d6}\index{Node@{Node}!\_parent@{\_parent}}
+\index{\_parent@{\_parent}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{\_parent}{\_parent}}
+{\footnotesize\ttfamily \label{class_node_a4609e1daa55bd61615102d7ca6e439d6} 
+\mbox{\hyperlink{class_node}{Node}}\texorpdfstring{$\ast$}{*} Node\+::\+\_\+parent = nullptr\hspace{0.3cm}{\ttfamily [private]}}
+
+Pointer to the parent node. \Hypertarget{class_node_a127116ed000452ab764a8d526945cbdf}\index{Node@{Node}!\_subNodes@{\_subNodes}}
+\index{\_subNodes@{\_subNodes}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{\_subNodes}{\_subNodes}}
+{\footnotesize\ttfamily \label{class_node_a127116ed000452ab764a8d526945cbdf} 
+std\+::unordered\+\_\+map$<$std\+::string, \mbox{\hyperlink{class_node}{Node}}$>$ Node\+::\+\_\+sub\+Nodes\hspace{0.3cm}{\ttfamily [private]}}
+
+Sub-\/nodes stored in an unordered map. \Hypertarget{class_node_a3524e2035a5afdfbfa62709bcaf38055}\index{Node@{Node}!\_values@{\_values}}
+\index{\_values@{\_values}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{\_values}{\_values}}
+{\footnotesize\ttfamily \label{class_node_a3524e2035a5afdfbfa62709bcaf38055} 
+std\+::unordered\+\_\+map$<$std\+::string, std\+::any$>$ Node\+::\+\_\+values\hspace{0.3cm}{\ttfamily [private]}}
+
+Values stored in an unordered map. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{_node_8hpp}{Node.\+hpp}}\end{DoxyCompactItemize}

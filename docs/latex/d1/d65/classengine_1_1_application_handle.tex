@@ -1,0 +1,145 @@
+\doxysection{engine\+::Application\+Handle Class Reference}
+\hypertarget{classengine_1_1_application_handle}{}\label{classengine_1_1_application_handle}\index{engine::ApplicationHandle@{engine::ApplicationHandle}}
+
+
+Manages the application lifecycle, including initialization, updating, and cleanup.  
+
+
+
+
+{\ttfamily \#include $<$engine.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classengine_1_1_application_handle_a082593774f92d9e4c23bad5221a19332}{init}} ()
+\begin{DoxyCompactList}\small\item\em Initializes the application and its scenes. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classengine_1_1_application_handle_ad4175d918302e9dcf60c35c9f6bf8ab2}{update}} ()
+\begin{DoxyCompactList}\small\item\em Updates the application and its scenes. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classengine_1_1_application_handle_a92280cd56a31e32b4c06e71df2356502}{cleanup}} ()
+\begin{DoxyCompactList}\small\item\em Cleans up the application and its scenes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classengine_1_1_behavior_p_t_r}{Behavior\+PTR}} \mbox{\hyperlink{classengine_1_1_application_handle_ae0a76a8ec5309b1057d0bffbcd6bb94d}{glfw\+Event\+\_\+bptr}}
+\begin{DoxyCompactList}\small\item\em \doxylink{classengine_1_1_behavior}{Behavior} to handle GLFW events if {\ttfamily C\+\_\+\+ENGINE\+\_\+\+USE\+\_\+\+VULKAN} is defined. \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::function$<$ void()$>$ $>$ \mbox{\hyperlink{classengine_1_1_application_handle_a43ac41e6106e781743924316299de305}{ext\+Init}}
+\item 
+std\+::vector$<$ std\+::function$<$ void()$>$ $>$ \mbox{\hyperlink{classengine_1_1_application_handle_aaae4f2c213313669fd4e2915a14daeb9}{ext\+Update}}
+\item 
+std\+::vector$<$ std\+::function$<$ void()$>$ $>$ \mbox{\hyperlink{classengine_1_1_application_handle_a2e80cbe85674fbb79b6cbbc6f4f99095}{ext\+Update\+Fix}}
+\item 
+std\+::vector$<$ std\+::function$<$ void()$>$ $>$ \mbox{\hyperlink{classengine_1_1_application_handle_ae109e1041318fb44a7f6a8ccea61d4cb}{ext\+Terminate}}
+\item 
+bool \mbox{\hyperlink{classengine_1_1_application_handle_a6d8668e5d593c24e83160fbc66f21bee}{application\+\_\+running}} = false
+\item 
+\mbox{\hyperlink{classengine_1_1_object_list}{engine\+::\+Object\+List}}$<$ \mbox{\hyperlink{classengine_1_1_scene}{Scene}} $>$ \mbox{\hyperlink{classengine_1_1_application_handle_ac911404d4ee8c15ebe522cc3a42cb222}{Scenes}}
+\item 
+int \mbox{\hyperlink{classengine_1_1_application_handle_a78259aacece8ce54617d7515170b2ad3}{active\+Scene\+ID}} = 0
+\item 
+int \mbox{\hyperlink{classengine_1_1_application_handle_accd5754e1866c9e3d9e44d44b5106f62}{old\+Active\+Scene\+ID}} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Manages the application lifecycle, including initialization, updating, and cleanup. 
+
+The \doxylink{classengine_1_1_application_handle}{Application\+Handle} class is responsible for managing the application\textquotesingle{}s scenes and external functions. It provides methods to initialize, update, and clean up the application. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classengine_1_1_application_handle_a92280cd56a31e32b4c06e71df2356502}\index{engine::ApplicationHandle@{engine::ApplicationHandle}!cleanup@{cleanup}}
+\index{cleanup@{cleanup}!engine::ApplicationHandle@{engine::ApplicationHandle}}
+\doxysubsubsection{\texorpdfstring{cleanup()}{cleanup()}}
+{\footnotesize\ttfamily \label{classengine_1_1_application_handle_a92280cd56a31e32b4c06e71df2356502} 
+void engine\+::\+Application\+Handle\+::cleanup (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Cleans up the application and its scenes. 
+
+\Hypertarget{classengine_1_1_application_handle_a082593774f92d9e4c23bad5221a19332}\index{engine::ApplicationHandle@{engine::ApplicationHandle}!init@{init}}
+\index{init@{init}!engine::ApplicationHandle@{engine::ApplicationHandle}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily \label{classengine_1_1_application_handle_a082593774f92d9e4c23bad5221a19332} 
+void engine\+::\+Application\+Handle\+::init (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Initializes the application and its scenes. 
+
+\Hypertarget{classengine_1_1_application_handle_ad4175d918302e9dcf60c35c9f6bf8ab2}\index{engine::ApplicationHandle@{engine::ApplicationHandle}!update@{update}}
+\index{update@{update}!engine::ApplicationHandle@{engine::ApplicationHandle}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily \label{classengine_1_1_application_handle_ad4175d918302e9dcf60c35c9f6bf8ab2} 
+void engine\+::\+Application\+Handle\+::update (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Updates the application and its scenes. 
+
+This method updates the active scene and handles scene transitions. 
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classengine_1_1_application_handle_a78259aacece8ce54617d7515170b2ad3}\index{engine::ApplicationHandle@{engine::ApplicationHandle}!activeSceneID@{activeSceneID}}
+\index{activeSceneID@{activeSceneID}!engine::ApplicationHandle@{engine::ApplicationHandle}}
+\doxysubsubsection{\texorpdfstring{activeSceneID}{activeSceneID}}
+{\footnotesize\ttfamily \label{classengine_1_1_application_handle_a78259aacece8ce54617d7515170b2ad3} 
+int engine\+::\+Application\+Handle\+::active\+Scene\+ID = 0}
+
+ID of the currently active scene. \Hypertarget{classengine_1_1_application_handle_a6d8668e5d593c24e83160fbc66f21bee}\index{engine::ApplicationHandle@{engine::ApplicationHandle}!application\_running@{application\_running}}
+\index{application\_running@{application\_running}!engine::ApplicationHandle@{engine::ApplicationHandle}}
+\doxysubsubsection{\texorpdfstring{application\_running}{application\_running}}
+{\footnotesize\ttfamily \label{classengine_1_1_application_handle_a6d8668e5d593c24e83160fbc66f21bee} 
+bool engine\+::\+Application\+Handle\+::application\+\_\+running = false}
+
+Indicates whether the application is running. \Hypertarget{classengine_1_1_application_handle_a43ac41e6106e781743924316299de305}\index{engine::ApplicationHandle@{engine::ApplicationHandle}!extInit@{extInit}}
+\index{extInit@{extInit}!engine::ApplicationHandle@{engine::ApplicationHandle}}
+\doxysubsubsection{\texorpdfstring{extInit}{extInit}}
+{\footnotesize\ttfamily \label{classengine_1_1_application_handle_a43ac41e6106e781743924316299de305} 
+std\+::vector$<$std\+::function$<$void()$>$ $>$ engine\+::\+Application\+Handle\+::ext\+Init}
+
+External initialization functions. \Hypertarget{classengine_1_1_application_handle_ae109e1041318fb44a7f6a8ccea61d4cb}\index{engine::ApplicationHandle@{engine::ApplicationHandle}!extTerminate@{extTerminate}}
+\index{extTerminate@{extTerminate}!engine::ApplicationHandle@{engine::ApplicationHandle}}
+\doxysubsubsection{\texorpdfstring{extTerminate}{extTerminate}}
+{\footnotesize\ttfamily \label{classengine_1_1_application_handle_ae109e1041318fb44a7f6a8ccea61d4cb} 
+std\+::vector$<$std\+::function$<$void()$>$ $>$ engine\+::\+Application\+Handle\+::ext\+Terminate}
+
+External termination functions. \Hypertarget{classengine_1_1_application_handle_aaae4f2c213313669fd4e2915a14daeb9}\index{engine::ApplicationHandle@{engine::ApplicationHandle}!extUpdate@{extUpdate}}
+\index{extUpdate@{extUpdate}!engine::ApplicationHandle@{engine::ApplicationHandle}}
+\doxysubsubsection{\texorpdfstring{extUpdate}{extUpdate}}
+{\footnotesize\ttfamily \label{classengine_1_1_application_handle_aaae4f2c213313669fd4e2915a14daeb9} 
+std\+::vector$<$std\+::function$<$void()$>$ $>$ engine\+::\+Application\+Handle\+::ext\+Update}
+
+External update functions. \Hypertarget{classengine_1_1_application_handle_a2e80cbe85674fbb79b6cbbc6f4f99095}\index{engine::ApplicationHandle@{engine::ApplicationHandle}!extUpdateFix@{extUpdateFix}}
+\index{extUpdateFix@{extUpdateFix}!engine::ApplicationHandle@{engine::ApplicationHandle}}
+\doxysubsubsection{\texorpdfstring{extUpdateFix}{extUpdateFix}}
+{\footnotesize\ttfamily \label{classengine_1_1_application_handle_a2e80cbe85674fbb79b6cbbc6f4f99095} 
+std\+::vector$<$std\+::function$<$void()$>$ $>$ engine\+::\+Application\+Handle\+::ext\+Update\+Fix}
+
+External fixed update functions. \Hypertarget{classengine_1_1_application_handle_ae0a76a8ec5309b1057d0bffbcd6bb94d}\index{engine::ApplicationHandle@{engine::ApplicationHandle}!glfwEvent\_bptr@{glfwEvent\_bptr}}
+\index{glfwEvent\_bptr@{glfwEvent\_bptr}!engine::ApplicationHandle@{engine::ApplicationHandle}}
+\doxysubsubsection{\texorpdfstring{glfwEvent\_bptr}{glfwEvent\_bptr}}
+{\footnotesize\ttfamily \label{classengine_1_1_application_handle_ae0a76a8ec5309b1057d0bffbcd6bb94d} 
+\mbox{\hyperlink{classengine_1_1_behavior_p_t_r}{Behavior\+PTR}} engine\+::\+Application\+Handle\+::glfw\+Event\+\_\+bptr}
+
+
+
+\doxylink{classengine_1_1_behavior}{Behavior} to handle GLFW events if {\ttfamily C\+\_\+\+ENGINE\+\_\+\+USE\+\_\+\+VULKAN} is defined. 
+
+If {\ttfamily C\+\_\+\+ENGINE\+\_\+\+USE\+\_\+\+VULKAN} is not defined, this will be ignored. If not set, the default behavior will be to close the application when the window is closed. Other events will be ignored. \Hypertarget{classengine_1_1_application_handle_accd5754e1866c9e3d9e44d44b5106f62}\index{engine::ApplicationHandle@{engine::ApplicationHandle}!oldActiveSceneID@{oldActiveSceneID}}
+\index{oldActiveSceneID@{oldActiveSceneID}!engine::ApplicationHandle@{engine::ApplicationHandle}}
+\doxysubsubsection{\texorpdfstring{oldActiveSceneID}{oldActiveSceneID}}
+{\footnotesize\ttfamily \label{classengine_1_1_application_handle_accd5754e1866c9e3d9e44d44b5106f62} 
+int engine\+::\+Application\+Handle\+::old\+Active\+Scene\+ID = 0}
+
+ID of the previously active scene. \Hypertarget{classengine_1_1_application_handle_ac911404d4ee8c15ebe522cc3a42cb222}\index{engine::ApplicationHandle@{engine::ApplicationHandle}!Scenes@{Scenes}}
+\index{Scenes@{Scenes}!engine::ApplicationHandle@{engine::ApplicationHandle}}
+\doxysubsubsection{\texorpdfstring{Scenes}{Scenes}}
+{\footnotesize\ttfamily \label{classengine_1_1_application_handle_ac911404d4ee8c15ebe522cc3a42cb222} 
+\mbox{\hyperlink{classengine_1_1_object_list}{engine\+::\+Object\+List}}$<$\mbox{\hyperlink{classengine_1_1_scene}{Scene}}$>$ engine\+::\+Application\+Handle\+::\+Scenes}
+
+List of scenes in the application. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{engine_8hpp}{engine.\+hpp}}\end{DoxyCompactItemize}

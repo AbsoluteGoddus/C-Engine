@@ -1,17 +1,26 @@
-GENERATE_TREEVIEW      = YES # required!
+GENERATE_TREEVIEW      = YES
 DISABLE_INDEX          = NO
 FULL_SIDEBAR           = NO
 HTML_EXTRA_STYLESHEET  = doxygen-awesome-css/doxygen-awesome.css \
                         doxygen-awesome-css/doxygen-awesome-sidebar-only.css
-HTML_COLORSTYLE        = LIGHT # required with Doxygen >= 1.9.5
+HTML_COLORSTYLE        = TOGGLE
+PROJECT_NUMBER         = 0.0.4 Alpha
 PROJECT_NAME           = C-Engine
-PROJECT_NUMBER         = 0.3
-PROJECT_BRIEF          = "A Game engine made from scratch using cxx"
+PROJECT_BRIEF          = "A Game engine made from scratch using C++"
 OUTPUT_DIRECTORY       = ../docs
 CREATE_SUBDIRS         = YES
 EXCLUDE                = libsrc \
                         src \
                         bin \
-                        doxygen-awesome-css
-INPUT                  = include
+                        doxygen-awesome-css \
+                        include/examples \
+                        cmake-build-debug \
+                        include/vulkan.hpp \
+EXCLUDE_PATTERNS       = */cmake-build-debug/*
+INPUT                  = include ../README.md util
 RECURSIVE              = YES
+EXTRACT_ALL            = YES
+EXTRACT_PRIVATE        = YES
+EXTRACT_STATIC         = YES
+ENABLE_PREPROCESSING   = YES
+MACRO_EXPANSION        = YES

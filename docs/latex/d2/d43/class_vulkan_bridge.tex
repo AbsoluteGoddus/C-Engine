@@ -1,0 +1,477 @@
+\doxysection{Vulkan\+Bridge Class Reference}
+\hypertarget{class_vulkan_bridge}{}\label{class_vulkan_bridge}\index{VulkanBridge@{VulkanBridge}}
+
+
+{\ttfamily \#include $<$vulkan.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_vulkan_bridge_afa2d8b2deb13c92254a3f1ac357d652c}{init\+Window}} ()
+\item 
+void \mbox{\hyperlink{class_vulkan_bridge_ae12264d5318e4e8b323f392acf6f62fd}{init\+Vulkan}} ()
+\item 
+GLFWwindow \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_vulkan_bridge_a6f589dd09151ed6153026949ea13bec2}{get\+Window}} ()
+\item 
+void \mbox{\hyperlink{class_vulkan_bridge_a9b235dd1cb02b4582dd3c93c6c91b353}{draw}} ()
+\item 
+void \mbox{\hyperlink{class_vulkan_bridge_a7d1b0d9c915f76f59bd02b4667c9f8f5}{main\+Loop}} ()
+\item 
+void \mbox{\hyperlink{class_vulkan_bridge_a70a2a02a3273023868119435e0e512b5}{cleanup}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_vulkan_bridge_ad20fa9379ef15412c40a50f810cf1930}{create\+Instance}} ()
+\item 
+void \mbox{\hyperlink{class_vulkan_bridge_ae86c4ab4055e2ce42ff6a6ba95772476}{populate\+Debug\+Messenger\+Create\+Info}} (Vk\+Debug\+Utils\+Messenger\+Create\+Info\+EXT \&create\+Info)
+\item 
+void \mbox{\hyperlink{class_vulkan_bridge_a1157c5ce5d29f5af7b221450f2b9ee24}{setup\+Debug\+Messenger}} ()
+\item 
+void \mbox{\hyperlink{class_vulkan_bridge_a6f1327feeb4bf9f18844b8614a73b363}{create\+Surface}} ()
+\item 
+void \mbox{\hyperlink{class_vulkan_bridge_a59f24e9d5c0130891d29e20ef8b9f962}{pick\+Physical\+Device}} ()
+\item 
+void \mbox{\hyperlink{class_vulkan_bridge_a92e5d0b96bd0d4b61cab854b922acc3e}{create\+Logical\+Device}} ()
+\item 
+void \mbox{\hyperlink{class_vulkan_bridge_acdc5dbb36041013a02a13907a8ef97da}{create\+Swap\+Chain}} ()
+\item 
+void \mbox{\hyperlink{class_vulkan_bridge_ae5f5f083987e838977efca9c539fe60c}{create\+Image\+Views}} ()
+\item 
+void \mbox{\hyperlink{class_vulkan_bridge_a547638a27e2bbf448d6bd5b04e16d93e}{create\+Render\+Pass}} ()
+\item 
+void \mbox{\hyperlink{class_vulkan_bridge_a539c9e5f41c6b7998c039b49c188dbc0}{create\+Graphics\+Pipeline}} ()
+\item 
+void \mbox{\hyperlink{class_vulkan_bridge_a4672a744a67eab803497c63fa8e78aef}{create\+Framebuffers}} ()
+\item 
+void \mbox{\hyperlink{class_vulkan_bridge_a4a782160403b1f52157dc21dc8534abc}{create\+Command\+Pool}} ()
+\item 
+void \mbox{\hyperlink{class_vulkan_bridge_a562aa8464625deb0e21b9501e9860a6d}{create\+Command\+Buffer}} ()
+\item 
+void \mbox{\hyperlink{class_vulkan_bridge_a850a998527507beff52690bdfd30d2a7}{record\+Command\+Buffer}} (Vk\+Command\+Buffer \mbox{\hyperlink{class_vulkan_bridge_a299cd0eff01368a5ae3f81f5ead17b1b}{command\+Buffer}}, uint32\+\_\+t image\+Index)
+\item 
+void \mbox{\hyperlink{class_vulkan_bridge_aafd05bf2074b8b4917f866b7d66e817f}{create\+Sync\+Objects}} ()
+\item 
+void \mbox{\hyperlink{class_vulkan_bridge_a02ea9a0c266b52dd23b37a7b4cd4a0da}{draw\+Frame}} ()
+\item 
+Vk\+Shader\+Module \mbox{\hyperlink{class_vulkan_bridge_a94129fe9b93ca4c0d33b7a73989ac3ec}{create\+Shader\+Module}} (const std\+::vector$<$ char $>$ \&code)
+\item 
+Vk\+Surface\+Format\+KHR \mbox{\hyperlink{class_vulkan_bridge_a7b7807e3ad47884acf804e2d99b01f9d}{choose\+Swap\+Surface\+Format}} (const std\+::vector$<$ Vk\+Surface\+Format\+KHR $>$ \&available\+Formats)
+\item 
+Vk\+Present\+Mode\+KHR \mbox{\hyperlink{class_vulkan_bridge_a9c8c8ebc5cd66268d32abb897463cfc9}{choose\+Swap\+Present\+Mode}} (const std\+::vector$<$ Vk\+Present\+Mode\+KHR $>$ \&available\+Present\+Modes)
+\item 
+Vk\+Extent2D \mbox{\hyperlink{class_vulkan_bridge_a9754ab00e6bd2a78159afef40cb53c53}{choose\+Swap\+Extent}} (const Vk\+Surface\+Capabilities\+KHR \&capabilities)
+\item 
+\mbox{\hyperlink{struct_swap_chain_support_details}{Swap\+Chain\+Support\+Details}} \mbox{\hyperlink{class_vulkan_bridge_a4729bdf96d8cd8ec110c2fa560eab7f7}{query\+Swap\+Chain\+Support}} (Vk\+Physical\+Device \mbox{\hyperlink{class_vulkan_bridge_a92f3e9d49c5eece722f735ace9298631}{device}})
+\item 
+bool \mbox{\hyperlink{class_vulkan_bridge_a028a8b29c71aa6db6f42b38ee4f902b5}{is\+Device\+Suitable}} (Vk\+Physical\+Device \mbox{\hyperlink{class_vulkan_bridge_a92f3e9d49c5eece722f735ace9298631}{device}})
+\item 
+bool \mbox{\hyperlink{class_vulkan_bridge_a37063223c591170f58384887ce983baf}{check\+Device\+Extension\+Support}} (Vk\+Physical\+Device \mbox{\hyperlink{class_vulkan_bridge_a92f3e9d49c5eece722f735ace9298631}{device}})
+\item 
+\mbox{\hyperlink{struct_queue_family_indices}{Queue\+Family\+Indices}} \mbox{\hyperlink{class_vulkan_bridge_aab6c85644f94184ed29a18738ffce8a2}{find\+Queue\+Families}} (Vk\+Physical\+Device \mbox{\hyperlink{class_vulkan_bridge_a92f3e9d49c5eece722f735ace9298631}{device}})
+\item 
+std\+::vector$<$ const char \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{class_vulkan_bridge_a3b67fc8a97ec9244b58771cf8d7406c1}{get\+Required\+Extensions}} ()
+\item 
+bool \mbox{\hyperlink{class_vulkan_bridge_a39f507d776c29c29bbb999d5c715b8f8}{check\+Validation\+Layer\+Support}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::vector$<$ char $>$ \mbox{\hyperlink{class_vulkan_bridge_a02b76bf14e34f825621a968a47e5afb1}{read\+File}} (const std\+::string \&path)
+\item 
+static VKAPI\+\_\+\+ATTR Vk\+Bool32 VKAPI\+\_\+\+CALL \mbox{\hyperlink{class_vulkan_bridge_a56acde222a2605dc6ca8406740e4c05f}{debug\+Callback}} (Vk\+Debug\+Utils\+Message\+Severity\+Flag\+Bits\+EXT message\+Severity, Vk\+Debug\+Utils\+Message\+Type\+Flags\+EXT message\+Type, const Vk\+Debug\+Utils\+Messenger\+Callback\+Data\+EXT \texorpdfstring{$\ast$}{*}p\+Callback\+Data, void \texorpdfstring{$\ast$}{*}p\+User\+Data)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+GLFWwindow \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_vulkan_bridge_a15f27ff4c8a8c081ec81c5ececdd040e}{window}}
+\item 
+Vk\+Instance \mbox{\hyperlink{class_vulkan_bridge_acc1f13cae9254b278773da5ce953ecf1}{instance}}
+\item 
+Vk\+Debug\+Utils\+Messenger\+EXT \mbox{\hyperlink{class_vulkan_bridge_ab9f433180092170068a11ed0269f34b0}{debug\+Messenger}}
+\item 
+Vk\+Surface\+KHR \mbox{\hyperlink{class_vulkan_bridge_a927fe85f5a126c0d6f6816eaa5776f9c}{surface}}
+\item 
+Vk\+Physical\+Device \mbox{\hyperlink{class_vulkan_bridge_a9ca04938323957de08c600ae79430277}{physical\+Device}} = VK\+\_\+\+NULL\+\_\+\+HANDLE
+\item 
+Vk\+Device \mbox{\hyperlink{class_vulkan_bridge_a92f3e9d49c5eece722f735ace9298631}{device}}
+\item 
+Vk\+Queue \mbox{\hyperlink{class_vulkan_bridge_ac482f24428c54e2ac64e3bce39e0b259}{graphics\+Queue}}
+\item 
+Vk\+Queue \mbox{\hyperlink{class_vulkan_bridge_ae8774647d244cbaba1198194a15063d0}{present\+Queue}}
+\item 
+Vk\+Swapchain\+KHR \mbox{\hyperlink{class_vulkan_bridge_a771029af85bafaeeb7edfbda9cb16f71}{swap\+Chain}}
+\item 
+std\+::vector$<$ Vk\+Image $>$ \mbox{\hyperlink{class_vulkan_bridge_a2ce2dc52f462b98396014efa7dc7d787}{swap\+Chain\+Images}}
+\item 
+Vk\+Format \mbox{\hyperlink{class_vulkan_bridge_a24bafb01b8e6098a4f84084499f557b2}{swap\+Chain\+Image\+Format}}
+\item 
+Vk\+Extent2D \mbox{\hyperlink{class_vulkan_bridge_aeef7bd8382b37d5026d3a26c27578f07}{swap\+Chain\+Extent}}
+\item 
+std\+::vector$<$ Vk\+Image\+View $>$ \mbox{\hyperlink{class_vulkan_bridge_aa7a09ab973bdf49f1537d44705b25ffc}{swap\+Chain\+Image\+Views}}
+\item 
+std\+::vector$<$ Vk\+Framebuffer $>$ \mbox{\hyperlink{class_vulkan_bridge_ac8701397ccd9dc9f8d2f53dce586c2f7}{swap\+Chain\+Framebuffers}}
+\item 
+Vk\+Render\+Pass \mbox{\hyperlink{class_vulkan_bridge_a1f3ad7da450eebf87354fd17769a1856}{render\+Pass}}
+\item 
+Vk\+Pipeline\+Layout \mbox{\hyperlink{class_vulkan_bridge_acc903d20c44b1f8e977d658d815a7cad}{pipeline\+Layout}}
+\item 
+Vk\+Pipeline \mbox{\hyperlink{class_vulkan_bridge_afdde90b07cb452eb971458ca7bcfefe1}{graphics\+Pipeline}}
+\item 
+Vk\+Command\+Pool \mbox{\hyperlink{class_vulkan_bridge_a2d8071b7c5bedd3d928919ec4f3539c9}{command\+Pool}}
+\item 
+Vk\+Command\+Buffer \mbox{\hyperlink{class_vulkan_bridge_a299cd0eff01368a5ae3f81f5ead17b1b}{command\+Buffer}}
+\item 
+Vk\+Semaphore \mbox{\hyperlink{class_vulkan_bridge_aa4226e5851a80a1f1dbd38ad074557ed}{image\+Available\+Semaphore}}
+\item 
+Vk\+Semaphore \mbox{\hyperlink{class_vulkan_bridge_a52eba625ac5308d29ac38a4e571efbbd}{render\+Finished\+Semaphore}}
+\item 
+Vk\+Fence \mbox{\hyperlink{class_vulkan_bridge_a31d6017b521178e8f3ea4a16ba26efc5}{in\+Flight\+Fence}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_vulkan_bridge_a37063223c591170f58384887ce983baf}\index{VulkanBridge@{VulkanBridge}!checkDeviceExtensionSupport@{checkDeviceExtensionSupport}}
+\index{checkDeviceExtensionSupport@{checkDeviceExtensionSupport}!VulkanBridge@{VulkanBridge}}
+\doxysubsubsection{\texorpdfstring{checkDeviceExtensionSupport()}{checkDeviceExtensionSupport()}}
+{\footnotesize\ttfamily \label{class_vulkan_bridge_a37063223c591170f58384887ce983baf} 
+bool Vulkan\+Bridge\+::check\+Device\+Extension\+Support (\begin{DoxyParamCaption}\item[{Vk\+Physical\+Device}]{device}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+\Hypertarget{class_vulkan_bridge_a39f507d776c29c29bbb999d5c715b8f8}\index{VulkanBridge@{VulkanBridge}!checkValidationLayerSupport@{checkValidationLayerSupport}}
+\index{checkValidationLayerSupport@{checkValidationLayerSupport}!VulkanBridge@{VulkanBridge}}
+\doxysubsubsection{\texorpdfstring{checkValidationLayerSupport()}{checkValidationLayerSupport()}}
+{\footnotesize\ttfamily \label{class_vulkan_bridge_a39f507d776c29c29bbb999d5c715b8f8} 
+bool Vulkan\+Bridge\+::check\+Validation\+Layer\+Support (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+\Hypertarget{class_vulkan_bridge_a9754ab00e6bd2a78159afef40cb53c53}\index{VulkanBridge@{VulkanBridge}!chooseSwapExtent@{chooseSwapExtent}}
+\index{chooseSwapExtent@{chooseSwapExtent}!VulkanBridge@{VulkanBridge}}
+\doxysubsubsection{\texorpdfstring{chooseSwapExtent()}{chooseSwapExtent()}}
+{\footnotesize\ttfamily \label{class_vulkan_bridge_a9754ab00e6bd2a78159afef40cb53c53} 
+Vk\+Extent2D Vulkan\+Bridge\+::choose\+Swap\+Extent (\begin{DoxyParamCaption}\item[{const Vk\+Surface\+Capabilities\+KHR \&}]{capabilities}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+\Hypertarget{class_vulkan_bridge_a9c8c8ebc5cd66268d32abb897463cfc9}\index{VulkanBridge@{VulkanBridge}!chooseSwapPresentMode@{chooseSwapPresentMode}}
+\index{chooseSwapPresentMode@{chooseSwapPresentMode}!VulkanBridge@{VulkanBridge}}
+\doxysubsubsection{\texorpdfstring{chooseSwapPresentMode()}{chooseSwapPresentMode()}}
+{\footnotesize\ttfamily \label{class_vulkan_bridge_a9c8c8ebc5cd66268d32abb897463cfc9} 
+Vk\+Present\+Mode\+KHR Vulkan\+Bridge\+::choose\+Swap\+Present\+Mode (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ Vk\+Present\+Mode\+KHR $>$ \&}]{available\+Present\+Modes}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+\Hypertarget{class_vulkan_bridge_a7b7807e3ad47884acf804e2d99b01f9d}\index{VulkanBridge@{VulkanBridge}!chooseSwapSurfaceFormat@{chooseSwapSurfaceFormat}}
+\index{chooseSwapSurfaceFormat@{chooseSwapSurfaceFormat}!VulkanBridge@{VulkanBridge}}
+\doxysubsubsection{\texorpdfstring{chooseSwapSurfaceFormat()}{chooseSwapSurfaceFormat()}}
+{\footnotesize\ttfamily \label{class_vulkan_bridge_a7b7807e3ad47884acf804e2d99b01f9d} 
+Vk\+Surface\+Format\+KHR Vulkan\+Bridge\+::choose\+Swap\+Surface\+Format (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ Vk\+Surface\+Format\+KHR $>$ \&}]{available\+Formats}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+\Hypertarget{class_vulkan_bridge_a70a2a02a3273023868119435e0e512b5}\index{VulkanBridge@{VulkanBridge}!cleanup@{cleanup}}
+\index{cleanup@{cleanup}!VulkanBridge@{VulkanBridge}}
+\doxysubsubsection{\texorpdfstring{cleanup()}{cleanup()}}
+{\footnotesize\ttfamily \label{class_vulkan_bridge_a70a2a02a3273023868119435e0e512b5} 
+void Vulkan\+Bridge\+::cleanup (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_vulkan_bridge_a562aa8464625deb0e21b9501e9860a6d}\index{VulkanBridge@{VulkanBridge}!createCommandBuffer@{createCommandBuffer}}
+\index{createCommandBuffer@{createCommandBuffer}!VulkanBridge@{VulkanBridge}}
+\doxysubsubsection{\texorpdfstring{createCommandBuffer()}{createCommandBuffer()}}
+{\footnotesize\ttfamily \label{class_vulkan_bridge_a562aa8464625deb0e21b9501e9860a6d} 
+void Vulkan\+Bridge\+::create\+Command\+Buffer (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+\Hypertarget{class_vulkan_bridge_a4a782160403b1f52157dc21dc8534abc}\index{VulkanBridge@{VulkanBridge}!createCommandPool@{createCommandPool}}
+\index{createCommandPool@{createCommandPool}!VulkanBridge@{VulkanBridge}}
+\doxysubsubsection{\texorpdfstring{createCommandPool()}{createCommandPool()}}
+{\footnotesize\ttfamily \label{class_vulkan_bridge_a4a782160403b1f52157dc21dc8534abc} 
+void Vulkan\+Bridge\+::create\+Command\+Pool (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+\Hypertarget{class_vulkan_bridge_a4672a744a67eab803497c63fa8e78aef}\index{VulkanBridge@{VulkanBridge}!createFramebuffers@{createFramebuffers}}
+\index{createFramebuffers@{createFramebuffers}!VulkanBridge@{VulkanBridge}}
+\doxysubsubsection{\texorpdfstring{createFramebuffers()}{createFramebuffers()}}
+{\footnotesize\ttfamily \label{class_vulkan_bridge_a4672a744a67eab803497c63fa8e78aef} 
+void Vulkan\+Bridge\+::create\+Framebuffers (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+\Hypertarget{class_vulkan_bridge_a539c9e5f41c6b7998c039b49c188dbc0}\index{VulkanBridge@{VulkanBridge}!createGraphicsPipeline@{createGraphicsPipeline}}
+\index{createGraphicsPipeline@{createGraphicsPipeline}!VulkanBridge@{VulkanBridge}}
+\doxysubsubsection{\texorpdfstring{createGraphicsPipeline()}{createGraphicsPipeline()}}
+{\footnotesize\ttfamily \label{class_vulkan_bridge_a539c9e5f41c6b7998c039b49c188dbc0} 
+void Vulkan\+Bridge\+::create\+Graphics\+Pipeline (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+\Hypertarget{class_vulkan_bridge_ae5f5f083987e838977efca9c539fe60c}\index{VulkanBridge@{VulkanBridge}!createImageViews@{createImageViews}}
+\index{createImageViews@{createImageViews}!VulkanBridge@{VulkanBridge}}
+\doxysubsubsection{\texorpdfstring{createImageViews()}{createImageViews()}}
+{\footnotesize\ttfamily \label{class_vulkan_bridge_ae5f5f083987e838977efca9c539fe60c} 
+void Vulkan\+Bridge\+::create\+Image\+Views (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+\Hypertarget{class_vulkan_bridge_ad20fa9379ef15412c40a50f810cf1930}\index{VulkanBridge@{VulkanBridge}!createInstance@{createInstance}}
+\index{createInstance@{createInstance}!VulkanBridge@{VulkanBridge}}
+\doxysubsubsection{\texorpdfstring{createInstance()}{createInstance()}}
+{\footnotesize\ttfamily \label{class_vulkan_bridge_ad20fa9379ef15412c40a50f810cf1930} 
+void Vulkan\+Bridge\+::create\+Instance (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+\Hypertarget{class_vulkan_bridge_a92e5d0b96bd0d4b61cab854b922acc3e}\index{VulkanBridge@{VulkanBridge}!createLogicalDevice@{createLogicalDevice}}
+\index{createLogicalDevice@{createLogicalDevice}!VulkanBridge@{VulkanBridge}}
+\doxysubsubsection{\texorpdfstring{createLogicalDevice()}{createLogicalDevice()}}
+{\footnotesize\ttfamily \label{class_vulkan_bridge_a92e5d0b96bd0d4b61cab854b922acc3e} 
+void Vulkan\+Bridge\+::create\+Logical\+Device (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+\Hypertarget{class_vulkan_bridge_a547638a27e2bbf448d6bd5b04e16d93e}\index{VulkanBridge@{VulkanBridge}!createRenderPass@{createRenderPass}}
+\index{createRenderPass@{createRenderPass}!VulkanBridge@{VulkanBridge}}
+\doxysubsubsection{\texorpdfstring{createRenderPass()}{createRenderPass()}}
+{\footnotesize\ttfamily \label{class_vulkan_bridge_a547638a27e2bbf448d6bd5b04e16d93e} 
+void Vulkan\+Bridge\+::create\+Render\+Pass (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+\Hypertarget{class_vulkan_bridge_a94129fe9b93ca4c0d33b7a73989ac3ec}\index{VulkanBridge@{VulkanBridge}!createShaderModule@{createShaderModule}}
+\index{createShaderModule@{createShaderModule}!VulkanBridge@{VulkanBridge}}
+\doxysubsubsection{\texorpdfstring{createShaderModule()}{createShaderModule()}}
+{\footnotesize\ttfamily \label{class_vulkan_bridge_a94129fe9b93ca4c0d33b7a73989ac3ec} 
+Vk\+Shader\+Module Vulkan\+Bridge\+::create\+Shader\+Module (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ char $>$ \&}]{code}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+\Hypertarget{class_vulkan_bridge_a6f1327feeb4bf9f18844b8614a73b363}\index{VulkanBridge@{VulkanBridge}!createSurface@{createSurface}}
+\index{createSurface@{createSurface}!VulkanBridge@{VulkanBridge}}
+\doxysubsubsection{\texorpdfstring{createSurface()}{createSurface()}}
+{\footnotesize\ttfamily \label{class_vulkan_bridge_a6f1327feeb4bf9f18844b8614a73b363} 
+void Vulkan\+Bridge\+::create\+Surface (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+\Hypertarget{class_vulkan_bridge_acdc5dbb36041013a02a13907a8ef97da}\index{VulkanBridge@{VulkanBridge}!createSwapChain@{createSwapChain}}
+\index{createSwapChain@{createSwapChain}!VulkanBridge@{VulkanBridge}}
+\doxysubsubsection{\texorpdfstring{createSwapChain()}{createSwapChain()}}
+{\footnotesize\ttfamily \label{class_vulkan_bridge_acdc5dbb36041013a02a13907a8ef97da} 
+void Vulkan\+Bridge\+::create\+Swap\+Chain (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+\Hypertarget{class_vulkan_bridge_aafd05bf2074b8b4917f866b7d66e817f}\index{VulkanBridge@{VulkanBridge}!createSyncObjects@{createSyncObjects}}
+\index{createSyncObjects@{createSyncObjects}!VulkanBridge@{VulkanBridge}}
+\doxysubsubsection{\texorpdfstring{createSyncObjects()}{createSyncObjects()}}
+{\footnotesize\ttfamily \label{class_vulkan_bridge_aafd05bf2074b8b4917f866b7d66e817f} 
+void Vulkan\+Bridge\+::create\+Sync\+Objects (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+\Hypertarget{class_vulkan_bridge_a56acde222a2605dc6ca8406740e4c05f}\index{VulkanBridge@{VulkanBridge}!debugCallback@{debugCallback}}
+\index{debugCallback@{debugCallback}!VulkanBridge@{VulkanBridge}}
+\doxysubsubsection{\texorpdfstring{debugCallback()}{debugCallback()}}
+{\footnotesize\ttfamily \label{class_vulkan_bridge_a56acde222a2605dc6ca8406740e4c05f} 
+static VKAPI\+\_\+\+ATTR Vk\+Bool32 VKAPI\+\_\+\+CALL Vulkan\+Bridge\+::debug\+Callback (\begin{DoxyParamCaption}\item[{Vk\+Debug\+Utils\+Message\+Severity\+Flag\+Bits\+EXT}]{message\+Severity}{, }\item[{Vk\+Debug\+Utils\+Message\+Type\+Flags\+EXT}]{message\+Type}{, }\item[{const Vk\+Debug\+Utils\+Messenger\+Callback\+Data\+EXT \texorpdfstring{$\ast$}{*}}]{p\+Callback\+Data}{, }\item[{void \texorpdfstring{$\ast$}{*}}]{p\+User\+Data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_vulkan_bridge_a9b235dd1cb02b4582dd3c93c6c91b353}\index{VulkanBridge@{VulkanBridge}!draw@{draw}}
+\index{draw@{draw}!VulkanBridge@{VulkanBridge}}
+\doxysubsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily \label{class_vulkan_bridge_a9b235dd1cb02b4582dd3c93c6c91b353} 
+void Vulkan\+Bridge\+::draw (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_vulkan_bridge_a02ea9a0c266b52dd23b37a7b4cd4a0da}\index{VulkanBridge@{VulkanBridge}!drawFrame@{drawFrame}}
+\index{drawFrame@{drawFrame}!VulkanBridge@{VulkanBridge}}
+\doxysubsubsection{\texorpdfstring{drawFrame()}{drawFrame()}}
+{\footnotesize\ttfamily \label{class_vulkan_bridge_a02ea9a0c266b52dd23b37a7b4cd4a0da} 
+void Vulkan\+Bridge\+::draw\+Frame (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+\Hypertarget{class_vulkan_bridge_aab6c85644f94184ed29a18738ffce8a2}\index{VulkanBridge@{VulkanBridge}!findQueueFamilies@{findQueueFamilies}}
+\index{findQueueFamilies@{findQueueFamilies}!VulkanBridge@{VulkanBridge}}
+\doxysubsubsection{\texorpdfstring{findQueueFamilies()}{findQueueFamilies()}}
+{\footnotesize\ttfamily \label{class_vulkan_bridge_aab6c85644f94184ed29a18738ffce8a2} 
+\mbox{\hyperlink{struct_queue_family_indices}{Queue\+Family\+Indices}} Vulkan\+Bridge\+::find\+Queue\+Families (\begin{DoxyParamCaption}\item[{Vk\+Physical\+Device}]{device}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+\Hypertarget{class_vulkan_bridge_a3b67fc8a97ec9244b58771cf8d7406c1}\index{VulkanBridge@{VulkanBridge}!getRequiredExtensions@{getRequiredExtensions}}
+\index{getRequiredExtensions@{getRequiredExtensions}!VulkanBridge@{VulkanBridge}}
+\doxysubsubsection{\texorpdfstring{getRequiredExtensions()}{getRequiredExtensions()}}
+{\footnotesize\ttfamily \label{class_vulkan_bridge_a3b67fc8a97ec9244b58771cf8d7406c1} 
+std\+::vector$<$ const char \texorpdfstring{$\ast$}{*} $>$ Vulkan\+Bridge\+::get\+Required\+Extensions (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+\Hypertarget{class_vulkan_bridge_a6f589dd09151ed6153026949ea13bec2}\index{VulkanBridge@{VulkanBridge}!getWindow@{getWindow}}
+\index{getWindow@{getWindow}!VulkanBridge@{VulkanBridge}}
+\doxysubsubsection{\texorpdfstring{getWindow()}{getWindow()}}
+{\footnotesize\ttfamily \label{class_vulkan_bridge_a6f589dd09151ed6153026949ea13bec2} 
+GLFWwindow \texorpdfstring{$\ast$}{*} Vulkan\+Bridge\+::get\+Window (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_vulkan_bridge_ae12264d5318e4e8b323f392acf6f62fd}\index{VulkanBridge@{VulkanBridge}!initVulkan@{initVulkan}}
+\index{initVulkan@{initVulkan}!VulkanBridge@{VulkanBridge}}
+\doxysubsubsection{\texorpdfstring{initVulkan()}{initVulkan()}}
+{\footnotesize\ttfamily \label{class_vulkan_bridge_ae12264d5318e4e8b323f392acf6f62fd} 
+void Vulkan\+Bridge\+::init\+Vulkan (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_vulkan_bridge_afa2d8b2deb13c92254a3f1ac357d652c}\index{VulkanBridge@{VulkanBridge}!initWindow@{initWindow}}
+\index{initWindow@{initWindow}!VulkanBridge@{VulkanBridge}}
+\doxysubsubsection{\texorpdfstring{initWindow()}{initWindow()}}
+{\footnotesize\ttfamily \label{class_vulkan_bridge_afa2d8b2deb13c92254a3f1ac357d652c} 
+void Vulkan\+Bridge\+::init\+Window (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_vulkan_bridge_a028a8b29c71aa6db6f42b38ee4f902b5}\index{VulkanBridge@{VulkanBridge}!isDeviceSuitable@{isDeviceSuitable}}
+\index{isDeviceSuitable@{isDeviceSuitable}!VulkanBridge@{VulkanBridge}}
+\doxysubsubsection{\texorpdfstring{isDeviceSuitable()}{isDeviceSuitable()}}
+{\footnotesize\ttfamily \label{class_vulkan_bridge_a028a8b29c71aa6db6f42b38ee4f902b5} 
+bool Vulkan\+Bridge\+::is\+Device\+Suitable (\begin{DoxyParamCaption}\item[{Vk\+Physical\+Device}]{device}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+\Hypertarget{class_vulkan_bridge_a7d1b0d9c915f76f59bd02b4667c9f8f5}\index{VulkanBridge@{VulkanBridge}!mainLoop@{mainLoop}}
+\index{mainLoop@{mainLoop}!VulkanBridge@{VulkanBridge}}
+\doxysubsubsection{\texorpdfstring{mainLoop()}{mainLoop()}}
+{\footnotesize\ttfamily \label{class_vulkan_bridge_a7d1b0d9c915f76f59bd02b4667c9f8f5} 
+void Vulkan\+Bridge\+::main\+Loop (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_vulkan_bridge_a59f24e9d5c0130891d29e20ef8b9f962}\index{VulkanBridge@{VulkanBridge}!pickPhysicalDevice@{pickPhysicalDevice}}
+\index{pickPhysicalDevice@{pickPhysicalDevice}!VulkanBridge@{VulkanBridge}}
+\doxysubsubsection{\texorpdfstring{pickPhysicalDevice()}{pickPhysicalDevice()}}
+{\footnotesize\ttfamily \label{class_vulkan_bridge_a59f24e9d5c0130891d29e20ef8b9f962} 
+void Vulkan\+Bridge\+::pick\+Physical\+Device (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+\Hypertarget{class_vulkan_bridge_ae86c4ab4055e2ce42ff6a6ba95772476}\index{VulkanBridge@{VulkanBridge}!populateDebugMessengerCreateInfo@{populateDebugMessengerCreateInfo}}
+\index{populateDebugMessengerCreateInfo@{populateDebugMessengerCreateInfo}!VulkanBridge@{VulkanBridge}}
+\doxysubsubsection{\texorpdfstring{populateDebugMessengerCreateInfo()}{populateDebugMessengerCreateInfo()}}
+{\footnotesize\ttfamily \label{class_vulkan_bridge_ae86c4ab4055e2ce42ff6a6ba95772476} 
+void Vulkan\+Bridge\+::populate\+Debug\+Messenger\+Create\+Info (\begin{DoxyParamCaption}\item[{Vk\+Debug\+Utils\+Messenger\+Create\+Info\+EXT \&}]{create\+Info}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+\Hypertarget{class_vulkan_bridge_a4729bdf96d8cd8ec110c2fa560eab7f7}\index{VulkanBridge@{VulkanBridge}!querySwapChainSupport@{querySwapChainSupport}}
+\index{querySwapChainSupport@{querySwapChainSupport}!VulkanBridge@{VulkanBridge}}
+\doxysubsubsection{\texorpdfstring{querySwapChainSupport()}{querySwapChainSupport()}}
+{\footnotesize\ttfamily \label{class_vulkan_bridge_a4729bdf96d8cd8ec110c2fa560eab7f7} 
+\mbox{\hyperlink{struct_swap_chain_support_details}{Swap\+Chain\+Support\+Details}} Vulkan\+Bridge\+::query\+Swap\+Chain\+Support (\begin{DoxyParamCaption}\item[{Vk\+Physical\+Device}]{device}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+\Hypertarget{class_vulkan_bridge_a02b76bf14e34f825621a968a47e5afb1}\index{VulkanBridge@{VulkanBridge}!readFile@{readFile}}
+\index{readFile@{readFile}!VulkanBridge@{VulkanBridge}}
+\doxysubsubsection{\texorpdfstring{readFile()}{readFile()}}
+{\footnotesize\ttfamily \label{class_vulkan_bridge_a02b76bf14e34f825621a968a47e5afb1} 
+static std\+::vector$<$ char $>$ Vulkan\+Bridge\+::read\+File (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{path}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_vulkan_bridge_a850a998527507beff52690bdfd30d2a7}\index{VulkanBridge@{VulkanBridge}!recordCommandBuffer@{recordCommandBuffer}}
+\index{recordCommandBuffer@{recordCommandBuffer}!VulkanBridge@{VulkanBridge}}
+\doxysubsubsection{\texorpdfstring{recordCommandBuffer()}{recordCommandBuffer()}}
+{\footnotesize\ttfamily \label{class_vulkan_bridge_a850a998527507beff52690bdfd30d2a7} 
+void Vulkan\+Bridge\+::record\+Command\+Buffer (\begin{DoxyParamCaption}\item[{Vk\+Command\+Buffer}]{command\+Buffer}{, }\item[{uint32\+\_\+t}]{image\+Index}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+\Hypertarget{class_vulkan_bridge_a1157c5ce5d29f5af7b221450f2b9ee24}\index{VulkanBridge@{VulkanBridge}!setupDebugMessenger@{setupDebugMessenger}}
+\index{setupDebugMessenger@{setupDebugMessenger}!VulkanBridge@{VulkanBridge}}
+\doxysubsubsection{\texorpdfstring{setupDebugMessenger()}{setupDebugMessenger()}}
+{\footnotesize\ttfamily \label{class_vulkan_bridge_a1157c5ce5d29f5af7b221450f2b9ee24} 
+void Vulkan\+Bridge\+::setup\+Debug\+Messenger (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_vulkan_bridge_a299cd0eff01368a5ae3f81f5ead17b1b}\index{VulkanBridge@{VulkanBridge}!commandBuffer@{commandBuffer}}
+\index{commandBuffer@{commandBuffer}!VulkanBridge@{VulkanBridge}}
+\doxysubsubsection{\texorpdfstring{commandBuffer}{commandBuffer}}
+{\footnotesize\ttfamily \label{class_vulkan_bridge_a299cd0eff01368a5ae3f81f5ead17b1b} 
+Vk\+Command\+Buffer Vulkan\+Bridge\+::command\+Buffer\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_vulkan_bridge_a2d8071b7c5bedd3d928919ec4f3539c9}\index{VulkanBridge@{VulkanBridge}!commandPool@{commandPool}}
+\index{commandPool@{commandPool}!VulkanBridge@{VulkanBridge}}
+\doxysubsubsection{\texorpdfstring{commandPool}{commandPool}}
+{\footnotesize\ttfamily \label{class_vulkan_bridge_a2d8071b7c5bedd3d928919ec4f3539c9} 
+Vk\+Command\+Pool Vulkan\+Bridge\+::command\+Pool\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_vulkan_bridge_ab9f433180092170068a11ed0269f34b0}\index{VulkanBridge@{VulkanBridge}!debugMessenger@{debugMessenger}}
+\index{debugMessenger@{debugMessenger}!VulkanBridge@{VulkanBridge}}
+\doxysubsubsection{\texorpdfstring{debugMessenger}{debugMessenger}}
+{\footnotesize\ttfamily \label{class_vulkan_bridge_ab9f433180092170068a11ed0269f34b0} 
+Vk\+Debug\+Utils\+Messenger\+EXT Vulkan\+Bridge\+::debug\+Messenger\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_vulkan_bridge_a92f3e9d49c5eece722f735ace9298631}\index{VulkanBridge@{VulkanBridge}!device@{device}}
+\index{device@{device}!VulkanBridge@{VulkanBridge}}
+\doxysubsubsection{\texorpdfstring{device}{device}}
+{\footnotesize\ttfamily \label{class_vulkan_bridge_a92f3e9d49c5eece722f735ace9298631} 
+Vk\+Device Vulkan\+Bridge\+::device\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_vulkan_bridge_afdde90b07cb452eb971458ca7bcfefe1}\index{VulkanBridge@{VulkanBridge}!graphicsPipeline@{graphicsPipeline}}
+\index{graphicsPipeline@{graphicsPipeline}!VulkanBridge@{VulkanBridge}}
+\doxysubsubsection{\texorpdfstring{graphicsPipeline}{graphicsPipeline}}
+{\footnotesize\ttfamily \label{class_vulkan_bridge_afdde90b07cb452eb971458ca7bcfefe1} 
+Vk\+Pipeline Vulkan\+Bridge\+::graphics\+Pipeline\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_vulkan_bridge_ac482f24428c54e2ac64e3bce39e0b259}\index{VulkanBridge@{VulkanBridge}!graphicsQueue@{graphicsQueue}}
+\index{graphicsQueue@{graphicsQueue}!VulkanBridge@{VulkanBridge}}
+\doxysubsubsection{\texorpdfstring{graphicsQueue}{graphicsQueue}}
+{\footnotesize\ttfamily \label{class_vulkan_bridge_ac482f24428c54e2ac64e3bce39e0b259} 
+Vk\+Queue Vulkan\+Bridge\+::graphics\+Queue\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_vulkan_bridge_aa4226e5851a80a1f1dbd38ad074557ed}\index{VulkanBridge@{VulkanBridge}!imageAvailableSemaphore@{imageAvailableSemaphore}}
+\index{imageAvailableSemaphore@{imageAvailableSemaphore}!VulkanBridge@{VulkanBridge}}
+\doxysubsubsection{\texorpdfstring{imageAvailableSemaphore}{imageAvailableSemaphore}}
+{\footnotesize\ttfamily \label{class_vulkan_bridge_aa4226e5851a80a1f1dbd38ad074557ed} 
+Vk\+Semaphore Vulkan\+Bridge\+::image\+Available\+Semaphore\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_vulkan_bridge_a31d6017b521178e8f3ea4a16ba26efc5}\index{VulkanBridge@{VulkanBridge}!inFlightFence@{inFlightFence}}
+\index{inFlightFence@{inFlightFence}!VulkanBridge@{VulkanBridge}}
+\doxysubsubsection{\texorpdfstring{inFlightFence}{inFlightFence}}
+{\footnotesize\ttfamily \label{class_vulkan_bridge_a31d6017b521178e8f3ea4a16ba26efc5} 
+Vk\+Fence Vulkan\+Bridge\+::in\+Flight\+Fence\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_vulkan_bridge_acc1f13cae9254b278773da5ce953ecf1}\index{VulkanBridge@{VulkanBridge}!instance@{instance}}
+\index{instance@{instance}!VulkanBridge@{VulkanBridge}}
+\doxysubsubsection{\texorpdfstring{instance}{instance}}
+{\footnotesize\ttfamily \label{class_vulkan_bridge_acc1f13cae9254b278773da5ce953ecf1} 
+Vk\+Instance Vulkan\+Bridge\+::instance\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_vulkan_bridge_a9ca04938323957de08c600ae79430277}\index{VulkanBridge@{VulkanBridge}!physicalDevice@{physicalDevice}}
+\index{physicalDevice@{physicalDevice}!VulkanBridge@{VulkanBridge}}
+\doxysubsubsection{\texorpdfstring{physicalDevice}{physicalDevice}}
+{\footnotesize\ttfamily \label{class_vulkan_bridge_a9ca04938323957de08c600ae79430277} 
+Vk\+Physical\+Device Vulkan\+Bridge\+::physical\+Device = VK\+\_\+\+NULL\+\_\+\+HANDLE\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_vulkan_bridge_acc903d20c44b1f8e977d658d815a7cad}\index{VulkanBridge@{VulkanBridge}!pipelineLayout@{pipelineLayout}}
+\index{pipelineLayout@{pipelineLayout}!VulkanBridge@{VulkanBridge}}
+\doxysubsubsection{\texorpdfstring{pipelineLayout}{pipelineLayout}}
+{\footnotesize\ttfamily \label{class_vulkan_bridge_acc903d20c44b1f8e977d658d815a7cad} 
+Vk\+Pipeline\+Layout Vulkan\+Bridge\+::pipeline\+Layout\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_vulkan_bridge_ae8774647d244cbaba1198194a15063d0}\index{VulkanBridge@{VulkanBridge}!presentQueue@{presentQueue}}
+\index{presentQueue@{presentQueue}!VulkanBridge@{VulkanBridge}}
+\doxysubsubsection{\texorpdfstring{presentQueue}{presentQueue}}
+{\footnotesize\ttfamily \label{class_vulkan_bridge_ae8774647d244cbaba1198194a15063d0} 
+Vk\+Queue Vulkan\+Bridge\+::present\+Queue\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_vulkan_bridge_a52eba625ac5308d29ac38a4e571efbbd}\index{VulkanBridge@{VulkanBridge}!renderFinishedSemaphore@{renderFinishedSemaphore}}
+\index{renderFinishedSemaphore@{renderFinishedSemaphore}!VulkanBridge@{VulkanBridge}}
+\doxysubsubsection{\texorpdfstring{renderFinishedSemaphore}{renderFinishedSemaphore}}
+{\footnotesize\ttfamily \label{class_vulkan_bridge_a52eba625ac5308d29ac38a4e571efbbd} 
+Vk\+Semaphore Vulkan\+Bridge\+::render\+Finished\+Semaphore\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_vulkan_bridge_a1f3ad7da450eebf87354fd17769a1856}\index{VulkanBridge@{VulkanBridge}!renderPass@{renderPass}}
+\index{renderPass@{renderPass}!VulkanBridge@{VulkanBridge}}
+\doxysubsubsection{\texorpdfstring{renderPass}{renderPass}}
+{\footnotesize\ttfamily \label{class_vulkan_bridge_a1f3ad7da450eebf87354fd17769a1856} 
+Vk\+Render\+Pass Vulkan\+Bridge\+::render\+Pass\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_vulkan_bridge_a927fe85f5a126c0d6f6816eaa5776f9c}\index{VulkanBridge@{VulkanBridge}!surface@{surface}}
+\index{surface@{surface}!VulkanBridge@{VulkanBridge}}
+\doxysubsubsection{\texorpdfstring{surface}{surface}}
+{\footnotesize\ttfamily \label{class_vulkan_bridge_a927fe85f5a126c0d6f6816eaa5776f9c} 
+Vk\+Surface\+KHR Vulkan\+Bridge\+::surface\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_vulkan_bridge_a771029af85bafaeeb7edfbda9cb16f71}\index{VulkanBridge@{VulkanBridge}!swapChain@{swapChain}}
+\index{swapChain@{swapChain}!VulkanBridge@{VulkanBridge}}
+\doxysubsubsection{\texorpdfstring{swapChain}{swapChain}}
+{\footnotesize\ttfamily \label{class_vulkan_bridge_a771029af85bafaeeb7edfbda9cb16f71} 
+Vk\+Swapchain\+KHR Vulkan\+Bridge\+::swap\+Chain\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_vulkan_bridge_aeef7bd8382b37d5026d3a26c27578f07}\index{VulkanBridge@{VulkanBridge}!swapChainExtent@{swapChainExtent}}
+\index{swapChainExtent@{swapChainExtent}!VulkanBridge@{VulkanBridge}}
+\doxysubsubsection{\texorpdfstring{swapChainExtent}{swapChainExtent}}
+{\footnotesize\ttfamily \label{class_vulkan_bridge_aeef7bd8382b37d5026d3a26c27578f07} 
+Vk\+Extent2D Vulkan\+Bridge\+::swap\+Chain\+Extent\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_vulkan_bridge_ac8701397ccd9dc9f8d2f53dce586c2f7}\index{VulkanBridge@{VulkanBridge}!swapChainFramebuffers@{swapChainFramebuffers}}
+\index{swapChainFramebuffers@{swapChainFramebuffers}!VulkanBridge@{VulkanBridge}}
+\doxysubsubsection{\texorpdfstring{swapChainFramebuffers}{swapChainFramebuffers}}
+{\footnotesize\ttfamily \label{class_vulkan_bridge_ac8701397ccd9dc9f8d2f53dce586c2f7} 
+std\+::vector$<$Vk\+Framebuffer$>$ Vulkan\+Bridge\+::swap\+Chain\+Framebuffers\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_vulkan_bridge_a24bafb01b8e6098a4f84084499f557b2}\index{VulkanBridge@{VulkanBridge}!swapChainImageFormat@{swapChainImageFormat}}
+\index{swapChainImageFormat@{swapChainImageFormat}!VulkanBridge@{VulkanBridge}}
+\doxysubsubsection{\texorpdfstring{swapChainImageFormat}{swapChainImageFormat}}
+{\footnotesize\ttfamily \label{class_vulkan_bridge_a24bafb01b8e6098a4f84084499f557b2} 
+Vk\+Format Vulkan\+Bridge\+::swap\+Chain\+Image\+Format\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_vulkan_bridge_a2ce2dc52f462b98396014efa7dc7d787}\index{VulkanBridge@{VulkanBridge}!swapChainImages@{swapChainImages}}
+\index{swapChainImages@{swapChainImages}!VulkanBridge@{VulkanBridge}}
+\doxysubsubsection{\texorpdfstring{swapChainImages}{swapChainImages}}
+{\footnotesize\ttfamily \label{class_vulkan_bridge_a2ce2dc52f462b98396014efa7dc7d787} 
+std\+::vector$<$Vk\+Image$>$ Vulkan\+Bridge\+::swap\+Chain\+Images\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_vulkan_bridge_aa7a09ab973bdf49f1537d44705b25ffc}\index{VulkanBridge@{VulkanBridge}!swapChainImageViews@{swapChainImageViews}}
+\index{swapChainImageViews@{swapChainImageViews}!VulkanBridge@{VulkanBridge}}
+\doxysubsubsection{\texorpdfstring{swapChainImageViews}{swapChainImageViews}}
+{\footnotesize\ttfamily \label{class_vulkan_bridge_aa7a09ab973bdf49f1537d44705b25ffc} 
+std\+::vector$<$Vk\+Image\+View$>$ Vulkan\+Bridge\+::swap\+Chain\+Image\+Views\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_vulkan_bridge_a15f27ff4c8a8c081ec81c5ececdd040e}\index{VulkanBridge@{VulkanBridge}!window@{window}}
+\index{window@{window}!VulkanBridge@{VulkanBridge}}
+\doxysubsubsection{\texorpdfstring{window}{window}}
+{\footnotesize\ttfamily \label{class_vulkan_bridge_a15f27ff4c8a8c081ec81c5ececdd040e} 
+GLFWwindow\texorpdfstring{$\ast$}{*} Vulkan\+Bridge\+::window\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{vulkan_8hpp}{vulkan.\+hpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,117 @@
+\doxysection{include/vulkan.hpp File Reference}
+\hypertarget{vulkan_8hpp}{}\label{vulkan_8hpp}\index{include/vulkan.hpp@{include/vulkan.hpp}}
+{\ttfamily \#include $<$vulkan/vulkan.\+hpp$>$}\newline
+{\ttfamily \#include $<$GLFW/glfw3.\+h$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$stdexcept$>$}\newline
+{\ttfamily \#include $<$algorithm$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$chrono$>$}\newline
+{\ttfamily \#include $<$thread$>$}\newline
+{\ttfamily \#include $<$cstring$>$}\newline
+{\ttfamily \#include $<$ctime$>$}\newline
+{\ttfamily \#include $<$cstdlib$>$}\newline
+{\ttfamily \#include $<$cstdint$>$}\newline
+{\ttfamily \#include $<$limits$>$}\newline
+{\ttfamily \#include $<$optional$>$}\newline
+{\ttfamily \#include $<$set$>$}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_queue_family_indices}{Queue\+Family\+Indices}}
+\item 
+struct \mbox{\hyperlink{struct_swap_chain_support_details}{Swap\+Chain\+Support\+Details}}
+\item 
+class \mbox{\hyperlink{class_vulkan_bridge}{Vulkan\+Bridge}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+Vk\+Result \mbox{\hyperlink{vulkan_8hpp_a761ebce14cb8767a4e480ea446f34ef2}{Create\+Debug\+Utils\+Messenger\+EXT}} (Vk\+Instance instance, const Vk\+Debug\+Utils\+Messenger\+Create\+Info\+EXT \texorpdfstring{$\ast$}{*}p\+Create\+Info, const Vk\+Allocation\+Callbacks \texorpdfstring{$\ast$}{*}p\+Allocator, Vk\+Debug\+Utils\+Messenger\+EXT \texorpdfstring{$\ast$}{*}p\+Debug\+Messenger)
+\item 
+void \mbox{\hyperlink{vulkan_8hpp_a352d613e62df889b9056955ad16e0338}{Destroy\+Debug\+Utils\+Messenger\+EXT}} (Vk\+Instance instance, Vk\+Debug\+Utils\+Messenger\+EXT debug\+Messenger, const Vk\+Allocation\+Callbacks \texorpdfstring{$\ast$}{*}p\+Allocator)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const uint32\+\_\+t \mbox{\hyperlink{vulkan_8hpp_a110637c1f80f9ffe303710de239c3e4d}{WIDTH}} = 800
+\item 
+const uint32\+\_\+t \mbox{\hyperlink{vulkan_8hpp_af4091c0fc85ce76fe88d5379d7230497}{HEIGHT}} = 600
+\item 
+const int \mbox{\hyperlink{vulkan_8hpp_a7302e21aaabe341f71d799a7dd3f274f}{MAX\+\_\+\+FRAMES\+\_\+\+IN\+\_\+\+FLIGHT}} = 2
+\item 
+const std\+::vector$<$ const char \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{vulkan_8hpp_a7ca66b16460bd6b27fa5176e228218e8}{validation\+Layers}}
+\item 
+const std\+::vector$<$ const char \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{vulkan_8hpp_ae9f2e52186582e1f54bb6e686671c24c}{device\+Extensions}}
+\item 
+const bool \mbox{\hyperlink{vulkan_8hpp_aebf0191c8cb852209eefbb50d9cbf7ba}{enable\+Validation\+Layers}} = true
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{vulkan_8hpp_a761ebce14cb8767a4e480ea446f34ef2}\index{vulkan.hpp@{vulkan.hpp}!CreateDebugUtilsMessengerEXT@{CreateDebugUtilsMessengerEXT}}
+\index{CreateDebugUtilsMessengerEXT@{CreateDebugUtilsMessengerEXT}!vulkan.hpp@{vulkan.hpp}}
+\doxysubsubsection{\texorpdfstring{CreateDebugUtilsMessengerEXT()}{CreateDebugUtilsMessengerEXT()}}
+{\footnotesize\ttfamily \label{vulkan_8hpp_a761ebce14cb8767a4e480ea446f34ef2} 
+Vk\+Result Create\+Debug\+Utils\+Messenger\+EXT (\begin{DoxyParamCaption}\item[{Vk\+Instance}]{instance}{, }\item[{const Vk\+Debug\+Utils\+Messenger\+Create\+Info\+EXT \texorpdfstring{$\ast$}{*}}]{p\+Create\+Info}{, }\item[{const Vk\+Allocation\+Callbacks \texorpdfstring{$\ast$}{*}}]{p\+Allocator}{, }\item[{Vk\+Debug\+Utils\+Messenger\+EXT \texorpdfstring{$\ast$}{*}}]{p\+Debug\+Messenger}{}\end{DoxyParamCaption})}
+
+\Hypertarget{vulkan_8hpp_a352d613e62df889b9056955ad16e0338}\index{vulkan.hpp@{vulkan.hpp}!DestroyDebugUtilsMessengerEXT@{DestroyDebugUtilsMessengerEXT}}
+\index{DestroyDebugUtilsMessengerEXT@{DestroyDebugUtilsMessengerEXT}!vulkan.hpp@{vulkan.hpp}}
+\doxysubsubsection{\texorpdfstring{DestroyDebugUtilsMessengerEXT()}{DestroyDebugUtilsMessengerEXT()}}
+{\footnotesize\ttfamily \label{vulkan_8hpp_a352d613e62df889b9056955ad16e0338} 
+void Destroy\+Debug\+Utils\+Messenger\+EXT (\begin{DoxyParamCaption}\item[{Vk\+Instance}]{instance}{, }\item[{Vk\+Debug\+Utils\+Messenger\+EXT}]{debug\+Messenger}{, }\item[{const Vk\+Allocation\+Callbacks \texorpdfstring{$\ast$}{*}}]{p\+Allocator}{}\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{vulkan_8hpp_ae9f2e52186582e1f54bb6e686671c24c}\index{vulkan.hpp@{vulkan.hpp}!deviceExtensions@{deviceExtensions}}
+\index{deviceExtensions@{deviceExtensions}!vulkan.hpp@{vulkan.hpp}}
+\doxysubsubsection{\texorpdfstring{deviceExtensions}{deviceExtensions}}
+{\footnotesize\ttfamily \label{vulkan_8hpp_ae9f2e52186582e1f54bb6e686671c24c} 
+const std\+::vector$<$const char\texorpdfstring{$\ast$}{*}$>$ device\+Extensions}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ VK\_KHR\_SWAPCHAIN\_EXTENSION\_NAME}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\Hypertarget{vulkan_8hpp_aebf0191c8cb852209eefbb50d9cbf7ba}\index{vulkan.hpp@{vulkan.hpp}!enableValidationLayers@{enableValidationLayers}}
+\index{enableValidationLayers@{enableValidationLayers}!vulkan.hpp@{vulkan.hpp}}
+\doxysubsubsection{\texorpdfstring{enableValidationLayers}{enableValidationLayers}}
+{\footnotesize\ttfamily \label{vulkan_8hpp_aebf0191c8cb852209eefbb50d9cbf7ba} 
+const bool enable\+Validation\+Layers = true}
+
+\Hypertarget{vulkan_8hpp_af4091c0fc85ce76fe88d5379d7230497}\index{vulkan.hpp@{vulkan.hpp}!HEIGHT@{HEIGHT}}
+\index{HEIGHT@{HEIGHT}!vulkan.hpp@{vulkan.hpp}}
+\doxysubsubsection{\texorpdfstring{HEIGHT}{HEIGHT}}
+{\footnotesize\ttfamily \label{vulkan_8hpp_af4091c0fc85ce76fe88d5379d7230497} 
+const uint32\+\_\+t HEIGHT = 600}
+
+\Hypertarget{vulkan_8hpp_a7302e21aaabe341f71d799a7dd3f274f}\index{vulkan.hpp@{vulkan.hpp}!MAX\_FRAMES\_IN\_FLIGHT@{MAX\_FRAMES\_IN\_FLIGHT}}
+\index{MAX\_FRAMES\_IN\_FLIGHT@{MAX\_FRAMES\_IN\_FLIGHT}!vulkan.hpp@{vulkan.hpp}}
+\doxysubsubsection{\texorpdfstring{MAX\_FRAMES\_IN\_FLIGHT}{MAX\_FRAMES\_IN\_FLIGHT}}
+{\footnotesize\ttfamily \label{vulkan_8hpp_a7302e21aaabe341f71d799a7dd3f274f} 
+const int MAX\+\_\+\+FRAMES\+\_\+\+IN\+\_\+\+FLIGHT = 2}
+
+\Hypertarget{vulkan_8hpp_a7ca66b16460bd6b27fa5176e228218e8}\index{vulkan.hpp@{vulkan.hpp}!validationLayers@{validationLayers}}
+\index{validationLayers@{validationLayers}!vulkan.hpp@{vulkan.hpp}}
+\doxysubsubsection{\texorpdfstring{validationLayers}{validationLayers}}
+{\footnotesize\ttfamily \label{vulkan_8hpp_a7ca66b16460bd6b27fa5176e228218e8} 
+const std\+::vector$<$const char\texorpdfstring{$\ast$}{*}$>$ validation\+Layers}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}VK\_LAYER\_KHRONOS\_validation"{}}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\Hypertarget{vulkan_8hpp_a110637c1f80f9ffe303710de239c3e4d}\index{vulkan.hpp@{vulkan.hpp}!WIDTH@{WIDTH}}
+\index{WIDTH@{WIDTH}!vulkan.hpp@{vulkan.hpp}}
+\doxysubsubsection{\texorpdfstring{WIDTH}{WIDTH}}
+{\footnotesize\ttfamily \label{vulkan_8hpp_a110637c1f80f9ffe303710de239c3e4d} 
+const uint32\+\_\+t WIDTH = 800}
+

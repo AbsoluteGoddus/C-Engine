@@ -1,0 +1,124 @@
+\doxysection{engine\+::Behavior Class Reference}
+\hypertarget{classengine_1_1_behavior}{}\label{classengine_1_1_behavior}\index{engine::Behavior@{engine::Behavior}}
+
+
+Base class for creating behaviors in the game engine.  
+
+
+
+
+{\ttfamily \#include $<$Behavior.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classengine_1_1_behavior_a94ecd53fc47550d16dd95ab88add8896}{init}} ()
+\begin{DoxyCompactList}\small\item\em Called once at the start of the scene. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classengine_1_1_behavior_a9c5feffad1ea0e50fc7d54d5f2328087}{pre\+Update}} ()
+\begin{DoxyCompactList}\small\item\em Called every tick before \doxylink{classengine_1_1_behavior_a5fcf21e96fe38217c93a7244606636f9}{update()} is called. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classengine_1_1_behavior_a5fcf21e96fe38217c93a7244606636f9}{update}} ()
+\begin{DoxyCompactList}\small\item\em Called every tick to update the behavior. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classengine_1_1_behavior_a31cf01c7ab8f5900dc881e4d92231716}{post\+Update}} ()
+\begin{DoxyCompactList}\small\item\em Called every tick after \doxylink{classengine_1_1_behavior_a5fcf21e96fe38217c93a7244606636f9}{update()} is called. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classengine_1_1_behavior_a3a725f91e3d0961c15e6cf4f5ad6b367}{on\+Event}} (\mbox{\hyperlink{classengine_1_1_event}{engine\+::\+Event}} e)
+\begin{DoxyCompactList}\small\item\em Called when an event is triggered. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classengine_1_1_behavior_a94f0eb617dd6ebbbd0172299150341b2}{\texorpdfstring{$\sim$}{\string~}\+Behavior}} ()
+\begin{DoxyCompactList}\small\item\em Called when the behavior is destroyed. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Base class for creating behaviors in the game engine. 
+
+This class provides the necessary hooks for behaviors in a scene. Derived classes can override these functions to define custom behavior. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classengine_1_1_behavior_a94f0eb617dd6ebbbd0172299150341b2}\index{engine::Behavior@{engine::Behavior}!````~Behavior@{\texorpdfstring{$\sim$}{\string~}Behavior}}
+\index{````~Behavior@{\texorpdfstring{$\sim$}{\string~}Behavior}!engine::Behavior@{engine::Behavior}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Behavior()}{\string~Behavior()}}
+{\footnotesize\ttfamily \label{classengine_1_1_behavior_a94f0eb617dd6ebbbd0172299150341b2} 
+virtual engine\+::\+Behavior\+::\texorpdfstring{$\sim$}{\string~}\+Behavior (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Called when the behavior is destroyed. 
+
+Destructor for the \doxylink{classengine_1_1_behavior}{Behavior} class, called when the behavior is removed or when the scene it belongs to is destroyed. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classengine_1_1_behavior_a94ecd53fc47550d16dd95ab88add8896}\index{engine::Behavior@{engine::Behavior}!init@{init}}
+\index{init@{init}!engine::Behavior@{engine::Behavior}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily \label{classengine_1_1_behavior_a94ecd53fc47550d16dd95ab88add8896} 
+virtual void engine\+::\+Behavior\+::init (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Called once at the start of the scene. 
+
+This function is called when the scene in which the behavior is located is initialized. Override it in derived classes to specify custom initialization logic. \Hypertarget{classengine_1_1_behavior_a3a725f91e3d0961c15e6cf4f5ad6b367}\index{engine::Behavior@{engine::Behavior}!onEvent@{onEvent}}
+\index{onEvent@{onEvent}!engine::Behavior@{engine::Behavior}}
+\doxysubsubsection{\texorpdfstring{onEvent()}{onEvent()}}
+{\footnotesize\ttfamily \label{classengine_1_1_behavior_a3a725f91e3d0961c15e6cf4f5ad6b367} 
+virtual void engine\+::\+Behavior\+::on\+Event (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classengine_1_1_event}{engine\+::\+Event}}}]{e}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Called when an event is triggered. 
+
+This function is invoked whenever an event is triggered in the engine. It can handle various types of events like user inputs or Vulkan events.
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The event that was triggered. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classengine_1_1_behavior_a31cf01c7ab8f5900dc881e4d92231716}\index{engine::Behavior@{engine::Behavior}!postUpdate@{postUpdate}}
+\index{postUpdate@{postUpdate}!engine::Behavior@{engine::Behavior}}
+\doxysubsubsection{\texorpdfstring{postUpdate()}{postUpdate()}}
+{\footnotesize\ttfamily \label{classengine_1_1_behavior_a31cf01c7ab8f5900dc881e4d92231716} 
+virtual void engine\+::\+Behavior\+::post\+Update (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Called every tick after \doxylink{classengine_1_1_behavior_a5fcf21e96fe38217c93a7244606636f9}{update()} is called. 
+
+This function is called after the main update logic has executed. Use this to perform any cleanup or final operations for the frame.
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{classengine_1_1_behavior_a5fcf21e96fe38217c93a7244606636f9}{update()} 
+\end{DoxySeeAlso}
+\Hypertarget{classengine_1_1_behavior_a9c5feffad1ea0e50fc7d54d5f2328087}\index{engine::Behavior@{engine::Behavior}!preUpdate@{preUpdate}}
+\index{preUpdate@{preUpdate}!engine::Behavior@{engine::Behavior}}
+\doxysubsubsection{\texorpdfstring{preUpdate()}{preUpdate()}}
+{\footnotesize\ttfamily \label{classengine_1_1_behavior_a9c5feffad1ea0e50fc7d54d5f2328087} 
+virtual void engine\+::\+Behavior\+::pre\+Update (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Called every tick before \doxylink{classengine_1_1_behavior_a5fcf21e96fe38217c93a7244606636f9}{update()} is called. 
+
+This function is executed before each scene update. It can be used to prepare data or perform operations before the main update logic.
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{classengine_1_1_behavior_a5fcf21e96fe38217c93a7244606636f9}{update()} 
+\end{DoxySeeAlso}
+\Hypertarget{classengine_1_1_behavior_a5fcf21e96fe38217c93a7244606636f9}\index{engine::Behavior@{engine::Behavior}!update@{update}}
+\index{update@{update}!engine::Behavior@{engine::Behavior}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily \label{classengine_1_1_behavior_a5fcf21e96fe38217c93a7244606636f9} 
+virtual void engine\+::\+Behavior\+::update (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Called every tick to update the behavior. 
+
+This function is the main update routine and is called every frame to handle behavior-\/specific updates.
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{classengine_1_1_behavior_a9c5feffad1ea0e50fc7d54d5f2328087}{pre\+Update()}, \doxylink{classengine_1_1_behavior_a31cf01c7ab8f5900dc881e4d92231716}{post\+Update()} 
+\end{DoxySeeAlso}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{_behavior_8hpp}{Behavior.\+hpp}}\end{DoxyCompactItemize}

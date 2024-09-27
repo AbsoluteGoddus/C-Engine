@@ -1,0 +1,71 @@
+\doxysection{Behavior.\+hpp}
+\hypertarget{_behavior_8hpp_source}{}\label{_behavior_8hpp_source}\index{include/Behavior.hpp@{include/Behavior.hpp}}
+\mbox{\hyperlink{_behavior_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Created\ by\ absol\ on\ 6/17/2024.}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#ifndef\ C\_ENGINE\_BEHAVIOR\_HPP}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#define\ C\_ENGINE\_BEHAVIOR\_HPP}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <stdexcept>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_event_8hpp}{Event.hpp}}"{}}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceengine}{engine}}\ \{}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classengine_1_1_behavior}{Behavior}}\ \{}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classengine_1_1_behavior_a94ecd53fc47550d16dd95ab88add8896}{init}}()\ \{\};}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classengine_1_1_behavior_a9c5feffad1ea0e50fc7d54d5f2328087}{preUpdate}}()\ \{\};}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classengine_1_1_behavior_a5fcf21e96fe38217c93a7244606636f9}{update}}()\ \{\};}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classengine_1_1_behavior_a31cf01c7ab8f5900dc881e4d92231716}{postUpdate}}()\ \{\};}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classengine_1_1_behavior_a3a725f91e3d0961c15e6cf4f5ad6b367}{onEvent}}(\mbox{\hyperlink{classengine_1_1_event}{engine::Event}}\ e)\ \{\};}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classengine_1_1_behavior_a94f0eb617dd6ebbbd0172299150341b2}{\string~Behavior}}()\ \{\};}
+\DoxyCodeLine{00083\ \ \ \ \ \};}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classengine_1_1_behavior_p_t_r}{BehaviorPTR}}\ \{}
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ std::shared\_ptr<Behavior>\ \mbox{\hyperlink{classengine_1_1_behavior_p_t_r_a4d84111614c7997b28e3a0853217b3fd}{\_b}}\ =\ \textcolor{keyword}{nullptr};\ \ }
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classengine_1_1_behavior_p_t_r_a9f31ac079e920288d8e067fdc84224b0}{BehaviorPTR}}()\ :\ \mbox{\hyperlink{classengine_1_1_behavior_p_t_r_a4d84111614c7997b28e3a0853217b3fd}{\_b}}(nullptr)\ \{\}}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ BC>}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classengine_1_1_behavior_p_t_r_a80e3bb0abc7b7b7c657a054514c8ec7e}{setBehavior}}()\ \{}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classengine_1_1_behavior_p_t_r_a4d84111614c7997b28e3a0853217b3fd}{\_b}}\ =\ std::make\_shared<BC>();}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classengine_1_1_behavior_p_t_r_ac06db295f0cf276f5725875d0b78d8f9}{init}}()\ \{}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classengine_1_1_behavior_p_t_r_a4d84111614c7997b28e3a0853217b3fd}{\_b}})\ \mbox{\hyperlink{classengine_1_1_behavior_p_t_r_a4d84111614c7997b28e3a0853217b3fd}{\_b}}-\/>init();}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classengine_1_1_behavior_p_t_r_af3dccba2ec8ab35f5ec63c04249f8d98}{preUpdate}}()\ \{}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classengine_1_1_behavior_p_t_r_a4d84111614c7997b28e3a0853217b3fd}{\_b}})\ \mbox{\hyperlink{classengine_1_1_behavior_p_t_r_a4d84111614c7997b28e3a0853217b3fd}{\_b}}-\/>preUpdate();}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classengine_1_1_behavior_p_t_r_a761fda0bc1f7cf1dd6a3c6c0f030ba27}{update}}()\ \{}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classengine_1_1_behavior_p_t_r_a4d84111614c7997b28e3a0853217b3fd}{\_b}})\ \mbox{\hyperlink{classengine_1_1_behavior_p_t_r_a4d84111614c7997b28e3a0853217b3fd}{\_b}}-\/>update();}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classengine_1_1_behavior_p_t_r_a94cd6e6ae2cf1596e2c6b44c2bf5ec81}{postUpdate}}()\ \{}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classengine_1_1_behavior_p_t_r_a4d84111614c7997b28e3a0853217b3fd}{\_b}})\ \mbox{\hyperlink{classengine_1_1_behavior_p_t_r_a4d84111614c7997b28e3a0853217b3fd}{\_b}}-\/>postUpdate();}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classengine_1_1_behavior_p_t_r_a1c55bbbdeaf52f12bf79816f8c023e0a}{isSet}}()\ \{}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classengine_1_1_behavior_p_t_r_a4d84111614c7997b28e3a0853217b3fd}{\_b}}\ !=\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classengine_1_1_behavior_p_t_r_a9ac8fba745874460290f096404e4bcc4}{onEvent}}(\mbox{\hyperlink{classengine_1_1_event}{engine::Event}}\ e)\ \{}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classengine_1_1_behavior_p_t_r_a4d84111614c7997b28e3a0853217b3fd}{\_b}})\ \mbox{\hyperlink{classengine_1_1_behavior_p_t_r_a4d84111614c7997b28e3a0853217b3fd}{\_b}}-\/>onEvent(std::move(e));}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00176\ \ \ \ \ \};}
+\DoxyCodeLine{00177\ \}}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00179\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//C\_ENGINE\_BEHAVIOR\_HPP}}
+
+\end{DoxyCode}

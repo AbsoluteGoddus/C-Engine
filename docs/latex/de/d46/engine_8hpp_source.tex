@@ -1,0 +1,134 @@
+\doxysection{engine.\+hpp}
+\hypertarget{engine_8hpp_source}{}\label{engine_8hpp_source}\index{include/engine.hpp@{include/engine.hpp}}
+\mbox{\hyperlink{engine_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ Created\ by\ absol\ on\ 24/06/2024.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#ifndef\ C\_ENGINE\_ENGINE\_HPP}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ C\_ENGINE\_ENGINE\_HPP}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_scene_8hpp}{Scene.hpp}}"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <functional>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}vulkan.hpp"{}}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceengine}{engine}}\ \{}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classengine_1_1_application_handle}{ApplicationHandle}}\ \{}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classengine_1_1_behavior_p_t_r}{BehaviorPTR}}\ \mbox{\hyperlink{classengine_1_1_application_handle_ae0a76a8ec5309b1057d0bffbcd6bb94d}{glfwEvent\_bptr}};}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ std::vector<std::function<void()>>\ \mbox{\hyperlink{classengine_1_1_application_handle_a43ac41e6106e781743924316299de305}{extInit}};\ }
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ std::vector<std::function<void()>>\ \mbox{\hyperlink{classengine_1_1_application_handle_aaae4f2c213313669fd4e2915a14daeb9}{extUpdate}};\ }
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ std::vector<std::function<void()>>\ \mbox{\hyperlink{classengine_1_1_application_handle_a2e80cbe85674fbb79b6cbbc6f4f99095}{extUpdateFix}};\ }
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ std::vector<std::function<void()>>\ \mbox{\hyperlink{classengine_1_1_application_handle_ae109e1041318fb44a7f6a8ccea61d4cb}{extTerminate}};\ }
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classengine_1_1_application_handle_a6d8668e5d593c24e83160fbc66f21bee}{application\_running}}\ =\ \textcolor{keyword}{false};\ }
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classengine_1_1_object_list}{engine::ObjectList<Scene>}}\ \mbox{\hyperlink{classengine_1_1_application_handle_ac911404d4ee8c15ebe522cc3a42cb222}{Scenes}};\ }
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classengine_1_1_application_handle_a78259aacece8ce54617d7515170b2ad3}{activeSceneID}}\ =\ 0;\ }
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classengine_1_1_application_handle_accd5754e1866c9e3d9e44d44b5106f62}{oldActiveSceneID}}\ =\ 0;\ }
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classengine_1_1_application_handle_a082593774f92d9e4c23bad5221a19332}{init}}()\ \{}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ ext\ :\ \mbox{\hyperlink{classengine_1_1_application_handle_a43ac41e6106e781743924316299de305}{extInit}})\ \{}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ext();}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classengine_1_1_application_handle_ac911404d4ee8c15ebe522cc3a42cb222}{Scenes}}[\mbox{\hyperlink{classengine_1_1_application_handle_a78259aacece8ce54617d7515170b2ad3}{activeSceneID}}]-\/>init();}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classengine_1_1_application_handle_ad4175d918302e9dcf60c35c9f6bf8ab2}{update}}()\ \{}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ ext\ :\ \mbox{\hyperlink{classengine_1_1_application_handle_aaae4f2c213313669fd4e2915a14daeb9}{extUpdate}})\ \{}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ext();}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classengine_1_1_application_handle_ac911404d4ee8c15ebe522cc3a42cb222}{Scenes}}[\mbox{\hyperlink{classengine_1_1_application_handle_a78259aacece8ce54617d7515170b2ad3}{activeSceneID}}]-\/>update();}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classengine_1_1_application_handle_a78259aacece8ce54617d7515170b2ad3}{activeSceneID}}\ !=\ \mbox{\hyperlink{classengine_1_1_application_handle_accd5754e1866c9e3d9e44d44b5106f62}{oldActiveSceneID}})\ \{}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classengine_1_1_application_handle_ac911404d4ee8c15ebe522cc3a42cb222}{Scenes}}[\mbox{\hyperlink{classengine_1_1_application_handle_accd5754e1866c9e3d9e44d44b5106f62}{oldActiveSceneID}}]-\/>cleanup();}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classengine_1_1_application_handle_accd5754e1866c9e3d9e44d44b5106f62}{oldActiveSceneID}}\ =\ \mbox{\hyperlink{classengine_1_1_application_handle_a78259aacece8ce54617d7515170b2ad3}{activeSceneID}};}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classengine_1_1_application_handle_ac911404d4ee8c15ebe522cc3a42cb222}{Scenes}}[\mbox{\hyperlink{classengine_1_1_application_handle_a78259aacece8ce54617d7515170b2ad3}{activeSceneID}}]-\/>init();}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ ext\ :\ \mbox{\hyperlink{classengine_1_1_application_handle_a2e80cbe85674fbb79b6cbbc6f4f99095}{extUpdateFix}})\ \{}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ext();}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classengine_1_1_application_handle_a92280cd56a31e32b4c06e71df2356502}{cleanup}}()\ \{}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classengine_1_1_application_handle_ac911404d4ee8c15ebe522cc3a42cb222}{Scenes}}[\mbox{\hyperlink{classengine_1_1_application_handle_a78259aacece8ce54617d7515170b2ad3}{activeSceneID}}]-\/>cleanup();}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ ext\ :\ \mbox{\hyperlink{classengine_1_1_application_handle_ae109e1041318fb44a7f6a8ccea61d4cb}{extTerminate}})\ \{}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ext();}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00087\ \ \ \ \ \};}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00092\ \ \ \ \ \mbox{\hyperlink{classengine_1_1_application_handle}{ApplicationHandle}}\ \mbox{\hyperlink{namespaceengine_a0c7bb6896ca68be5aa042d9a6bf69777}{HANDLE}};}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \textcolor{preprocessor}{\#ifndef\ C\_ENGINE\_USE\_VULKAN}}
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespaceengine_a54e1fe05c9e06f98f91860a89ee5e532}{run}}()\ \{}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceengine_a0c7bb6896ca68be5aa042d9a6bf69777}{HANDLE}}.\mbox{\hyperlink{classengine_1_1_application_handle_a082593774f92d9e4c23bad5221a19332}{init}}();}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceengine_a0c7bb6896ca68be5aa042d9a6bf69777}{HANDLE}}.\mbox{\hyperlink{classengine_1_1_application_handle_a6d8668e5d593c24e83160fbc66f21bee}{application\_running}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (\mbox{\hyperlink{namespaceengine_a0c7bb6896ca68be5aa042d9a6bf69777}{HANDLE}}.\mbox{\hyperlink{classengine_1_1_application_handle_a6d8668e5d593c24e83160fbc66f21bee}{application\_running}})\ \{}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceengine_a0c7bb6896ca68be5aa042d9a6bf69777}{HANDLE}}.\mbox{\hyperlink{classengine_1_1_application_handle_ad4175d918302e9dcf60c35c9f6bf8ab2}{update}}();}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceengine_a0c7bb6896ca68be5aa042d9a6bf69777}{HANDLE}}.\mbox{\hyperlink{classengine_1_1_application_handle_a92280cd56a31e32b4c06e71df2356502}{cleanup}}();}
+\DoxyCodeLine{00109\ \ \ \ \ \}}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespaceengine_ac27221b712ff5f12659b05290393cf25}{debug}}()\ \{}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceengine_a54e1fe05c9e06f98f91860a89ee5e532}{run}}();}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (std::runtime\_error\ \&e)\ \{}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ std::cerr\ <<\ e.what()\ <<\ std::endl;}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00120\ \ \ \ \ \}}
+\DoxyCodeLine{00121\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00127\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespaceengine_a54e1fe05c9e06f98f91860a89ee5e532}{run}}()\ \{}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ VulkanBridge\ app;}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ app.initWindow();}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ app.initVulkan();}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceengine_a0c7bb6896ca68be5aa042d9a6bf69777}{HANDLE}}.\mbox{\hyperlink{classengine_1_1_application_handle_a082593774f92d9e4c23bad5221a19332}{init}}();}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceengine_a0c7bb6896ca68be5aa042d9a6bf69777}{HANDLE}}.\mbox{\hyperlink{classengine_1_1_application_handle_a6d8668e5d593c24e83160fbc66f21bee}{application\_running}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (\mbox{\hyperlink{namespaceengine_a0c7bb6896ca68be5aa042d9a6bf69777}{HANDLE}}.\mbox{\hyperlink{classengine_1_1_application_handle_a6d8668e5d593c24e83160fbc66f21bee}{application\_running}})\ \{}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ glfwPollEvents();}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{namespaceengine_a0c7bb6896ca68be5aa042d9a6bf69777}{HANDLE}}.\mbox{\hyperlink{classengine_1_1_application_handle_ae0a76a8ec5309b1057d0bffbcd6bb94d}{glfwEvent\_bptr}}.\mbox{\hyperlink{classengine_1_1_behavior_p_t_r_a1c55bbbdeaf52f12bf79816f8c023e0a}{isSet}}())\ \{}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (glfwWindowShouldClose(app.getWindow()))\ \{}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Event\ e(\textcolor{stringliteral}{"{}WINDOW\_CLOSE"{}},\ \textcolor{stringliteral}{"{}GLFW\ Issued\ a\ Window\ Close\ Event"{}});}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceengine_a0c7bb6896ca68be5aa042d9a6bf69777}{HANDLE}}.\mbox{\hyperlink{classengine_1_1_application_handle_ae0a76a8ec5309b1057d0bffbcd6bb94d}{glfwEvent\_bptr}}.\mbox{\hyperlink{classengine_1_1_behavior_p_t_r_a9ac8fba745874460290f096404e4bcc4}{onEvent}}(e);}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (glfwWindowShouldClose(app.getWindow()))\ \{}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceengine_a0c7bb6896ca68be5aa042d9a6bf69777}{HANDLE}}.\mbox{\hyperlink{classengine_1_1_application_handle_a6d8668e5d593c24e83160fbc66f21bee}{application\_running}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ app.draw();}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceengine_a0c7bb6896ca68be5aa042d9a6bf69777}{HANDLE}}.\mbox{\hyperlink{classengine_1_1_application_handle_ad4175d918302e9dcf60c35c9f6bf8ab2}{update}}();}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \textcolor{preprocessor}{\#ifdef\ C\_ENGINE\_USE\_VKLOG}}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ log\ =\ app.getVulkanLog();}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ std::ofstream\ file(\textcolor{stringliteral}{"{}vklog.log"{}});}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ file.clear();}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ file\ <<\ log;}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ file.close();}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00160\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ app.cleanup();}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceengine_a0c7bb6896ca68be5aa042d9a6bf69777}{HANDLE}}.\mbox{\hyperlink{classengine_1_1_application_handle_a92280cd56a31e32b4c06e71df2356502}{cleanup}}();}
+\DoxyCodeLine{00164\ \ \ \ \ \}}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00169\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespaceengine_ac27221b712ff5f12659b05290393cf25}{debug}}()\ \{}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceengine_a54e1fe05c9e06f98f91860a89ee5e532}{run}}();}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (std::runtime\_error\ \&e)\ \{}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ std::cerr\ <<\ e.what()\ <<\ std::endl;}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00175\ \ \ \ \ \}}
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00177\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00178\ \}}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00180\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//C\_ENGINE\_ENGINE\_HPP}}
+
+\end{DoxyCode}

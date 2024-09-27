@@ -1,0 +1,173 @@
+\doxysection{task.\+hpp}
+\hypertarget{task_8hpp_source}{}\label{task_8hpp_source}\index{include/task.hpp@{include/task.hpp}}
+\mbox{\hyperlink{task_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ TASK\_TASK\_HPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ TASK\_TASK\_HPP}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <any>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <thread>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <chrono>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <functional>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <mutex>}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00025\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classtask}{task}}\ \{}
+\DoxyCodeLine{00026\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classtask_a4b25c6299bb4fc23efa327d45420b889}{tID}};\ }
+\DoxyCodeLine{00028\ \ \ \ \ std::string\ \mbox{\hyperlink{classtask_a27a8b5decbf8040d91afdc3c0c6062df}{tName}};\ }
+\DoxyCodeLine{00029\ \ \ \ \ std::function<void(\mbox{\hyperlink{classtask}{task}}\&,\ std::any)>\ \mbox{\hyperlink{classtask_a5e00453b5815b649c405da02fe248bf4}{tFunction}};\ }
+\DoxyCodeLine{00030\ \ \ \ \ std::vector<task*>\ \mbox{\hyperlink{classtask_a445b78c4f55f9d77237de8c65f8e47f3}{requiredTasks}};\ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classtask_a05e30a9f75c7fa88eb1e25537744d0d9}{status}}\ =\ 0;\ }
+\DoxyCodeLine{00032\ \ \ \ \ \mbox{\hyperlink{classtask}{task}}*\ \mbox{\hyperlink{classtask_a69c31dfe25ab91fe6749ed9847fb896d}{parentTask}}\ =\ \textcolor{keyword}{nullptr};\ }
+\DoxyCodeLine{00033\ \ \ \ \ std::any\ \mbox{\hyperlink{classtask_a5eef5a259abfbdd0787e3b9af03a7e7d}{tArgs}};\ }
+\DoxyCodeLine{00034\ \ \ \ \ std::unordered\_map<std::string,\ std::pair<std::any,\ std::any>>\ \mbox{\hyperlink{classtask_a6e8881a6b4b94393721fb8d12cf213cd}{childArgs}};\ }
+\DoxyCodeLine{00035\ \ \ \ \ std::string\ \mbox{\hyperlink{classtask_a7f55ddaa423512be7ad62c436b68acd6}{toutProcess}};\ }
+\DoxyCodeLine{00036\ \ \ \ \ std::mutex\ \mbox{\hyperlink{classtask_afaa5b2b4196a79b564df1c57a5679cb7}{toutMutex}};\ }
+\DoxyCodeLine{00038\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classtask_a2a063103b2032f57dc0bf9dcd60769c2}{getChildArgs}}()\ \{}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classtask_a6e8881a6b4b94393721fb8d12cf213cd}{childArgs}};}
+\DoxyCodeLine{00045\ \ \ \ \ \}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keyword}{const}\ std::string\&\ \mbox{\hyperlink{classtask_a592c54314ef70f05ecd318cd6d16ac3b}{getToutProcess}}()\ \{}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classtask_a7f55ddaa423512be7ad62c436b68acd6}{toutProcess}};}
+\DoxyCodeLine{00053\ \ \ \ \ \}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classtask_ac893d84bc5bd747ffedf66c7b4f6b4c7}{setToutProcess}}(\textcolor{keyword}{const}\ std::string\&\ process)\ \{}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classtask_a7f55ddaa423512be7ad62c436b68acd6}{toutProcess}}\ =\ process;}
+\DoxyCodeLine{00061\ \ \ \ \ \}}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{comment}{//\ Getters}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classtask_a3749d6c3a4e066359e0e82f583e6431c}{getID}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classtask_a4b25c6299bb4fc23efa327d45420b889}{tID}};}
+\DoxyCodeLine{00071\ \ \ \ \ \}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keyword}{const}\ std::string\&\ \mbox{\hyperlink{classtask_a63c5a2169f4a91f608909e67329094cf}{getName}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classtask_a27a8b5decbf8040d91afdc3c0c6062df}{tName}};}
+\DoxyCodeLine{00079\ \ \ \ \ \}}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keyword}{const}\ std::function<void(\mbox{\hyperlink{classtask}{task}}\&,\ std::any)>\&\ \mbox{\hyperlink{classtask_a6bef8f7c5ff53d253606c888c2a0a13a}{getFunction}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classtask_a5e00453b5815b649c405da02fe248bf4}{tFunction}};}
+\DoxyCodeLine{00087\ \ \ \ \ \}}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keyword}{const}\ std::vector<task*>\&\ \mbox{\hyperlink{classtask_acc8df3aa906fe8fcaab54c940be868fb}{getRequiredTasks}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classtask_a445b78c4f55f9d77237de8c65f8e47f3}{requiredTasks}};}
+\DoxyCodeLine{00095\ \ \ \ \ \}}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classtask_aabcbf9f16104b5e0a2b38abc4b2ee51d}{getStatus}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classtask_a05e30a9f75c7fa88eb1e25537744d0d9}{status}};}
+\DoxyCodeLine{00103\ \ \ \ \ \}}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00109\ \ \ \ \ \mbox{\hyperlink{classtask}{task}}*\ \mbox{\hyperlink{classtask_ac5e271436746e840b7117deccf7ce9c0}{getParent}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classtask_a69c31dfe25ab91fe6749ed9847fb896d}{parentTask}};}
+\DoxyCodeLine{00111\ \ \ \ \ \}}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keyword}{const}\ std::any\&\ \mbox{\hyperlink{classtask_a19cace8749559664e8be3d1fc2e40dc7}{getArgs}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classtask_a5eef5a259abfbdd0787e3b9af03a7e7d}{tArgs}};}
+\DoxyCodeLine{00119\ \ \ \ \ \}}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{comment}{//\ Setters}}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00127\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classtask_ac36e6cdbdaa13a378a11953529970af0}{setID}}(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id})\ \{}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classtask_a4b25c6299bb4fc23efa327d45420b889}{tID}}\ =\ id;}
+\DoxyCodeLine{00129\ \ \ \ \ \}}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00135\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classtask_ae15c8c00ae2730079a7e7242ae460c5c}{setName}}(\textcolor{keyword}{const}\ std::string\&\ name)\ \{}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classtask_a27a8b5decbf8040d91afdc3c0c6062df}{tName}}\ =\ name;}
+\DoxyCodeLine{00137\ \ \ \ \ \}}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classtask_a3a7907451139edbda453f433d5a4808b}{setFunction}}(\textcolor{keyword}{const}\ std::function<\textcolor{keywordtype}{void}(\mbox{\hyperlink{classtask}{task}}\&,\ std::any)>\&\ function)\ \{}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classtask_a5e00453b5815b649c405da02fe248bf4}{tFunction}}\ =\ function;}
+\DoxyCodeLine{00145\ \ \ \ \ \}}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00151\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classtask_af2fe4575a42d390ea385d7363abe16ef}{setRequiredTasks}}(\textcolor{keyword}{const}\ std::vector<task*>\&\ tasks)\ \{}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classtask_a445b78c4f55f9d77237de8c65f8e47f3}{requiredTasks}}\ =\ tasks;}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ \&\mbox{\hyperlink{classtask}{task}}\ :\ \mbox{\hyperlink{classtask_a445b78c4f55f9d77237de8c65f8e47f3}{requiredTasks}})\ \{}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classtask}{task}}-\/>\mbox{\hyperlink{classtask_a746771f900d947785a97ae9f4ff085ff}{setParent}}(*\textcolor{keyword}{this});}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00156\ \ \ \ \ \}}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00162\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classtask_a4ae23c42e83339733ec00eb3fb25a525}{setStatus}}(\textcolor{keywordtype}{int}\ nStatus)\ \{}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classtask_a05e30a9f75c7fa88eb1e25537744d0d9}{status}}\ =\ nStatus;}
+\DoxyCodeLine{00164\ \ \ \ \ \}}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00170\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classtask_a746771f900d947785a97ae9f4ff085ff}{setParent}}(\mbox{\hyperlink{classtask}{task}}\&\ parent)\ \{}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classtask_a69c31dfe25ab91fe6749ed9847fb896d}{parentTask}}\ =\ \&parent;}
+\DoxyCodeLine{00172\ \ \ \ \ \}}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00178\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classtask_a1af6fbd2213ff05006ba57ed959ad80a}{setArgs}}(\textcolor{keyword}{const}\ std::any\&\ args)\ \{}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classtask_a5eef5a259abfbdd0787e3b9af03a7e7d}{tArgs}}\ =\ args;}
+\DoxyCodeLine{00180\ \ \ \ \ \}}
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00186\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classtask_a8e76f0a019fffe5e86c961de799941c1}{tout}}(\textcolor{keyword}{const}\ std::string\&\ message)\ \{}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ std::lock\_guard<std::mutex>\ lock(\mbox{\hyperlink{classtask_afaa5b2b4196a79b564df1c57a5679cb7}{toutMutex}});\ \textcolor{comment}{//\ Lock\ the\ mutex\ for\ thread\ safety}}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ std::string\ fullMessage\ =\ \textcolor{stringliteral}{"{}["{}}\ +\ \mbox{\hyperlink{classtask_a27a8b5decbf8040d91afdc3c0c6062df}{tName}}\ +\ \textcolor{stringliteral}{"{}]\ "{}}\ +\ \mbox{\hyperlink{classtask_a7f55ddaa423512be7ad62c436b68acd6}{toutProcess}}\ +\ message;}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classtask_a69c31dfe25ab91fe6749ed9847fb896d}{parentTask}}\ !=\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classtask_a69c31dfe25ab91fe6749ed9847fb896d}{parentTask}}-\/>\mbox{\hyperlink{classtask_a8e76f0a019fffe5e86c961de799941c1}{tout}}(fullMessage);}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ fullMessage\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00194\ \ \ \ \ \}}
+\DoxyCodeLine{00195\ }
+\DoxyCodeLine{00202\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classtask_a11da9e90439d53d205f9f8e2e23cf38b}{run}}()\ \{}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ rootStart\ =\ std::chrono::high\_resolution\_clock::now();}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classtask_a05e30a9f75c7fa88eb1e25537744d0d9}{status}}\ =\ 1;}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classtask_a7f55ddaa423512be7ad62c436b68acd6}{toutProcess}}\ =\ \textcolor{stringliteral}{"{}[GetRequiredTasks]\ "{}};}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ \&requiredTask\ :\ \mbox{\hyperlink{classtask_a445b78c4f55f9d77237de8c65f8e47f3}{requiredTasks}})\ \{}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classtask_a8e76f0a019fffe5e86c961de799941c1}{tout}}(\textcolor{stringliteral}{"{}Checking\ required\ task:\ "{}}\ +\ requiredTask-\/>tName\ +\ \textcolor{stringliteral}{"{}..."{}});}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (requiredTask-\/>getStatus()\ ==\ 0)\ \{}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classtask_a8e76f0a019fffe5e86c961de799941c1}{tout}}(\textcolor{stringliteral}{"{}Required\ task\ not\ started:\ "{}}\ +\ requiredTask-\/>tName);}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classtask_a8e76f0a019fffe5e86c961de799941c1}{tout}}(\textcolor{stringliteral}{"{}Starting\ required\ task:\ "{}}\ +\ requiredTask-\/>tName\ +\ \textcolor{stringliteral}{"{}..."{}});}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ requiredTask-\/>run();}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ start\ =\ std::chrono::high\_resolution\_clock::now();}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (requiredTask-\/>getStatus()\ !=\ 2)\ \{}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ end\ =\ std::chrono::high\_resolution\_clock::now();}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::chrono::duration<double,\ std::milli>\ elapsed\ =\ end\ -\/\ start;}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classtask_a8e76f0a019fffe5e86c961de799941c1}{tout}}(\textcolor{stringliteral}{"{}Waiting\ for\ required\ task\ to\ finish:\ "{}}\ +\ requiredTask-\/>tName\ +\ \textcolor{stringliteral}{"{}\ |\ Elapsed\ time:\ "{}}\ +\ std::to\_string(elapsed.count())\ +\ \textcolor{stringliteral}{"{}\ ms..."{}});}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::this\_thread::sleep\_for(std::chrono::milliseconds(100));}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (requiredTask-\/>getStatus()\ ==\ 1)\ \{}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ start\ =\ std::chrono::high\_resolution\_clock::now();}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (requiredTask-\/>getStatus()\ !=\ 2)\ \{}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ end\ =\ std::chrono::high\_resolution\_clock::now();}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::chrono::duration<double,\ std::milli>\ elapsed\ =\ end\ -\/\ start;}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classtask_a8e76f0a019fffe5e86c961de799941c1}{tout}}(\textcolor{stringliteral}{"{}Waiting\ for\ required\ task\ to\ finish:\ "{}}\ +\ requiredTask-\/>tName\ +\ \textcolor{stringliteral}{"{}\ |\ Elapsed\ time:\ "{}}\ +\ std::to\_string(elapsed.count())\ +\ \textcolor{stringliteral}{"{}\ ms..."{}});}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::this\_thread::sleep\_for(std::chrono::milliseconds(100));}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classtask_a8e76f0a019fffe5e86c961de799941c1}{tout}}(\textcolor{stringliteral}{"{}Required\ task\ finished:\ "{}}\ +\ requiredTask-\/>tName);}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classtask_a8e76f0a019fffe5e86c961de799941c1}{tout}}(\textcolor{stringliteral}{"{}Adding\ task\ args\ to\ child\ args..."{}});}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classtask_a6e8881a6b4b94393721fb8d12cf213cd}{childArgs}}[requiredTask-\/>tName]\ =\ \{requiredTask-\/>getChildArgs(),\ requiredTask-\/>getArgs()\};}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classtask_a8e76f0a019fffe5e86c961de799941c1}{tout}}(\textcolor{stringliteral}{"{}Finished\ adding\ task\ args\ to\ child\ args."{}});}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classtask_a7f55ddaa423512be7ad62c436b68acd6}{toutProcess}}\ =\ \textcolor{stringliteral}{"{}[Run]\ "{}};}
+\DoxyCodeLine{00234\ }
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classtask_a8e76f0a019fffe5e86c961de799941c1}{tout}}(\textcolor{stringliteral}{"{}Running\ task..."{}});}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classtask_a5e00453b5815b649c405da02fe248bf4}{tFunction}}(*\textcolor{keyword}{this},\ \mbox{\hyperlink{classtask_a5eef5a259abfbdd0787e3b9af03a7e7d}{tArgs}});}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classtask_a05e30a9f75c7fa88eb1e25537744d0d9}{status}}\ =\ 2;}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ rootEnd\ =\ std::chrono::high\_resolution\_clock::now();}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ std::chrono::duration<double,\ std::milli>\ elapsed\ =\ rootEnd\ -\/\ rootStart;}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classtask_a8e76f0a019fffe5e86c961de799941c1}{tout}}(\textcolor{stringliteral}{"{}Task\ finished\ in\ "{}}\ +\ std::to\_string(elapsed.count())\ +\ \textcolor{stringliteral}{"{}\ ms."{}});}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classtask_a7f55ddaa423512be7ad62c436b68acd6}{toutProcess}}\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00242\ \ \ \ \ \}}
+\DoxyCodeLine{00243\ }
+\DoxyCodeLine{00249\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classtask_ae237e1ff23d12b22a89039fda4936ca8}{tRun}}()\ \{}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ std::vector<std::thread>\ threads;}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ \&requiredTask\ :\ \mbox{\hyperlink{classtask_a445b78c4f55f9d77237de8c65f8e47f3}{requiredTasks}})\ \{}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \ \ \ \ threads.emplace\_back(\&\mbox{\hyperlink{classtask_ae237e1ff23d12b22a89039fda4936ca8}{task::tRun}},\ requiredTask);}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classtask_a11da9e90439d53d205f9f8e2e23cf38b}{run}}();}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ \&thread\ :\ threads)\ \{}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (thread.joinable())\ \{}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ thread.join();}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00260\ \ \ \ \ \}}
+\DoxyCodeLine{00261\ \};}
+\DoxyCodeLine{00262\ }
+\DoxyCodeLine{00263\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ TASK\_TASK\_HPP}}
+
+\end{DoxyCode}

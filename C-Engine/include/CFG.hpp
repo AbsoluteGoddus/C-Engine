@@ -9,6 +9,11 @@
 
 #include "Node.hpp"
 
+/**
+ * \file CFG.hpp
+ * \brief Defines functions for parsing and serializing .cfg files.
+ */
+
 namespace engine {
     /**
      * @brief Gets a token
@@ -250,6 +255,39 @@ namespace engine {
         out += charString('\t', indents) + "}\n";
         return out;
     }
+
+    /**
+     * Serializes a Node-tree into a string containing .cfg code. Also indents the string and inserts newlines to make the string more Human-readable. Does not include the root node in the output
+     * @param root The root of the Node-tree to be serialized
+     * @param indents The number of tas te current level should put before it.
+     * @return The serialized .cfg code
+     */
+    std::string cfg_serialize_(const Node& root, const size_t& indents) {
+        std::string out;
+        for (const auto& v : root.getValues()) {
+            out += charString('\t', indents) + "$ " + v.first + ": " + anyArray_to_stringArray(std::any_cast<std::vector<std::any>>(v.second)) + "\n";
+        }
+        for (const auto &n : root.getSubNodes()) {
+            out += cfg_serialize(n.second, indents);
+        }
+        return out;
+    }
+
+     /**
+      * Serializes a Node-tree into a string containing .cfg code. Does not include the root node in the output
+      * @param root The root of the Node-tree to be serialized
+      * @return The serialized .cfg code
+      */
+     std::string cfg_serialize_(const Node& root) {
+        std::string out;
+         for (const auto &v: root.getValues()) {
+             out += "$ " + v.first + ": " + anyArray_to_stringArray(std::any_cast<std::vector<std::any>>(v.second)) + " ";
+         }
+         for (const auto &n: root.getSubNodes()) {
+             out += cfg_serialize(n.second);
+         }
+         return out;
+     }
 }
 
 #endif // CFG_HPP

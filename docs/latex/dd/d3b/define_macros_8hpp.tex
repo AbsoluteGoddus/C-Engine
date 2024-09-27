@@ -1,0 +1,109 @@
+\doxysection{util/define\+Macros.hpp File Reference}
+\hypertarget{define_macros_8hpp}{}\label{define_macros_8hpp}\index{util/defineMacros.hpp@{util/defineMacros.hpp}}
+
+
+Contains macros that can be defined to enable or disable certain features in the engine.  
+
+
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{define_macros_8hpp_adec7b18a089bac89b57fd1c03ad5e59e}{C\+\_\+\+ENGINE\+\_\+\+USE\+\_\+\+VULKAN}}
+\begin{DoxyCompactList}\small\item\em Enables the Vulkan rendering backend and Vulkan-\/specific features. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{define_macros_8hpp_ac70271525f3da26c7661bffab8906bab}{C\+\_\+\+ENGINE\+\_\+\+USE\+\_\+\+VKLOG}}
+\begin{DoxyCompactList}\small\item\em Enables the Vulkan logging feature. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{define_macros_8hpp_ac2cb627205778cbf9f74506397d013fc}{C\+\_\+\+ENGINE\+\_\+\+VKLOG\+\_\+\+FILTER\+\_\+\+ALL}}
+\begin{DoxyCompactList}\small\item\em Logs all Vulkan messages. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{define_macros_8hpp_a3c655aaa1275b244f491f6992d00f96c}{C\+\_\+\+ENGINE\+\_\+\+VKLOG\+\_\+\+FILTER\+\_\+\+IMPORTANT}}
+\begin{DoxyCompactList}\small\item\em Logs only important Vulkan messages, such as errors and warnings. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{define_macros_8hpp_a38a64e4aabc47d41f29d7d569b079148}{C\+\_\+\+ENGINE\+\_\+\+VKLOG\+\_\+\+FILTER\+\_\+\+ERROR}}
+\begin{DoxyCompactList}\small\item\em Logs only Vulkan errors. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{define_macros_8hpp_ae51a5777960b9b6f98b00d86c378a7f1}{C\+\_\+\+ENGINE\+\_\+\+USE\+\_\+\+THREADS}}
+\begin{DoxyCompactList}\small\item\em Enables multi-\/threading support in the engine. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Contains macros that can be defined to enable or disable certain features in the engine. 
+
+This file contains a list of macros that can be defined to enable or disable certain features in the engine. 
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{define_macros_8hpp_ae51a5777960b9b6f98b00d86c378a7f1}\index{defineMacros.hpp@{defineMacros.hpp}!C\_ENGINE\_USE\_THREADS@{C\_ENGINE\_USE\_THREADS}}
+\index{C\_ENGINE\_USE\_THREADS@{C\_ENGINE\_USE\_THREADS}!defineMacros.hpp@{defineMacros.hpp}}
+\doxysubsubsection{\texorpdfstring{C\_ENGINE\_USE\_THREADS}{C\_ENGINE\_USE\_THREADS}}
+{\footnotesize\ttfamily \label{define_macros_8hpp_ae51a5777960b9b6f98b00d86c378a7f1} 
+\#define C\+\_\+\+ENGINE\+\_\+\+USE\+\_\+\+THREADS}
+
+
+
+Enables multi-\/threading support in the engine. 
+
+\Hypertarget{define_macros_8hpp_ac70271525f3da26c7661bffab8906bab}\index{defineMacros.hpp@{defineMacros.hpp}!C\_ENGINE\_USE\_VKLOG@{C\_ENGINE\_USE\_VKLOG}}
+\index{C\_ENGINE\_USE\_VKLOG@{C\_ENGINE\_USE\_VKLOG}!defineMacros.hpp@{defineMacros.hpp}}
+\doxysubsubsection{\texorpdfstring{C\_ENGINE\_USE\_VKLOG}{C\_ENGINE\_USE\_VKLOG}}
+{\footnotesize\ttfamily \label{define_macros_8hpp_ac70271525f3da26c7661bffab8906bab} 
+\#define C\+\_\+\+ENGINE\+\_\+\+USE\+\_\+\+VKLOG}
+
+
+
+Enables the Vulkan logging feature. 
+
+If this macro is not defined, no Vulkan logging will be available. This will only work if {\ttfamily C\+\_\+\+ENGINE\+\_\+\+USE\+\_\+\+VULKAN} is defined. This will create a file called {\ttfamily vklog.\+log} in the working directory. A filter must be set for this feature to work.
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{define_macros_8hpp_ac2cb627205778cbf9f74506397d013fc}{C\+\_\+\+ENGINE\+\_\+\+VKLOG\+\_\+\+FILTER\+\_\+\+ALL}, \doxylink{define_macros_8hpp_a3c655aaa1275b244f491f6992d00f96c}{C\+\_\+\+ENGINE\+\_\+\+VKLOG\+\_\+\+FILTER\+\_\+\+IMPORTANT}, \doxylink{define_macros_8hpp_a38a64e4aabc47d41f29d7d569b079148}{C\+\_\+\+ENGINE\+\_\+\+VKLOG\+\_\+\+FILTER\+\_\+\+ERROR} 
+\end{DoxySeeAlso}
+\Hypertarget{define_macros_8hpp_adec7b18a089bac89b57fd1c03ad5e59e}\index{defineMacros.hpp@{defineMacros.hpp}!C\_ENGINE\_USE\_VULKAN@{C\_ENGINE\_USE\_VULKAN}}
+\index{C\_ENGINE\_USE\_VULKAN@{C\_ENGINE\_USE\_VULKAN}!defineMacros.hpp@{defineMacros.hpp}}
+\doxysubsubsection{\texorpdfstring{C\_ENGINE\_USE\_VULKAN}{C\_ENGINE\_USE\_VULKAN}}
+{\footnotesize\ttfamily \label{define_macros_8hpp_adec7b18a089bac89b57fd1c03ad5e59e} 
+\#define C\+\_\+\+ENGINE\+\_\+\+USE\+\_\+\+VULKAN}
+
+
+
+Enables the Vulkan rendering backend and Vulkan-\/specific features. 
+
+If this macro is not defined, no Vulkan-\/specific features will be available.
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{define_macros_8hpp_ac70271525f3da26c7661bffab8906bab}{C\+\_\+\+ENGINE\+\_\+\+USE\+\_\+\+VKLOG} 
+\end{DoxySeeAlso}
+\Hypertarget{define_macros_8hpp_ac2cb627205778cbf9f74506397d013fc}\index{defineMacros.hpp@{defineMacros.hpp}!C\_ENGINE\_VKLOG\_FILTER\_ALL@{C\_ENGINE\_VKLOG\_FILTER\_ALL}}
+\index{C\_ENGINE\_VKLOG\_FILTER\_ALL@{C\_ENGINE\_VKLOG\_FILTER\_ALL}!defineMacros.hpp@{defineMacros.hpp}}
+\doxysubsubsection{\texorpdfstring{C\_ENGINE\_VKLOG\_FILTER\_ALL}{C\_ENGINE\_VKLOG\_FILTER\_ALL}}
+{\footnotesize\ttfamily \label{define_macros_8hpp_ac2cb627205778cbf9f74506397d013fc} 
+\#define C\+\_\+\+ENGINE\+\_\+\+VKLOG\+\_\+\+FILTER\+\_\+\+ALL}
+
+
+
+Logs all Vulkan messages. 
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{define_macros_8hpp_ac70271525f3da26c7661bffab8906bab}{C\+\_\+\+ENGINE\+\_\+\+USE\+\_\+\+VKLOG}, \doxylink{define_macros_8hpp_a3c655aaa1275b244f491f6992d00f96c}{C\+\_\+\+ENGINE\+\_\+\+VKLOG\+\_\+\+FILTER\+\_\+\+IMPORTANT}, \doxylink{define_macros_8hpp_a38a64e4aabc47d41f29d7d569b079148}{C\+\_\+\+ENGINE\+\_\+\+VKLOG\+\_\+\+FILTER\+\_\+\+ERROR} 
+\end{DoxySeeAlso}
+\Hypertarget{define_macros_8hpp_a38a64e4aabc47d41f29d7d569b079148}\index{defineMacros.hpp@{defineMacros.hpp}!C\_ENGINE\_VKLOG\_FILTER\_ERROR@{C\_ENGINE\_VKLOG\_FILTER\_ERROR}}
+\index{C\_ENGINE\_VKLOG\_FILTER\_ERROR@{C\_ENGINE\_VKLOG\_FILTER\_ERROR}!defineMacros.hpp@{defineMacros.hpp}}
+\doxysubsubsection{\texorpdfstring{C\_ENGINE\_VKLOG\_FILTER\_ERROR}{C\_ENGINE\_VKLOG\_FILTER\_ERROR}}
+{\footnotesize\ttfamily \label{define_macros_8hpp_a38a64e4aabc47d41f29d7d569b079148} 
+\#define C\+\_\+\+ENGINE\+\_\+\+VKLOG\+\_\+\+FILTER\+\_\+\+ERROR}
+
+
+
+Logs only Vulkan errors. 
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{define_macros_8hpp_ac70271525f3da26c7661bffab8906bab}{C\+\_\+\+ENGINE\+\_\+\+USE\+\_\+\+VKLOG}, \doxylink{define_macros_8hpp_ac2cb627205778cbf9f74506397d013fc}{C\+\_\+\+ENGINE\+\_\+\+VKLOG\+\_\+\+FILTER\+\_\+\+ALL}, \doxylink{define_macros_8hpp_a3c655aaa1275b244f491f6992d00f96c}{C\+\_\+\+ENGINE\+\_\+\+VKLOG\+\_\+\+FILTER\+\_\+\+IMPORTANT} 
+\end{DoxySeeAlso}
+\Hypertarget{define_macros_8hpp_a3c655aaa1275b244f491f6992d00f96c}\index{defineMacros.hpp@{defineMacros.hpp}!C\_ENGINE\_VKLOG\_FILTER\_IMPORTANT@{C\_ENGINE\_VKLOG\_FILTER\_IMPORTANT}}
+\index{C\_ENGINE\_VKLOG\_FILTER\_IMPORTANT@{C\_ENGINE\_VKLOG\_FILTER\_IMPORTANT}!defineMacros.hpp@{defineMacros.hpp}}
+\doxysubsubsection{\texorpdfstring{C\_ENGINE\_VKLOG\_FILTER\_IMPORTANT}{C\_ENGINE\_VKLOG\_FILTER\_IMPORTANT}}
+{\footnotesize\ttfamily \label{define_macros_8hpp_a3c655aaa1275b244f491f6992d00f96c} 
+\#define C\+\_\+\+ENGINE\+\_\+\+VKLOG\+\_\+\+FILTER\+\_\+\+IMPORTANT}
+
+
+
+Logs only important Vulkan messages, such as errors and warnings. 
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{define_macros_8hpp_ac70271525f3da26c7661bffab8906bab}{C\+\_\+\+ENGINE\+\_\+\+USE\+\_\+\+VKLOG}, \doxylink{define_macros_8hpp_ac2cb627205778cbf9f74506397d013fc}{C\+\_\+\+ENGINE\+\_\+\+VKLOG\+\_\+\+FILTER\+\_\+\+ALL}, \doxylink{define_macros_8hpp_a38a64e4aabc47d41f29d7d569b079148}{C\+\_\+\+ENGINE\+\_\+\+VKLOG\+\_\+\+FILTER\+\_\+\+ERROR} 
+\end{DoxySeeAlso}

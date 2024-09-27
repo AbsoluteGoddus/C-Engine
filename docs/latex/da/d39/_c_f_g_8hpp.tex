@@ -1,0 +1,52 @@
+\doxysection{include/\+CFG.hpp File Reference}
+\hypertarget{_c_f_g_8hpp}{}\label{_c_f_g_8hpp}\index{include/CFG.hpp@{include/CFG.hpp}}
+
+
+Defines functions for parsing and serializing .cfg files.  
+
+
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$sstream$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include "{}Node.\+hpp"{}}\newline
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespaceengine}{engine}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+size\+\_\+t \mbox{\hyperlink{namespaceengine_ad79ec86f7276962d4a0f77c1001c6d9c}{engine\+::get\+Token}} (const std\+::string \&str, size\+\_\+t pos)
+\begin{DoxyCompactList}\small\item\em Gets a token. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{namespaceengine_aefaa3501fbd029622a1133ce6b350c1e}{engine\+::get\+Token\+Str}} (const std\+::string \&str, size\+\_\+t pos)
+\item 
+size\+\_\+t \mbox{\hyperlink{namespaceengine_af9e0086f8a4a48cefeb0622a417d201b}{engine\+::get\+Scope}} (const std\+::string \&str, size\+\_\+t pos)
+\item 
+std\+::string \mbox{\hyperlink{namespaceengine_afe30fcc22b4960c73281773a217b295b}{engine\+::get\+Scope\+Str}} (const std\+::string \&str, size\+\_\+t pos)
+\item 
+std\+::vector$<$ std\+::any $>$ \mbox{\hyperlink{namespaceengine_a9bee16cdb16f7448118649d2c66de77e}{engine\+::get\+Values\+From\+Array}} (const std\+::string \&str)
+\item 
+std\+::vector$<$ std\+::any $>$ \mbox{\hyperlink{namespaceengine_a87b8902d79010449fae587e7801011d1}{engine\+::process\+Array}} (const std\+::string \&str)
+\item 
+std\+::string \mbox{\hyperlink{namespaceengine_a1e10235eb59869d92952f57dc2c6ffc5}{engine\+::any\+Array\+\_\+to\+\_\+string\+Array}} (const std\+::vector$<$ std\+::any $>$ \&v)
+\item 
+void \mbox{\hyperlink{namespaceengine_a5bd8863756336731fceccf2c8830ac47}{engine\+::cfg\+\_\+parse}} (const std\+::string \&str, \mbox{\hyperlink{class_node}{Node}} \&n)
+\item 
+std\+::string \mbox{\hyperlink{namespaceengine_ab9c88bf3f0aca62e293060e1a4ad4bc2}{engine\+::char\+String}} (const char \&c, size\+\_\+t times)
+\item 
+std\+::string \mbox{\hyperlink{namespaceengine_a2dc06dda96fbb413afc0179603857fcc}{engine\+::cfg\+\_\+serialize}} (const \mbox{\hyperlink{class_node}{Node}} \&root)
+\item 
+std\+::string \mbox{\hyperlink{namespaceengine_a36da51764540ae5b2cd3efb3818d3de3}{engine\+::cfg\+\_\+serialize}} (const \mbox{\hyperlink{class_node}{Node}} \&root, const size\+\_\+t \&indents)
+\item 
+std\+::string \mbox{\hyperlink{namespaceengine_a98a4d962867374c7be646d548971586f}{engine\+::cfg\+\_\+serialize\+\_\+}} (const \mbox{\hyperlink{class_node}{Node}} \&root, const size\+\_\+t \&indents)
+\item 
+std\+::string \mbox{\hyperlink{namespaceengine_af2a7d2e7cbd1359366d0c27de72c79f8}{engine\+::cfg\+\_\+serialize\+\_\+}} (const \mbox{\hyperlink{class_node}{Node}} \&root)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Defines functions for parsing and serializing .cfg files. 
+

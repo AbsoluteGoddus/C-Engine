@@ -1,0 +1,156 @@
+\doxysection{engine\+::Behavior\+PTR Class Reference}
+\hypertarget{classengine_1_1_behavior_p_t_r}{}\label{classengine_1_1_behavior_p_t_r}\index{engine::BehaviorPTR@{engine::BehaviorPTR}}
+
+
+A smart pointer wrapper to manage behaviors.  
+
+
+
+
+{\ttfamily \#include $<$Behavior.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classengine_1_1_behavior_p_t_r_a9f31ac079e920288d8e067fdc84224b0}{Behavior\+PTR}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor for the \doxylink{classengine_1_1_behavior_p_t_r}{Behavior\+PTR} class. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class BC $>$ }\\void \mbox{\hyperlink{classengine_1_1_behavior_p_t_r_a80e3bb0abc7b7b7c657a054514c8ec7e}{set\+Behavior}} ()
+\begin{DoxyCompactList}\small\item\em Sets the behavior to the specified type. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classengine_1_1_behavior_p_t_r_ac06db295f0cf276f5725875d0b78d8f9}{init}} ()
+\begin{DoxyCompactList}\small\item\em Calls the init function of the current behavior. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classengine_1_1_behavior_p_t_r_af3dccba2ec8ab35f5ec63c04249f8d98}{pre\+Update}} ()
+\begin{DoxyCompactList}\small\item\em Calls the pre\+Update function of the current behavior. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classengine_1_1_behavior_p_t_r_a761fda0bc1f7cf1dd6a3c6c0f030ba27}{update}} ()
+\begin{DoxyCompactList}\small\item\em Calls the update function of the current behavior. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classengine_1_1_behavior_p_t_r_a94cd6e6ae2cf1596e2c6b44c2bf5ec81}{post\+Update}} ()
+\begin{DoxyCompactList}\small\item\em Calls the post\+Update function of the current behavior. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classengine_1_1_behavior_p_t_r_a1c55bbbdeaf52f12bf79816f8c023e0a}{is\+Set}} ()
+\begin{DoxyCompactList}\small\item\em Checks if a behavior is set. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classengine_1_1_behavior_p_t_r_a9ac8fba745874460290f096404e4bcc4}{on\+Event}} (\mbox{\hyperlink{classengine_1_1_event}{engine\+::\+Event}} e)
+\begin{DoxyCompactList}\small\item\em Calls the on\+Event function of the current behavior. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classengine_1_1_behavior}{Behavior}} $>$ \mbox{\hyperlink{classengine_1_1_behavior_p_t_r_a4d84111614c7997b28e3a0853217b3fd}{\+\_\+b}} = nullptr
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A smart pointer wrapper to manage behaviors. 
+
+This class manages behaviors using a {\ttfamily std\+::shared\+\_\+ptr}. It allows setting, updating, and triggering events for behaviors in a managed and safe way. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classengine_1_1_behavior_p_t_r_a9f31ac079e920288d8e067fdc84224b0}\index{engine::BehaviorPTR@{engine::BehaviorPTR}!BehaviorPTR@{BehaviorPTR}}
+\index{BehaviorPTR@{BehaviorPTR}!engine::BehaviorPTR@{engine::BehaviorPTR}}
+\doxysubsubsection{\texorpdfstring{BehaviorPTR()}{BehaviorPTR()}}
+{\footnotesize\ttfamily \label{classengine_1_1_behavior_p_t_r_a9f31ac079e920288d8e067fdc84224b0} 
+engine\+::\+Behavior\+PTR\+::\+Behavior\+PTR (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Default constructor for the \doxylink{classengine_1_1_behavior_p_t_r}{Behavior\+PTR} class. 
+
+Initializes the \doxylink{classengine_1_1_behavior_p_t_r}{Behavior\+PTR} with no behavior. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classengine_1_1_behavior_p_t_r_ac06db295f0cf276f5725875d0b78d8f9}\index{engine::BehaviorPTR@{engine::BehaviorPTR}!init@{init}}
+\index{init@{init}!engine::BehaviorPTR@{engine::BehaviorPTR}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily \label{classengine_1_1_behavior_p_t_r_ac06db295f0cf276f5725875d0b78d8f9} 
+void engine\+::\+Behavior\+PTR\+::init (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Calls the init function of the current behavior. 
+
+If a behavior is set, this function invokes its {\ttfamily \doxylink{classengine_1_1_behavior_p_t_r_ac06db295f0cf276f5725875d0b78d8f9}{init()}} function. \Hypertarget{classengine_1_1_behavior_p_t_r_a1c55bbbdeaf52f12bf79816f8c023e0a}\index{engine::BehaviorPTR@{engine::BehaviorPTR}!isSet@{isSet}}
+\index{isSet@{isSet}!engine::BehaviorPTR@{engine::BehaviorPTR}}
+\doxysubsubsection{\texorpdfstring{isSet()}{isSet()}}
+{\footnotesize\ttfamily \label{classengine_1_1_behavior_p_t_r_a1c55bbbdeaf52f12bf79816f8c023e0a} 
+bool engine\+::\+Behavior\+PTR\+::is\+Set (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Checks if a behavior is set. 
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if a behavior is currently set, otherwise {\ttfamily false}. 
+\end{DoxyReturn}
+\Hypertarget{classengine_1_1_behavior_p_t_r_a9ac8fba745874460290f096404e4bcc4}\index{engine::BehaviorPTR@{engine::BehaviorPTR}!onEvent@{onEvent}}
+\index{onEvent@{onEvent}!engine::BehaviorPTR@{engine::BehaviorPTR}}
+\doxysubsubsection{\texorpdfstring{onEvent()}{onEvent()}}
+{\footnotesize\ttfamily \label{classengine_1_1_behavior_p_t_r_a9ac8fba745874460290f096404e4bcc4} 
+void engine\+::\+Behavior\+PTR\+::on\+Event (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classengine_1_1_event}{engine\+::\+Event}}}]{e}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Calls the on\+Event function of the current behavior. 
+
+If a behavior is set, this function invokes its {\ttfamily \doxylink{classengine_1_1_behavior_p_t_r_a9ac8fba745874460290f096404e4bcc4}{on\+Event()}} function with the given event.
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The event to handle. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classengine_1_1_behavior_p_t_r_a94cd6e6ae2cf1596e2c6b44c2bf5ec81}\index{engine::BehaviorPTR@{engine::BehaviorPTR}!postUpdate@{postUpdate}}
+\index{postUpdate@{postUpdate}!engine::BehaviorPTR@{engine::BehaviorPTR}}
+\doxysubsubsection{\texorpdfstring{postUpdate()}{postUpdate()}}
+{\footnotesize\ttfamily \label{classengine_1_1_behavior_p_t_r_a94cd6e6ae2cf1596e2c6b44c2bf5ec81} 
+void engine\+::\+Behavior\+PTR\+::post\+Update (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Calls the post\+Update function of the current behavior. 
+
+If a behavior is set, this function invokes its {\ttfamily \doxylink{classengine_1_1_behavior_p_t_r_a94cd6e6ae2cf1596e2c6b44c2bf5ec81}{post\+Update()}} function. \Hypertarget{classengine_1_1_behavior_p_t_r_af3dccba2ec8ab35f5ec63c04249f8d98}\index{engine::BehaviorPTR@{engine::BehaviorPTR}!preUpdate@{preUpdate}}
+\index{preUpdate@{preUpdate}!engine::BehaviorPTR@{engine::BehaviorPTR}}
+\doxysubsubsection{\texorpdfstring{preUpdate()}{preUpdate()}}
+{\footnotesize\ttfamily \label{classengine_1_1_behavior_p_t_r_af3dccba2ec8ab35f5ec63c04249f8d98} 
+void engine\+::\+Behavior\+PTR\+::pre\+Update (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Calls the pre\+Update function of the current behavior. 
+
+If a behavior is set, this function invokes its {\ttfamily \doxylink{classengine_1_1_behavior_p_t_r_af3dccba2ec8ab35f5ec63c04249f8d98}{pre\+Update()}} function. \Hypertarget{classengine_1_1_behavior_p_t_r_a80e3bb0abc7b7b7c657a054514c8ec7e}\index{engine::BehaviorPTR@{engine::BehaviorPTR}!setBehavior@{setBehavior}}
+\index{setBehavior@{setBehavior}!engine::BehaviorPTR@{engine::BehaviorPTR}}
+\doxysubsubsection{\texorpdfstring{setBehavior()}{setBehavior()}}
+{\footnotesize\ttfamily \label{classengine_1_1_behavior_p_t_r_a80e3bb0abc7b7b7c657a054514c8ec7e} 
+template$<$class BC $>$ \\
+void engine\+::\+Behavior\+PTR\+::set\+Behavior (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Sets the behavior to the specified type. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em BC} & The type of the behavior to set. \\
+\hline
+\end{DoxyTemplParams}
+This template function allows setting the internal behavior to a new behavior of type {\ttfamily BC}. \Hypertarget{classengine_1_1_behavior_p_t_r_a761fda0bc1f7cf1dd6a3c6c0f030ba27}\index{engine::BehaviorPTR@{engine::BehaviorPTR}!update@{update}}
+\index{update@{update}!engine::BehaviorPTR@{engine::BehaviorPTR}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily \label{classengine_1_1_behavior_p_t_r_a761fda0bc1f7cf1dd6a3c6c0f030ba27} 
+void engine\+::\+Behavior\+PTR\+::update (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Calls the update function of the current behavior. 
+
+If a behavior is set, this function invokes its {\ttfamily \doxylink{classengine_1_1_behavior_p_t_r_a761fda0bc1f7cf1dd6a3c6c0f030ba27}{update()}} function. 
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classengine_1_1_behavior_p_t_r_a4d84111614c7997b28e3a0853217b3fd}\index{engine::BehaviorPTR@{engine::BehaviorPTR}!\_b@{\_b}}
+\index{\_b@{\_b}!engine::BehaviorPTR@{engine::BehaviorPTR}}
+\doxysubsubsection{\texorpdfstring{\_b}{\_b}}
+{\footnotesize\ttfamily \label{classengine_1_1_behavior_p_t_r_a4d84111614c7997b28e3a0853217b3fd} 
+std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classengine_1_1_behavior}{Behavior}}$>$ engine\+::\+Behavior\+PTR\+::\+\_\+b = nullptr\hspace{0.3cm}{\ttfamily [private]}}
+
+Shared pointer to the managed \doxylink{classengine_1_1_behavior}{Behavior}. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{_behavior_8hpp}{Behavior.\+hpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,248 @@
+\doxysection{engine Namespace Reference}
+\hypertarget{namespaceengine}{}\label{namespaceengine}\index{engine@{engine}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classengine_1_1_application_handle}{Application\+Handle}}
+\begin{DoxyCompactList}\small\item\em Manages the application lifecycle, including initialization, updating, and cleanup. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classengine_1_1_behavior}{Behavior}}
+\begin{DoxyCompactList}\small\item\em Base class for creating behaviors in the game engine. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classengine_1_1_behavior_p_t_r}{Behavior\+PTR}}
+\begin{DoxyCompactList}\small\item\em A smart pointer wrapper to manage behaviors. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classengine_1_1_event}{Event}}
+\begin{DoxyCompactList}\small\item\em Represents an event in the engine. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classengine_1_1_game_object}{Game\+Object}}
+\begin{DoxyCompactList}\small\item\em Class for containing and executing Behaviors. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classengine_1_1_object_list}{Object\+List}}
+\begin{DoxyCompactList}\small\item\em A simple manager to contain and manage objects. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classengine_1_1_scene}{Scene}}
+\begin{DoxyCompactList}\small\item\em Manages a collection of Game\+Objects and provides methods to initialize, update, and clean up the scene. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+size\+\_\+t \mbox{\hyperlink{namespaceengine_ad79ec86f7276962d4a0f77c1001c6d9c}{get\+Token}} (const std\+::string \&str, size\+\_\+t pos)
+\begin{DoxyCompactList}\small\item\em Gets a token. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{namespaceengine_aefaa3501fbd029622a1133ce6b350c1e}{get\+Token\+Str}} (const std\+::string \&str, size\+\_\+t pos)
+\item 
+size\+\_\+t \mbox{\hyperlink{namespaceengine_af9e0086f8a4a48cefeb0622a417d201b}{get\+Scope}} (const std\+::string \&str, size\+\_\+t pos)
+\item 
+std\+::string \mbox{\hyperlink{namespaceengine_afe30fcc22b4960c73281773a217b295b}{get\+Scope\+Str}} (const std\+::string \&str, size\+\_\+t pos)
+\item 
+std\+::vector$<$ std\+::any $>$ \mbox{\hyperlink{namespaceengine_a9bee16cdb16f7448118649d2c66de77e}{get\+Values\+From\+Array}} (const std\+::string \&str)
+\item 
+std\+::vector$<$ std\+::any $>$ \mbox{\hyperlink{namespaceengine_a87b8902d79010449fae587e7801011d1}{process\+Array}} (const std\+::string \&str)
+\item 
+std\+::string \mbox{\hyperlink{namespaceengine_a1e10235eb59869d92952f57dc2c6ffc5}{any\+Array\+\_\+to\+\_\+string\+Array}} (const std\+::vector$<$ std\+::any $>$ \&v)
+\item 
+void \mbox{\hyperlink{namespaceengine_a5bd8863756336731fceccf2c8830ac47}{cfg\+\_\+parse}} (const std\+::string \&str, \mbox{\hyperlink{class_node}{Node}} \&n)
+\item 
+std\+::string \mbox{\hyperlink{namespaceengine_ab9c88bf3f0aca62e293060e1a4ad4bc2}{char\+String}} (const char \&c, size\+\_\+t times)
+\item 
+std\+::string \mbox{\hyperlink{namespaceengine_a2dc06dda96fbb413afc0179603857fcc}{cfg\+\_\+serialize}} (const \mbox{\hyperlink{class_node}{Node}} \&root)
+\item 
+std\+::string \mbox{\hyperlink{namespaceengine_a36da51764540ae5b2cd3efb3818d3de3}{cfg\+\_\+serialize}} (const \mbox{\hyperlink{class_node}{Node}} \&root, const size\+\_\+t \&indents)
+\item 
+std\+::string \mbox{\hyperlink{namespaceengine_a98a4d962867374c7be646d548971586f}{cfg\+\_\+serialize\+\_\+}} (const \mbox{\hyperlink{class_node}{Node}} \&root, const size\+\_\+t \&indents)
+\item 
+std\+::string \mbox{\hyperlink{namespaceengine_af2a7d2e7cbd1359366d0c27de72c79f8}{cfg\+\_\+serialize\+\_\+}} (const \mbox{\hyperlink{class_node}{Node}} \&root)
+\item 
+void \mbox{\hyperlink{namespaceengine_a54e1fe05c9e06f98f91860a89ee5e532}{run}} ()
+\begin{DoxyCompactList}\small\item\em Runs the application. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespaceengine_ac27221b712ff5f12659b05290393cf25}{debug}} ()
+\begin{DoxyCompactList}\small\item\em Runs the application with additional error handling. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{namespaceengine_ab73769d8e0b6b88c0639a54a819777a8}{remove}} (std\+::string \&str, size\+\_\+t start, size\+\_\+t length)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classengine_1_1_application_handle}{Application\+Handle}} \mbox{\hyperlink{namespaceengine_a0c7bb6896ca68be5aa042d9a6bf69777}{HANDLE}}
+\begin{DoxyCompactList}\small\item\em Used to control the application. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{namespaceengine_a1e10235eb59869d92952f57dc2c6ffc5}\index{engine@{engine}!anyArray\_to\_stringArray@{anyArray\_to\_stringArray}}
+\index{anyArray\_to\_stringArray@{anyArray\_to\_stringArray}!engine@{engine}}
+\doxysubsubsection{\texorpdfstring{anyArray\_to\_stringArray()}{anyArray\_to\_stringArray()}}
+{\footnotesize\ttfamily \label{namespaceengine_a1e10235eb59869d92952f57dc2c6ffc5} 
+std\+::string engine\+::any\+Array\+\_\+to\+\_\+string\+Array (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ std\+::any $>$ \&}]{v}{}\end{DoxyParamCaption})}
+
+\Hypertarget{namespaceengine_a5bd8863756336731fceccf2c8830ac47}\index{engine@{engine}!cfg\_parse@{cfg\_parse}}
+\index{cfg\_parse@{cfg\_parse}!engine@{engine}}
+\doxysubsubsection{\texorpdfstring{cfg\_parse()}{cfg\_parse()}}
+{\footnotesize\ttfamily \label{namespaceengine_a5bd8863756336731fceccf2c8830ac47} 
+void engine\+::cfg\+\_\+parse (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{str}{, }\item[{\mbox{\hyperlink{class_node}{Node}} \&}]{n}{}\end{DoxyParamCaption})}
+
+Parses .cfg code into a node 
+\begin{DoxyParams}{Parameters}
+{\em str} & The .cfg code to be parsed \\
+\hline
+{\em n} & The node in which the output should be placed \\
+\hline
+\end{DoxyParams}
+\Hypertarget{namespaceengine_a2dc06dda96fbb413afc0179603857fcc}\index{engine@{engine}!cfg\_serialize@{cfg\_serialize}}
+\index{cfg\_serialize@{cfg\_serialize}!engine@{engine}}
+\doxysubsubsection{\texorpdfstring{cfg\_serialize()}{cfg\_serialize()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{namespaceengine_a2dc06dda96fbb413afc0179603857fcc} 
+std\+::string engine\+::cfg\+\_\+serialize (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_node}{Node}} \&}]{root}{}\end{DoxyParamCaption})}
+
+Serializes a Node-\/tree into a string containing .cfg code 
+\begin{DoxyParams}{Parameters}
+{\em root} & The root of the Node-\/tree to be serialized \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The serialized .cfg code 
+\end{DoxyReturn}
+\Hypertarget{namespaceengine_a36da51764540ae5b2cd3efb3818d3de3}\index{engine@{engine}!cfg\_serialize@{cfg\_serialize}}
+\index{cfg\_serialize@{cfg\_serialize}!engine@{engine}}
+\doxysubsubsection{\texorpdfstring{cfg\_serialize()}{cfg\_serialize()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{namespaceengine_a36da51764540ae5b2cd3efb3818d3de3} 
+std\+::string engine\+::cfg\+\_\+serialize (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_node}{Node}} \&}]{root}{, }\item[{const size\+\_\+t \&}]{indents}{}\end{DoxyParamCaption})}
+
+Serializes a Node-\/tree into a string containing .cfg code. Also indents the string and inserts newlines to make the string more Human-\/readable 
+\begin{DoxyParams}{Parameters}
+{\em root} & The root of the Node-\/tree to be serialized \\
+\hline
+{\em indents} & The number of tas te current level should put before it. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The serialized .cfg code 
+\end{DoxyReturn}
+\Hypertarget{namespaceengine_af2a7d2e7cbd1359366d0c27de72c79f8}\index{engine@{engine}!cfg\_serialize\_@{cfg\_serialize\_}}
+\index{cfg\_serialize\_@{cfg\_serialize\_}!engine@{engine}}
+\doxysubsubsection{\texorpdfstring{cfg\_serialize\_()}{cfg\_serialize\_()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{namespaceengine_af2a7d2e7cbd1359366d0c27de72c79f8} 
+std\+::string engine\+::cfg\+\_\+serialize\+\_\+ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_node}{Node}} \&}]{root}{}\end{DoxyParamCaption})}
+
+Serializes a Node-\/tree into a string containing .cfg code. Does not include the root node in the output 
+\begin{DoxyParams}{Parameters}
+{\em root} & The root of the Node-\/tree to be serialized \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The serialized .cfg code 
+\end{DoxyReturn}
+\Hypertarget{namespaceengine_a98a4d962867374c7be646d548971586f}\index{engine@{engine}!cfg\_serialize\_@{cfg\_serialize\_}}
+\index{cfg\_serialize\_@{cfg\_serialize\_}!engine@{engine}}
+\doxysubsubsection{\texorpdfstring{cfg\_serialize\_()}{cfg\_serialize\_()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{namespaceengine_a98a4d962867374c7be646d548971586f} 
+std\+::string engine\+::cfg\+\_\+serialize\+\_\+ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_node}{Node}} \&}]{root}{, }\item[{const size\+\_\+t \&}]{indents}{}\end{DoxyParamCaption})}
+
+Serializes a Node-\/tree into a string containing .cfg code. Also indents the string and inserts newlines to make the string more Human-\/readable. Does not include the root node in the output 
+\begin{DoxyParams}{Parameters}
+{\em root} & The root of the Node-\/tree to be serialized \\
+\hline
+{\em indents} & The number of tas te current level should put before it. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The serialized .cfg code 
+\end{DoxyReturn}
+\Hypertarget{namespaceengine_ab9c88bf3f0aca62e293060e1a4ad4bc2}\index{engine@{engine}!charString@{charString}}
+\index{charString@{charString}!engine@{engine}}
+\doxysubsubsection{\texorpdfstring{charString()}{charString()}}
+{\footnotesize\ttfamily \label{namespaceengine_ab9c88bf3f0aca62e293060e1a4ad4bc2} 
+std\+::string engine\+::char\+String (\begin{DoxyParamCaption}\item[{const char \&}]{c}{, }\item[{size\+\_\+t}]{times}{}\end{DoxyParamCaption})}
+
+Makes a string out of chars 
+\begin{DoxyParams}{Parameters}
+{\em c} & the char to be chained together to a string \\
+\hline
+{\em times} & How many times the char should be chained together \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The resulting string 
+\end{DoxyReturn}
+\Hypertarget{namespaceengine_ac27221b712ff5f12659b05290393cf25}\index{engine@{engine}!debug@{debug}}
+\index{debug@{debug}!engine@{engine}}
+\doxysubsubsection{\texorpdfstring{debug()}{debug()}}
+{\footnotesize\ttfamily \label{namespaceengine_ac27221b712ff5f12659b05290393cf25} 
+void engine\+::debug (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Runs the application with additional error handling. 
+
+\Hypertarget{namespaceengine_af9e0086f8a4a48cefeb0622a417d201b}\index{engine@{engine}!getScope@{getScope}}
+\index{getScope@{getScope}!engine@{engine}}
+\doxysubsubsection{\texorpdfstring{getScope()}{getScope()}}
+{\footnotesize\ttfamily \label{namespaceengine_af9e0086f8a4a48cefeb0622a417d201b} 
+size\+\_\+t engine\+::get\+Scope (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{str}{, }\item[{size\+\_\+t}]{pos}{}\end{DoxyParamCaption})}
+
+\Hypertarget{namespaceengine_afe30fcc22b4960c73281773a217b295b}\index{engine@{engine}!getScopeStr@{getScopeStr}}
+\index{getScopeStr@{getScopeStr}!engine@{engine}}
+\doxysubsubsection{\texorpdfstring{getScopeStr()}{getScopeStr()}}
+{\footnotesize\ttfamily \label{namespaceengine_afe30fcc22b4960c73281773a217b295b} 
+std\+::string engine\+::get\+Scope\+Str (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{str}{, }\item[{size\+\_\+t}]{pos}{}\end{DoxyParamCaption})}
+
+\Hypertarget{namespaceengine_ad79ec86f7276962d4a0f77c1001c6d9c}\index{engine@{engine}!getToken@{getToken}}
+\index{getToken@{getToken}!engine@{engine}}
+\doxysubsubsection{\texorpdfstring{getToken()}{getToken()}}
+{\footnotesize\ttfamily \label{namespaceengine_ad79ec86f7276962d4a0f77c1001c6d9c} 
+size\+\_\+t engine\+::get\+Token (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{str}{, }\item[{size\+\_\+t}]{pos}{}\end{DoxyParamCaption})}
+
+
+
+Gets a token. 
+
+Gets a token from a string str. the token ends if the function finds a space.
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & The string to process \\
+\hline
+{\em pos} & The starting position \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The end of the Token 
+\end{DoxyReturn}
+\Hypertarget{namespaceengine_aefaa3501fbd029622a1133ce6b350c1e}\index{engine@{engine}!getTokenStr@{getTokenStr}}
+\index{getTokenStr@{getTokenStr}!engine@{engine}}
+\doxysubsubsection{\texorpdfstring{getTokenStr()}{getTokenStr()}}
+{\footnotesize\ttfamily \label{namespaceengine_aefaa3501fbd029622a1133ce6b350c1e} 
+std\+::string engine\+::get\+Token\+Str (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{str}{, }\item[{size\+\_\+t}]{pos}{}\end{DoxyParamCaption})}
+
+\Hypertarget{namespaceengine_a9bee16cdb16f7448118649d2c66de77e}\index{engine@{engine}!getValuesFromArray@{getValuesFromArray}}
+\index{getValuesFromArray@{getValuesFromArray}!engine@{engine}}
+\doxysubsubsection{\texorpdfstring{getValuesFromArray()}{getValuesFromArray()}}
+{\footnotesize\ttfamily \label{namespaceengine_a9bee16cdb16f7448118649d2c66de77e} 
+std\+::vector$<$ std\+::any $>$ engine\+::get\+Values\+From\+Array (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{str}{}\end{DoxyParamCaption})}
+
+\Hypertarget{namespaceengine_a87b8902d79010449fae587e7801011d1}\index{engine@{engine}!processArray@{processArray}}
+\index{processArray@{processArray}!engine@{engine}}
+\doxysubsubsection{\texorpdfstring{processArray()}{processArray()}}
+{\footnotesize\ttfamily \label{namespaceengine_a87b8902d79010449fae587e7801011d1} 
+std\+::vector$<$ std\+::any $>$ engine\+::process\+Array (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{str}{}\end{DoxyParamCaption})}
+
+\Hypertarget{namespaceengine_ab73769d8e0b6b88c0639a54a819777a8}\index{engine@{engine}!remove@{remove}}
+\index{remove@{remove}!engine@{engine}}
+\doxysubsubsection{\texorpdfstring{remove()}{remove()}}
+{\footnotesize\ttfamily \label{namespaceengine_ab73769d8e0b6b88c0639a54a819777a8} 
+std\+::string engine\+::remove (\begin{DoxyParamCaption}\item[{std\+::string \&}]{str}{, }\item[{size\+\_\+t}]{start}{, }\item[{size\+\_\+t}]{length}{}\end{DoxyParamCaption})}
+
+\Hypertarget{namespaceengine_a54e1fe05c9e06f98f91860a89ee5e532}\index{engine@{engine}!run@{run}}
+\index{run@{run}!engine@{engine}}
+\doxysubsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily \label{namespaceengine_a54e1fe05c9e06f98f91860a89ee5e532} 
+void engine\+::run (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Runs the application. 
+
+This method initializes the application, enters the main loop, and performs cleanup. 
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{namespaceengine_a0c7bb6896ca68be5aa042d9a6bf69777}\index{engine@{engine}!HANDLE@{HANDLE}}
+\index{HANDLE@{HANDLE}!engine@{engine}}
+\doxysubsubsection{\texorpdfstring{HANDLE}{HANDLE}}
+{\footnotesize\ttfamily \label{namespaceengine_a0c7bb6896ca68be5aa042d9a6bf69777} 
+\mbox{\hyperlink{classengine_1_1_application_handle}{Application\+Handle}} engine\+::\+HANDLE}
+
+
+
+Used to control the application. 
+

@@ -1,0 +1,164 @@
+\doxysection{engine\+::Event Class Reference}
+\hypertarget{classengine_1_1_event}{}\label{classengine_1_1_event}\index{engine::Event@{engine::Event}}
+
+
+Represents an event in the engine.  
+
+
+
+
+{\ttfamily \#include $<$Event.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classengine_1_1_event_ae33808c14be823689db213cc424d09f1}{Event}} (std\+::string \mbox{\hyperlink{classengine_1_1_event_a53e4048d267ca6ea045f4c0134de1f4b}{what}}, std\+::string \mbox{\hyperlink{classengine_1_1_event_a0dbe1043fc77addf23c605d17c28a93b}{why}})
+\begin{DoxyCompactList}\small\item\em Constructs an \doxylink{classengine_1_1_event}{Event} with the specified type and cause. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classengine_1_1_event_a53e4048d267ca6ea045f4c0134de1f4b}{what}} ()
+\begin{DoxyCompactList}\small\item\em Returns the type of the event. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classengine_1_1_event_a0dbe1043fc77addf23c605d17c28a93b}{why}} ()
+\begin{DoxyCompactList}\small\item\em Returns the cause of the event. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classengine_1_1_event_a48a1d617d52faf14d951a35d248af838}{whole}} ()
+\begin{DoxyCompactList}\small\item\em Returns the type and cause of the event separated by a \textquotesingle{}\+:\textquotesingle{}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classengine_1_1_event_a03a2dd508ac3845c649c57ee081928d7}{set\+Data}} (\mbox{\hyperlink{classengine_1_1_object_list}{engine\+::\+Object\+List}}$<$ std\+::any $>$ \&ol)
+\begin{DoxyCompactList}\small\item\em Sets additional data for the event. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classengine_1_1_object_list}{engine\+::\+Object\+List}}$<$ std\+::any $>$ \& \mbox{\hyperlink{classengine_1_1_event_afa642911e47f91ac7dad92bfffb0b336}{get\+Data}} ()
+\begin{DoxyCompactList}\small\item\em Returns the additional data attached to the event. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{classengine_1_1_event_a0296b8baada44a97e50ccb5a09a29075}{\+\_\+type}}
+\item 
+std\+::string \mbox{\hyperlink{classengine_1_1_event_af7d669fcbd5ad0521111d4152426fa09}{\+\_\+cause}}
+\item 
+\mbox{\hyperlink{classengine_1_1_object_list}{engine\+::\+Object\+List}}$<$ std\+::any $>$ \mbox{\hyperlink{classengine_1_1_event_a67258c3a939134f0faf2d9054ad92531}{\+\_\+data}}
+\item 
+\mbox{\hyperlink{classengine_1_1_object_list}{engine\+::\+Object\+List}}$<$ std\+::any $>$ \mbox{\hyperlink{classengine_1_1_event_ae3d94ecb8d148cacf4790f1688cd7141}{\+\_\+response}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents an event in the engine. 
+
+The \doxylink{classengine_1_1_event}{Event} class is used to encapsulate information about events that occur within the engine. Each event has a type, a cause, and can carry additional data. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classengine_1_1_event_ae33808c14be823689db213cc424d09f1}\index{engine::Event@{engine::Event}!Event@{Event}}
+\index{Event@{Event}!engine::Event@{engine::Event}}
+\doxysubsubsection{\texorpdfstring{Event()}{Event()}}
+{\footnotesize\ttfamily \label{classengine_1_1_event_ae33808c14be823689db213cc424d09f1} 
+engine\+::\+Event\+::\+Event (\begin{DoxyParamCaption}\item[{std\+::string}]{what}{, }\item[{std\+::string}]{why}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs an \doxylink{classengine_1_1_event}{Event} with the specified type and cause. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em what} & The type of the event. \\
+\hline
+{\em why} & The cause of the event. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classengine_1_1_event_afa642911e47f91ac7dad92bfffb0b336}\index{engine::Event@{engine::Event}!getData@{getData}}
+\index{getData@{getData}!engine::Event@{engine::Event}}
+\doxysubsubsection{\texorpdfstring{getData()}{getData()}}
+{\footnotesize\ttfamily \label{classengine_1_1_event_afa642911e47f91ac7dad92bfffb0b336} 
+\mbox{\hyperlink{classengine_1_1_object_list}{engine\+::\+Object\+List}}$<$ std\+::any $>$ \& engine\+::\+Event\+::get\+Data (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the additional data attached to the event. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the \doxylink{classengine_1_1_object_list}{Object\+List} containing the additional data. 
+\end{DoxyReturn}
+\Hypertarget{classengine_1_1_event_a03a2dd508ac3845c649c57ee081928d7}\index{engine::Event@{engine::Event}!setData@{setData}}
+\index{setData@{setData}!engine::Event@{engine::Event}}
+\doxysubsubsection{\texorpdfstring{setData()}{setData()}}
+{\footnotesize\ttfamily \label{classengine_1_1_event_a03a2dd508ac3845c649c57ee081928d7} 
+void engine\+::\+Event\+::set\+Data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classengine_1_1_object_list}{engine\+::\+Object\+List}}$<$ std\+::any $>$ \&}]{ol}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Sets additional data for the event. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ol} & An \doxylink{classengine_1_1_object_list}{Object\+List} containing the additional data. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classengine_1_1_event_a53e4048d267ca6ea045f4c0134de1f4b}\index{engine::Event@{engine::Event}!what@{what}}
+\index{what@{what}!engine::Event@{engine::Event}}
+\doxysubsubsection{\texorpdfstring{what()}{what()}}
+{\footnotesize\ttfamily \label{classengine_1_1_event_a53e4048d267ca6ea045f4c0134de1f4b} 
+std\+::string engine\+::\+Event\+::what (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the type of the event. 
+
+\begin{DoxyReturn}{Returns}
+The type of the event. 
+\end{DoxyReturn}
+\Hypertarget{classengine_1_1_event_a48a1d617d52faf14d951a35d248af838}\index{engine::Event@{engine::Event}!whole@{whole}}
+\index{whole@{whole}!engine::Event@{engine::Event}}
+\doxysubsubsection{\texorpdfstring{whole()}{whole()}}
+{\footnotesize\ttfamily \label{classengine_1_1_event_a48a1d617d52faf14d951a35d248af838} 
+std\+::string engine\+::\+Event\+::whole (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the type and cause of the event separated by a \textquotesingle{}\+:\textquotesingle{}. 
+
+\begin{DoxyReturn}{Returns}
+A string containing the type and cause of the event. 
+\end{DoxyReturn}
+\Hypertarget{classengine_1_1_event_a0dbe1043fc77addf23c605d17c28a93b}\index{engine::Event@{engine::Event}!why@{why}}
+\index{why@{why}!engine::Event@{engine::Event}}
+\doxysubsubsection{\texorpdfstring{why()}{why()}}
+{\footnotesize\ttfamily \label{classengine_1_1_event_a0dbe1043fc77addf23c605d17c28a93b} 
+std\+::string engine\+::\+Event\+::why (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the cause of the event. 
+
+\begin{DoxyReturn}{Returns}
+The cause of the event. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classengine_1_1_event_af7d669fcbd5ad0521111d4152426fa09}\index{engine::Event@{engine::Event}!\_cause@{\_cause}}
+\index{\_cause@{\_cause}!engine::Event@{engine::Event}}
+\doxysubsubsection{\texorpdfstring{\_cause}{\_cause}}
+{\footnotesize\ttfamily \label{classengine_1_1_event_af7d669fcbd5ad0521111d4152426fa09} 
+std\+::string engine\+::\+Event\+::\+\_\+cause\hspace{0.3cm}{\ttfamily [private]}}
+
+The cause of the event. \Hypertarget{classengine_1_1_event_a67258c3a939134f0faf2d9054ad92531}\index{engine::Event@{engine::Event}!\_data@{\_data}}
+\index{\_data@{\_data}!engine::Event@{engine::Event}}
+\doxysubsubsection{\texorpdfstring{\_data}{\_data}}
+{\footnotesize\ttfamily \label{classengine_1_1_event_a67258c3a939134f0faf2d9054ad92531} 
+\mbox{\hyperlink{classengine_1_1_object_list}{engine\+::\+Object\+List}}$<$std\+::any$>$ engine\+::\+Event\+::\+\_\+data\hspace{0.3cm}{\ttfamily [private]}}
+
+Additional data associated with the event. \Hypertarget{classengine_1_1_event_ae3d94ecb8d148cacf4790f1688cd7141}\index{engine::Event@{engine::Event}!\_response@{\_response}}
+\index{\_response@{\_response}!engine::Event@{engine::Event}}
+\doxysubsubsection{\texorpdfstring{\_response}{\_response}}
+{\footnotesize\ttfamily \label{classengine_1_1_event_ae3d94ecb8d148cacf4790f1688cd7141} 
+\mbox{\hyperlink{classengine_1_1_object_list}{engine\+::\+Object\+List}}$<$std\+::any$>$ engine\+::\+Event\+::\+\_\+response\hspace{0.3cm}{\ttfamily [private]}}
+
+Response data for the event. \Hypertarget{classengine_1_1_event_a0296b8baada44a97e50ccb5a09a29075}\index{engine::Event@{engine::Event}!\_type@{\_type}}
+\index{\_type@{\_type}!engine::Event@{engine::Event}}
+\doxysubsubsection{\texorpdfstring{\_type}{\_type}}
+{\footnotesize\ttfamily \label{classengine_1_1_event_a0296b8baada44a97e50ccb5a09a29075} 
+std\+::string engine\+::\+Event\+::\+\_\+type\hspace{0.3cm}{\ttfamily [private]}}
+
+The type of the event. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{_event_8hpp}{Event.\+hpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,109 @@
+\doxysection{Node.\+hpp}
+\hypertarget{_node_8hpp_source}{}\label{_node_8hpp_source}\index{include/Node.hpp@{include/Node.hpp}}
+\mbox{\hyperlink{_node_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Node.hpp}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ Created\ by\ absol\ on\ 7/3/2024.}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#ifndef\ NODE\_HPP}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#define\ NODE\_HPP}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <any>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <unordered\_map>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <iterator>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <stdexcept>}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{using\ }\mbox{\hyperlink{_node_8hpp_a3028a290902852171d6e59f9c3a87505}{nodeValue}}\ =\ std::pair<std::string,\ std::any>;}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00032\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_node}{Node}}\ \{}
+\DoxyCodeLine{00033\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_node_a86eede863d7a1f8d4b3a73cd253d9976}{nodeType}}\ =\ std::unordered\_map<std::string,\ Node>;}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_node_a87e899d7e347dc7a0ec57e2bc2b6294c}{valueType}}\ =\ std::unordered\_map<std::string,\ std::any>;}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ std::string\ \mbox{\hyperlink{class_node_a7fb92ed8ca02f47ffa4dfe83500b7fd0}{\_name}};\ \ }
+\DoxyCodeLine{00038\ \ \ \ \ std::unordered\_map<std::string,\ Node>\ \mbox{\hyperlink{class_node_a127116ed000452ab764a8d526945cbdf}{\_subNodes}};\ }
+\DoxyCodeLine{00039\ \ \ \ \ std::unordered\_map<std::string,\ std::any>\ \mbox{\hyperlink{class_node_a3524e2035a5afdfbfa62709bcaf38055}{\_values}};\ }
+\DoxyCodeLine{00040\ \ \ \ \ \mbox{\hyperlink{class_node}{Node}}\ *\mbox{\hyperlink{class_node_a4609e1daa55bd61615102d7ca6e439d6}{\_parent}}\ =\ \textcolor{keyword}{nullptr};\ }
+\DoxyCodeLine{00042\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00048\ \ \ \ \ \mbox{\hyperlink{class_node_aaae322d07df385b0c878d47744021ad6}{Node}}(\textcolor{keyword}{const}\ std::string\&\ name\ =\ \textcolor{stringliteral}{"{}root"{}})\ :\ \mbox{\hyperlink{class_node_a7fb92ed8ca02f47ffa4dfe83500b7fd0}{\_name}}(name)\ \{\}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_node_aa105e475c97b08f0a9d828ece9009272}{size}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ base\ =\ \mbox{\hyperlink{class_node_a3524e2035a5afdfbfa62709bcaf38055}{\_values}}.size()\ +\ \mbox{\hyperlink{class_node_a127116ed000452ab764a8d526945cbdf}{\_subNodes}}.size();}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ e\ :\ \mbox{\hyperlink{class_node_a127116ed000452ab764a8d526945cbdf}{\_subNodes}})\ \{}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ base\ +=\ e.second.size();}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ base;}
+\DoxyCodeLine{00063\ \ \ \ \ \}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_node_aa1ff9329c0796383d34d55ff5aacec8e}{setParent}}(\mbox{\hyperlink{class_node}{Node}}\ *\_p)\ \{}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_node_a4609e1daa55bd61615102d7ca6e439d6}{\_parent}}\ =\ \_p;}
+\DoxyCodeLine{00071\ \ \ \ \ \}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00077\ \ \ \ \ \mbox{\hyperlink{class_node}{Node}}*\ \mbox{\hyperlink{class_node_a3cad655320d50751c43c5cec9356dcf3}{getParent}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_node_a4609e1daa55bd61615102d7ca6e439d6}{\_parent}};}
+\DoxyCodeLine{00079\ \ \ \ \ \}}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00085\ \ \ \ \ std::string\ \mbox{\hyperlink{class_node_a74c1599164111ab218858bbe0748a812}{getName}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_node_a7fb92ed8ca02f47ffa4dfe83500b7fd0}{\_name}};}
+\DoxyCodeLine{00087\ \ \ \ \ \}}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_node_a519730c66b26e65c6539a908e6905edc}{setName}}(\textcolor{keyword}{const}\ std::string\&\ name)\ \{}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_node_a7fb92ed8ca02f47ffa4dfe83500b7fd0}{\_name}}\ =\ name;}
+\DoxyCodeLine{00095\ \ \ \ \ \}}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_node_acad25f4d76e4ac1e9ab0818632c86a4d}{pushNode}}(\mbox{\hyperlink{class_node}{Node}}\ n)\ \{}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_node_a127116ed000452ab764a8d526945cbdf}{\_subNodes}}.insert(\{n.\mbox{\hyperlink{class_node_a74c1599164111ab218858bbe0748a812}{getName}}(),\ std::move(n)\});}
+\DoxyCodeLine{00103\ \ \ \ \ \}}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_node_a1485ff9916134a99242696b6ca9d791f}{pushValue}}(\textcolor{keyword}{const}\ std::string\&\ name,\ std::any\ value)\ \{}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_node_a3524e2035a5afdfbfa62709bcaf38055}{\_values}}.insert(\{name,\ std::move(value)\});}
+\DoxyCodeLine{00112\ \ \ \ \ \}}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_node_a1769b0fc98b217de8762a01bbda27e1a}{contains}}(\textcolor{keyword}{const}\ std::string\&\ key)\ \{}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ tmp\ =\ \mbox{\hyperlink{class_node_a3524e2035a5afdfbfa62709bcaf38055}{\_values}}.find(key);}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (tmp\ !=\ \mbox{\hyperlink{class_node_a3524e2035a5afdfbfa62709bcaf38055}{\_values}}.end());}
+\DoxyCodeLine{00122\ \ \ \ \ \}}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_node_a4372c1c2c80c2af1d5ca5db76bbc6c8e}{operator<<}}(\mbox{\hyperlink{class_node}{Node}}\ n)\ \{}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ nodeName\ =\ n.\mbox{\hyperlink{class_node_a74c1599164111ab218858bbe0748a812}{getName}}();}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ n.\mbox{\hyperlink{class_node_aa1ff9329c0796383d34d55ff5aacec8e}{setParent}}(\textcolor{keyword}{this});}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_node_a127116ed000452ab764a8d526945cbdf}{\_subNodes}}.insert(\{nodeName,\ std::move(n)\});}
+\DoxyCodeLine{00132\ \ \ \ \ \}}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_node_a07179f101c8070a55cf85dd78bbbcb1e}{operator<}}(\mbox{\hyperlink{_node_8hpp_a3028a290902852171d6e59f9c3a87505}{nodeValue}}\ value)\ \{}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_node_a3524e2035a5afdfbfa62709bcaf38055}{\_values}}.insert(\{std::move(value.first),\ std::move(value.second)\});}
+\DoxyCodeLine{00140\ \ \ \ \ \}}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00148\ \ \ \ \ std::any\&\ \mbox{\hyperlink{class_node_aa77bd3ab8999b489899247d044da1457}{operator()}}(\textcolor{keyword}{const}\ std::string\&\ key)\ \{}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ it\ =\ \mbox{\hyperlink{class_node_a3524e2035a5afdfbfa62709bcaf38055}{\_values}}.find(key);}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (it\ ==\ \mbox{\hyperlink{class_node_a3524e2035a5afdfbfa62709bcaf38055}{\_values}}.end())\ \{}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::out\_of\_range(\textcolor{stringliteral}{"{}Key\ not\ found\ in\ values:\ "{}}\ +\ key);}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ it-\/>second;}
+\DoxyCodeLine{00154\ \ \ \ \ \}}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00161\ \ \ \ \ \mbox{\hyperlink{class_node}{Node}}\&\ \mbox{\hyperlink{class_node_a172d1a28bf0e0f46f8978c143254d0f8}{operator[]}}(\textcolor{keyword}{const}\ std::string\&\ key)\ \{}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ it\ =\ \mbox{\hyperlink{class_node_a127116ed000452ab764a8d526945cbdf}{\_subNodes}}.find(key);}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (it\ ==\ \mbox{\hyperlink{class_node_a127116ed000452ab764a8d526945cbdf}{\_subNodes}}.end())\ \{}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_node}{Node}}\ tmp(key);}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ tmp.\mbox{\hyperlink{class_node_aa1ff9329c0796383d34d55ff5aacec8e}{setParent}}(\textcolor{keyword}{this});}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ it\ =\ \mbox{\hyperlink{class_node_a127116ed000452ab764a8d526945cbdf}{\_subNodes}}.emplace(key,\ std::move(tmp)).first;}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ it-\/>second;}
+\DoxyCodeLine{00169\ \ \ \ \ \}}
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00175\ \ \ \ \ \textcolor{keyword}{const}\ std::unordered\_map<std::string,\ Node>\&\ \mbox{\hyperlink{class_node_a15f7db80ea48cb02383c43d07380447d}{getSubNodes}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_node_a127116ed000452ab764a8d526945cbdf}{\_subNodes}};}
+\DoxyCodeLine{00177\ \ \ \ \ \}}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00183\ \ \ \ \ \textcolor{keyword}{const}\ std::unordered\_map<std::string,\ std::any>\&\ \mbox{\hyperlink{class_node_ad28859619682e0e96e97e9ae2f9a9765}{getValues}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_node_a3524e2035a5afdfbfa62709bcaf38055}{\_values}};}
+\DoxyCodeLine{00185\ \ \ \ \ \}}
+\DoxyCodeLine{00186\ \};}
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00188\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ NODE\_HPP}}
+
+\end{DoxyCode}

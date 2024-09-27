@@ -1,0 +1,939 @@
+\doxysection{vulkan.\+hpp}
+\hypertarget{vulkan_8hpp_source}{}\label{vulkan_8hpp_source}\index{include/vulkan.hpp@{include/vulkan.hpp}}
+\mbox{\hyperlink{vulkan_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ Created\ by\ absol\ on\ 9/25/2024.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#ifndef\ C\_ENGINE\_VULKAN\_HPP}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ C\_ENGINE\_VULKAN\_HPP}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <vulkan/vulkan.hpp>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <GLFW/glfw3.h>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <stdexcept>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <chrono>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <thread>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <cstring>}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ <ctime>}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ <cstdlib>}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ <cstdint>}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ <limits>}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ <optional>}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ <set>}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{const}\ uint32\_t\ \mbox{\hyperlink{vulkan_8hpp_a110637c1f80f9ffe303710de239c3e4d}{WIDTH}}\ =\ 800;}
+\DoxyCodeLine{00027\ \textcolor{keyword}{const}\ uint32\_t\ \mbox{\hyperlink{vulkan_8hpp_af4091c0fc85ce76fe88d5379d7230497}{HEIGHT}}\ =\ 600;}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{vulkan_8hpp_a7302e21aaabe341f71d799a7dd3f274f}{MAX\_FRAMES\_IN\_FLIGHT}}\ =\ 2;}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{keyword}{const}\ std::vector<const\ char*>\ \mbox{\hyperlink{vulkan_8hpp_a7ca66b16460bd6b27fa5176e228218e8}{validationLayers}}\ =\ \{}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}VK\_LAYER\_KHRONOS\_validation"{}}}
+\DoxyCodeLine{00033\ \};}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{keyword}{const}\ std::vector<const\ char*>\ \mbox{\hyperlink{vulkan_8hpp_ae9f2e52186582e1f54bb6e686671c24c}{deviceExtensions}}\ =\ \{}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ VK\_KHR\_SWAPCHAIN\_EXTENSION\_NAME}
+\DoxyCodeLine{00037\ \};}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#ifdef\ NDEBUG}}
+\DoxyCodeLine{00040\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{vulkan_8hpp_aebf0191c8cb852209eefbb50d9cbf7ba}{enableValidationLayers}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00042\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{vulkan_8hpp_aebf0191c8cb852209eefbb50d9cbf7ba}{enableValidationLayers}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ VkResult\ \mbox{\hyperlink{vulkan_8hpp_a761ebce14cb8767a4e480ea446f34ef2}{CreateDebugUtilsMessengerEXT}}(VkInstance\ instance,\ \textcolor{keyword}{const}\ VkDebugUtilsMessengerCreateInfoEXT*\ pCreateInfo,\ \textcolor{keyword}{const}\ VkAllocationCallbacks*\ pAllocator,\ VkDebugUtilsMessengerEXT*\ pDebugMessenger)\ \{}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{auto}\ func\ =\ (PFN\_vkCreateDebugUtilsMessengerEXT)\ vkGetInstanceProcAddr(instance,\ \textcolor{stringliteral}{"{}vkCreateDebugUtilsMessengerEXT"{}});}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordflow}{if}\ (func\ !=\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ func(instance,\ pCreateInfo,\ pAllocator,\ pDebugMessenger);}
+\DoxyCodeLine{00049\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ VK\_ERROR\_EXTENSION\_NOT\_PRESENT;}
+\DoxyCodeLine{00051\ \ \ \ \ \}}
+\DoxyCodeLine{00052\ \}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{vulkan_8hpp_a352d613e62df889b9056955ad16e0338}{DestroyDebugUtilsMessengerEXT}}(VkInstance\ instance,\ VkDebugUtilsMessengerEXT\ debugMessenger,\ \textcolor{keyword}{const}\ VkAllocationCallbacks*\ pAllocator)\ \{}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keyword}{auto}\ func\ =\ (PFN\_vkDestroyDebugUtilsMessengerEXT)\ vkGetInstanceProcAddr(instance,\ \textcolor{stringliteral}{"{}vkDestroyDebugUtilsMessengerEXT"{}});}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordflow}{if}\ (func\ !=\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ func(instance,\ debugMessenger,\ pAllocator);}
+\DoxyCodeLine{00058\ \ \ \ \ \}}
+\DoxyCodeLine{00059\ \}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_queue_family_indices}{QueueFamilyIndices}}\ \{}
+\DoxyCodeLine{00062\ \ \ \ \ std::optional<uint32\_t>\ \mbox{\hyperlink{struct_queue_family_indices_a1e525a27a080ff5b5a4e545bdbc4da09}{graphicsFamily}};}
+\DoxyCodeLine{00063\ \ \ \ \ std::optional<uint32\_t>\ \mbox{\hyperlink{struct_queue_family_indices_a7229b20d9ad2a8179565812fcf650775}{presentFamily}};}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{struct_queue_family_indices_a652cdfabe4719ae21a701e77d57e7899}{isComplete}}()\ \{}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{struct_queue_family_indices_a1e525a27a080ff5b5a4e545bdbc4da09}{graphicsFamily}}.has\_value()\ \&\&\ \mbox{\hyperlink{struct_queue_family_indices_a7229b20d9ad2a8179565812fcf650775}{presentFamily}}.has\_value();}
+\DoxyCodeLine{00067\ \ \ \ \ \}}
+\DoxyCodeLine{00068\ \};}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_swap_chain_support_details}{SwapChainSupportDetails}}\ \{}
+\DoxyCodeLine{00071\ \ \ \ \ VkSurfaceCapabilitiesKHR\ \mbox{\hyperlink{struct_swap_chain_support_details_a8918f9f5496b29a701e8d094aa455b2a}{capabilities}};}
+\DoxyCodeLine{00072\ \ \ \ \ std::vector<VkSurfaceFormatKHR>\ \mbox{\hyperlink{struct_swap_chain_support_details_a22cda9622ff2cd725ec00311e2007a7f}{formats}};}
+\DoxyCodeLine{00073\ \ \ \ \ std::vector<VkPresentModeKHR>\ \mbox{\hyperlink{struct_swap_chain_support_details_ae4fff3c89a63ae4cf896b6b385e2dad9}{presentModes}};}
+\DoxyCodeLine{00074\ \};}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_vulkan_bridge}{VulkanBridge}}\ \{}
+\DoxyCodeLine{00077\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_vulkan_bridge_afa2d8b2deb13c92254a3f1ac357d652c}{initWindow}}()\ \{}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ glfwInit();}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ glfwWindowHint(GLFW\_CLIENT\_API,\ GLFW\_NO\_API);}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ glfwWindowHint(GLFW\_RESIZABLE,\ GLFW\_FALSE);}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_vulkan_bridge_a15f27ff4c8a8c081ec81c5ececdd040e}{window}}\ =\ glfwCreateWindow(\mbox{\hyperlink{vulkan_8hpp_a110637c1f80f9ffe303710de239c3e4d}{WIDTH}},\ \mbox{\hyperlink{vulkan_8hpp_af4091c0fc85ce76fe88d5379d7230497}{HEIGHT}},\ \textcolor{stringliteral}{"{}Vulkan"{}},\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00086\ \ \ \ \ \}}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_vulkan_bridge_ae12264d5318e4e8b323f392acf6f62fd}{initVulkan}}()\ \{}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_vulkan_bridge_ad20fa9379ef15412c40a50f810cf1930}{createInstance}}();}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_vulkan_bridge_a1157c5ce5d29f5af7b221450f2b9ee24}{setupDebugMessenger}}();}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_vulkan_bridge_a6f1327feeb4bf9f18844b8614a73b363}{createSurface}}();}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_vulkan_bridge_a59f24e9d5c0130891d29e20ef8b9f962}{pickPhysicalDevice}}();}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_vulkan_bridge_a92e5d0b96bd0d4b61cab854b922acc3e}{createLogicalDevice}}();}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_vulkan_bridge_acdc5dbb36041013a02a13907a8ef97da}{createSwapChain}}();}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_vulkan_bridge_ae5f5f083987e838977efca9c539fe60c}{createImageViews}}();}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_vulkan_bridge_a547638a27e2bbf448d6bd5b04e16d93e}{createRenderPass}}();}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_vulkan_bridge_a539c9e5f41c6b7998c039b49c188dbc0}{createGraphicsPipeline}}();}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_vulkan_bridge_a4672a744a67eab803497c63fa8e78aef}{createFramebuffers}}();}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_vulkan_bridge_a4a782160403b1f52157dc21dc8534abc}{createCommandPool}}();}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_vulkan_bridge_a562aa8464625deb0e21b9501e9860a6d}{createCommandBuffer}}();}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_vulkan_bridge_aafd05bf2074b8b4917f866b7d66e817f}{createSyncObjects}}();}
+\DoxyCodeLine{00102\ \ \ \ \ \}}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \ \ \ \ GLFWwindow*\ \mbox{\hyperlink{class_vulkan_bridge_a6f589dd09151ed6153026949ea13bec2}{getWindow}}()\ \{}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_vulkan_bridge_a15f27ff4c8a8c081ec81c5ececdd040e}{window}};}
+\DoxyCodeLine{00106\ \ \ \ \ \}}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_vulkan_bridge_a9b235dd1cb02b4582dd3c93c6c91b353}{draw}}()\ \{}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_vulkan_bridge_a02ea9a0c266b52dd23b37a7b4cd4a0da}{drawFrame}}();}
+\DoxyCodeLine{00110\ \ \ \ \ \}}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_vulkan_bridge_a7d1b0d9c915f76f59bd02b4667c9f8f5}{mainLoop}}()\ \{}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (!glfwWindowShouldClose(\mbox{\hyperlink{class_vulkan_bridge_a15f27ff4c8a8c081ec81c5ececdd040e}{window}}))\ \{}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ glfwPollEvents();}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_vulkan_bridge_a02ea9a0c266b52dd23b37a7b4cd4a0da}{drawFrame}}();}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00117\ \ \ \ \ \}}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \textcolor{preprocessor}{\#ifdef\ C\_ENGINE\_USE\_VKLOG}}
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{keyword}{const}\ std::string\&\ getVulkanLog()\ \{}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ vulkan\_log\_buffer;}
+\DoxyCodeLine{00122\ \ \ \ \ \}}
+\DoxyCodeLine{00123\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_vulkan_bridge_a70a2a02a3273023868119435e0e512b5}{cleanup}}()\ \{}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ vkDeviceWaitIdle(\mbox{\hyperlink{class_vulkan_bridge_a92f3e9d49c5eece722f735ace9298631}{device}});}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ vkDestroySemaphore(\mbox{\hyperlink{class_vulkan_bridge_a92f3e9d49c5eece722f735ace9298631}{device}},\ \mbox{\hyperlink{class_vulkan_bridge_a52eba625ac5308d29ac38a4e571efbbd}{renderFinishedSemaphore}},\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ vkDestroySemaphore(\mbox{\hyperlink{class_vulkan_bridge_a92f3e9d49c5eece722f735ace9298631}{device}},\ \mbox{\hyperlink{class_vulkan_bridge_aa4226e5851a80a1f1dbd38ad074557ed}{imageAvailableSemaphore}},\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ vkDestroyFence(\mbox{\hyperlink{class_vulkan_bridge_a92f3e9d49c5eece722f735ace9298631}{device}},\ \mbox{\hyperlink{class_vulkan_bridge_a31d6017b521178e8f3ea4a16ba26efc5}{inFlightFence}},\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ vkDestroyCommandPool(\mbox{\hyperlink{class_vulkan_bridge_a92f3e9d49c5eece722f735ace9298631}{device}},\ \mbox{\hyperlink{class_vulkan_bridge_a2d8071b7c5bedd3d928919ec4f3539c9}{commandPool}},\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ framebuffer\ :\ \mbox{\hyperlink{class_vulkan_bridge_ac8701397ccd9dc9f8d2f53dce586c2f7}{swapChainFramebuffers}})\ \{}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ vkDestroyFramebuffer(\mbox{\hyperlink{class_vulkan_bridge_a92f3e9d49c5eece722f735ace9298631}{device}},\ framebuffer,\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ vkDestroyPipeline(\mbox{\hyperlink{class_vulkan_bridge_a92f3e9d49c5eece722f735ace9298631}{device}},\ \mbox{\hyperlink{class_vulkan_bridge_afdde90b07cb452eb971458ca7bcfefe1}{graphicsPipeline}},\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ vkDestroyPipelineLayout(\mbox{\hyperlink{class_vulkan_bridge_a92f3e9d49c5eece722f735ace9298631}{device}},\ \mbox{\hyperlink{class_vulkan_bridge_acc903d20c44b1f8e977d658d815a7cad}{pipelineLayout}},\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ vkDestroyRenderPass(\mbox{\hyperlink{class_vulkan_bridge_a92f3e9d49c5eece722f735ace9298631}{device}},\ \mbox{\hyperlink{class_vulkan_bridge_a1f3ad7da450eebf87354fd17769a1856}{renderPass}},\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ imageView\ :\ \mbox{\hyperlink{class_vulkan_bridge_aa7a09ab973bdf49f1537d44705b25ffc}{swapChainImageViews}})\ \{}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ vkDestroyImageView(\mbox{\hyperlink{class_vulkan_bridge_a92f3e9d49c5eece722f735ace9298631}{device}},\ imageView,\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ vkDestroySwapchainKHR(\mbox{\hyperlink{class_vulkan_bridge_a92f3e9d49c5eece722f735ace9298631}{device}},\ \mbox{\hyperlink{class_vulkan_bridge_a771029af85bafaeeb7edfbda9cb16f71}{swapChain}},\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ vkDestroyDevice(\mbox{\hyperlink{class_vulkan_bridge_a92f3e9d49c5eece722f735ace9298631}{device}},\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{vulkan_8hpp_aebf0191c8cb852209eefbb50d9cbf7ba}{enableValidationLayers}})\ \{}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{vulkan_8hpp_a352d613e62df889b9056955ad16e0338}{DestroyDebugUtilsMessengerEXT}}(\mbox{\hyperlink{class_vulkan_bridge_acc1f13cae9254b278773da5ce953ecf1}{instance}},\ \mbox{\hyperlink{class_vulkan_bridge_ab9f433180092170068a11ed0269f34b0}{debugMessenger}},\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ vkDestroySurfaceKHR(\mbox{\hyperlink{class_vulkan_bridge_acc1f13cae9254b278773da5ce953ecf1}{instance}},\ \mbox{\hyperlink{class_vulkan_bridge_a927fe85f5a126c0d6f6816eaa5776f9c}{surface}},\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ vkDestroyInstance(\mbox{\hyperlink{class_vulkan_bridge_acc1f13cae9254b278773da5ce953ecf1}{instance}},\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ glfwDestroyWindow(\mbox{\hyperlink{class_vulkan_bridge_a15f27ff4c8a8c081ec81c5ececdd040e}{window}});}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ glfwTerminate();}
+\DoxyCodeLine{00159\ \ \ \ \ \}}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00162\ \ \ \ \ GLFWwindow*\ \mbox{\hyperlink{class_vulkan_bridge_a15f27ff4c8a8c081ec81c5ececdd040e}{window}};}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00164\ \ \ \ \ VkInstance\ \mbox{\hyperlink{class_vulkan_bridge_acc1f13cae9254b278773da5ce953ecf1}{instance}};}
+\DoxyCodeLine{00165\ \ \ \ \ VkDebugUtilsMessengerEXT\ \mbox{\hyperlink{class_vulkan_bridge_ab9f433180092170068a11ed0269f34b0}{debugMessenger}};}
+\DoxyCodeLine{00166\ \ \ \ \ VkSurfaceKHR\ \mbox{\hyperlink{class_vulkan_bridge_a927fe85f5a126c0d6f6816eaa5776f9c}{surface}};}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00168\ \ \ \ \ VkPhysicalDevice\ \mbox{\hyperlink{class_vulkan_bridge_a9ca04938323957de08c600ae79430277}{physicalDevice}}\ =\ VK\_NULL\_HANDLE;}
+\DoxyCodeLine{00169\ \ \ \ \ VkDevice\ \mbox{\hyperlink{class_vulkan_bridge_a92f3e9d49c5eece722f735ace9298631}{device}};}
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00171\ \ \ \ \ VkQueue\ \mbox{\hyperlink{class_vulkan_bridge_ac482f24428c54e2ac64e3bce39e0b259}{graphicsQueue}};}
+\DoxyCodeLine{00172\ \ \ \ \ VkQueue\ \mbox{\hyperlink{class_vulkan_bridge_ae8774647d244cbaba1198194a15063d0}{presentQueue}};}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00174\ \ \ \ \ VkSwapchainKHR\ \mbox{\hyperlink{class_vulkan_bridge_a771029af85bafaeeb7edfbda9cb16f71}{swapChain}};}
+\DoxyCodeLine{00175\ \ \ \ \ std::vector<VkImage>\ \mbox{\hyperlink{class_vulkan_bridge_a2ce2dc52f462b98396014efa7dc7d787}{swapChainImages}};}
+\DoxyCodeLine{00176\ \ \ \ \ VkFormat\ \mbox{\hyperlink{class_vulkan_bridge_a24bafb01b8e6098a4f84084499f557b2}{swapChainImageFormat}};}
+\DoxyCodeLine{00177\ \ \ \ \ VkExtent2D\ \mbox{\hyperlink{class_vulkan_bridge_aeef7bd8382b37d5026d3a26c27578f07}{swapChainExtent}};}
+\DoxyCodeLine{00178\ \ \ \ \ std::vector<VkImageView>\ \mbox{\hyperlink{class_vulkan_bridge_aa7a09ab973bdf49f1537d44705b25ffc}{swapChainImageViews}};}
+\DoxyCodeLine{00179\ \ \ \ \ std::vector<VkFramebuffer>\ \mbox{\hyperlink{class_vulkan_bridge_ac8701397ccd9dc9f8d2f53dce586c2f7}{swapChainFramebuffers}};}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00181\ \ \ \ \ VkRenderPass\ \mbox{\hyperlink{class_vulkan_bridge_a1f3ad7da450eebf87354fd17769a1856}{renderPass}};}
+\DoxyCodeLine{00182\ \ \ \ \ VkPipelineLayout\ \mbox{\hyperlink{class_vulkan_bridge_acc903d20c44b1f8e977d658d815a7cad}{pipelineLayout}};}
+\DoxyCodeLine{00183\ \ \ \ \ VkPipeline\ \mbox{\hyperlink{class_vulkan_bridge_afdde90b07cb452eb971458ca7bcfefe1}{graphicsPipeline}};}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00185\ \ \ \ \ VkCommandPool\ \mbox{\hyperlink{class_vulkan_bridge_a2d8071b7c5bedd3d928919ec4f3539c9}{commandPool}};}
+\DoxyCodeLine{00186\ \ \ \ \ VkCommandBuffer\ \mbox{\hyperlink{class_vulkan_bridge_a299cd0eff01368a5ae3f81f5ead17b1b}{commandBuffer}};}
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00188\ \ \ \ \ VkSemaphore\ \mbox{\hyperlink{class_vulkan_bridge_aa4226e5851a80a1f1dbd38ad074557ed}{imageAvailableSemaphore}};}
+\DoxyCodeLine{00189\ \ \ \ \ VkSemaphore\ \mbox{\hyperlink{class_vulkan_bridge_a52eba625ac5308d29ac38a4e571efbbd}{renderFinishedSemaphore}};}
+\DoxyCodeLine{00190\ \ \ \ \ VkFence\ \mbox{\hyperlink{class_vulkan_bridge_a31d6017b521178e8f3ea4a16ba26efc5}{inFlightFence}};}
+\DoxyCodeLine{00191\ }
+\DoxyCodeLine{00192\ \textcolor{preprocessor}{\#ifdef\ C\_ENGINE\_USE\_VKLOG}}
+\DoxyCodeLine{00193\ \ \ \ \ \textcolor{keyword}{static}\ std::string\ vulkan\_log\_buffer;}
+\DoxyCodeLine{00194\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00195\ }
+\DoxyCodeLine{00196\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_vulkan_bridge_ad20fa9379ef15412c40a50f810cf1930}{createInstance}}()\ \{}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{vulkan_8hpp_aebf0191c8cb852209eefbb50d9cbf7ba}{enableValidationLayers}}\ \&\&\ !\mbox{\hyperlink{class_vulkan_bridge_a39f507d776c29c29bbb999d5c715b8f8}{checkValidationLayerSupport}}())\ \{}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}validation\ layers\ requested,\ but\ not\ available!"{}});}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00200\ }
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ VkApplicationInfo\ appInfo\{\};}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ appInfo.sType\ =\ VK\_STRUCTURE\_TYPE\_APPLICATION\_INFO;}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ appInfo.pApplicationName\ =\ \textcolor{stringliteral}{"{}Hello\ Triangle"{}};}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ appInfo.applicationVersion\ =\ VK\_MAKE\_VERSION(1,\ 0,\ 0);}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ appInfo.pEngineName\ =\ \textcolor{stringliteral}{"{}No\ Engine"{}};}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ appInfo.engineVersion\ =\ VK\_MAKE\_VERSION(1,\ 0,\ 0);}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ appInfo.apiVersion\ =\ VK\_API\_VERSION\_1\_0;}
+\DoxyCodeLine{00208\ }
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ VkInstanceCreateInfo\ createInfo\{\};}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ createInfo.sType\ =\ VK\_STRUCTURE\_TYPE\_INSTANCE\_CREATE\_INFO;}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ createInfo.pApplicationInfo\ =\ \&appInfo;}
+\DoxyCodeLine{00212\ }
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ extensions\ =\ \mbox{\hyperlink{class_vulkan_bridge_a3b67fc8a97ec9244b58771cf8d7406c1}{getRequiredExtensions}}();}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ createInfo.enabledExtensionCount\ =\ \textcolor{keyword}{static\_cast<}uint32\_t\textcolor{keyword}{>}(extensions.size());}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ createInfo.ppEnabledExtensionNames\ =\ extensions.data();}
+\DoxyCodeLine{00216\ }
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ VkDebugUtilsMessengerCreateInfoEXT\ debugCreateInfo\{\};}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{vulkan_8hpp_aebf0191c8cb852209eefbb50d9cbf7ba}{enableValidationLayers}})\ \{}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \ \ \ \ createInfo.enabledLayerCount\ =\ \textcolor{keyword}{static\_cast<}uint32\_t\textcolor{keyword}{>}(\mbox{\hyperlink{vulkan_8hpp_a7ca66b16460bd6b27fa5176e228218e8}{validationLayers}}.size());}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ createInfo.ppEnabledLayerNames\ =\ \mbox{\hyperlink{vulkan_8hpp_a7ca66b16460bd6b27fa5176e228218e8}{validationLayers}}.data();}
+\DoxyCodeLine{00221\ }
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_vulkan_bridge_ae86c4ab4055e2ce42ff6a6ba95772476}{populateDebugMessengerCreateInfo}}(debugCreateInfo);}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \ \ \ \ createInfo.pNext\ =\ (VkDebugUtilsMessengerCreateInfoEXT*)\ \&debugCreateInfo;}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ createInfo.enabledLayerCount\ =\ 0;}
+\DoxyCodeLine{00226\ }
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ createInfo.pNext\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00229\ }
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (vkCreateInstance(\&createInfo,\ \textcolor{keyword}{nullptr},\ \&\mbox{\hyperlink{class_vulkan_bridge_acc1f13cae9254b278773da5ce953ecf1}{instance}})\ !=\ VK\_SUCCESS)\ \{}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}failed\ to\ create\ instance!"{}});}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00233\ \ \ \ \ \}}
+\DoxyCodeLine{00234\ }
+\DoxyCodeLine{00235\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_vulkan_bridge_ae86c4ab4055e2ce42ff6a6ba95772476}{populateDebugMessengerCreateInfo}}(VkDebugUtilsMessengerCreateInfoEXT\&\ createInfo)\ \{}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ createInfo\ =\ \{\};}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ createInfo.sType\ =\ VK\_STRUCTURE\_TYPE\_DEBUG\_UTILS\_MESSENGER\_CREATE\_INFO\_EXT;}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ createInfo.messageSeverity\ =\ VK\_DEBUG\_UTILS\_MESSAGE\_SEVERITY\_VERBOSE\_BIT\_EXT\ |\ VK\_DEBUG\_UTILS\_MESSAGE\_SEVERITY\_WARNING\_BIT\_EXT\ |\ VK\_DEBUG\_UTILS\_MESSAGE\_SEVERITY\_ERROR\_BIT\_EXT;}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ createInfo.messageType\ =\ VK\_DEBUG\_UTILS\_MESSAGE\_TYPE\_GENERAL\_BIT\_EXT\ |\ VK\_DEBUG\_UTILS\_MESSAGE\_TYPE\_VALIDATION\_BIT\_EXT\ |\ VK\_DEBUG\_UTILS\_MESSAGE\_TYPE\_PERFORMANCE\_BIT\_EXT;}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ createInfo.pfnUserCallback\ =\ \mbox{\hyperlink{class_vulkan_bridge_a56acde222a2605dc6ca8406740e4c05f}{debugCallback}};}
+\DoxyCodeLine{00241\ \ \ \ \ \}}
+\DoxyCodeLine{00242\ }
+\DoxyCodeLine{00243\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_vulkan_bridge_a1157c5ce5d29f5af7b221450f2b9ee24}{setupDebugMessenger}}()\ \{}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{vulkan_8hpp_aebf0191c8cb852209eefbb50d9cbf7ba}{enableValidationLayers}})\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00245\ }
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ VkDebugUtilsMessengerCreateInfoEXT\ createInfo;}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_vulkan_bridge_ae86c4ab4055e2ce42ff6a6ba95772476}{populateDebugMessengerCreateInfo}}(createInfo);}
+\DoxyCodeLine{00248\ }
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{vulkan_8hpp_a761ebce14cb8767a4e480ea446f34ef2}{CreateDebugUtilsMessengerEXT}}(\mbox{\hyperlink{class_vulkan_bridge_acc1f13cae9254b278773da5ce953ecf1}{instance}},\ \&createInfo,\ \textcolor{keyword}{nullptr},\ \&\mbox{\hyperlink{class_vulkan_bridge_ab9f433180092170068a11ed0269f34b0}{debugMessenger}})\ !=\ VK\_SUCCESS)\ \{}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}failed\ to\ set\ up\ debug\ messenger!"{}});}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00252\ \ \ \ \ \}}
+\DoxyCodeLine{00253\ }
+\DoxyCodeLine{00254\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_vulkan_bridge_a6f1327feeb4bf9f18844b8614a73b363}{createSurface}}()\ \{}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (glfwCreateWindowSurface(\mbox{\hyperlink{class_vulkan_bridge_acc1f13cae9254b278773da5ce953ecf1}{instance}},\ \mbox{\hyperlink{class_vulkan_bridge_a15f27ff4c8a8c081ec81c5ececdd040e}{window}},\ \textcolor{keyword}{nullptr},\ \&\mbox{\hyperlink{class_vulkan_bridge_a927fe85f5a126c0d6f6816eaa5776f9c}{surface}})\ !=\ VK\_SUCCESS)\ \{}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}failed\ to\ create\ window\ surface!"{}});}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00258\ \ \ \ \ \}}
+\DoxyCodeLine{00259\ }
+\DoxyCodeLine{00260\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_vulkan_bridge_a59f24e9d5c0130891d29e20ef8b9f962}{pickPhysicalDevice}}()\ \{}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ uint32\_t\ deviceCount\ =\ 0;}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ vkEnumeratePhysicalDevices(\mbox{\hyperlink{class_vulkan_bridge_acc1f13cae9254b278773da5ce953ecf1}{instance}},\ \&deviceCount,\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00263\ }
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (deviceCount\ ==\ 0)\ \{}
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}failed\ to\ find\ GPUs\ with\ Vulkan\ support!"{}});}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00267\ }
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ std::vector<VkPhysicalDevice>\ devices(deviceCount);}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ vkEnumeratePhysicalDevices(\mbox{\hyperlink{class_vulkan_bridge_acc1f13cae9254b278773da5ce953ecf1}{instance}},\ \&deviceCount,\ devices.data());}
+\DoxyCodeLine{00270\ }
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ \mbox{\hyperlink{class_vulkan_bridge_a92f3e9d49c5eece722f735ace9298631}{device}}\ :\ devices)\ \{}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_vulkan_bridge_a028a8b29c71aa6db6f42b38ee4f902b5}{isDeviceSuitable}}(\mbox{\hyperlink{class_vulkan_bridge_a92f3e9d49c5eece722f735ace9298631}{device}}))\ \{}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_vulkan_bridge_a9ca04938323957de08c600ae79430277}{physicalDevice}}\ =\ \mbox{\hyperlink{class_vulkan_bridge_a92f3e9d49c5eece722f735ace9298631}{device}};}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00277\ }
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_vulkan_bridge_a9ca04938323957de08c600ae79430277}{physicalDevice}}\ ==\ VK\_NULL\_HANDLE)\ \{}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}failed\ to\ find\ a\ suitable\ GPU!"{}});}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00281\ \ \ \ \ \}}
+\DoxyCodeLine{00282\ }
+\DoxyCodeLine{00283\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_vulkan_bridge_a92e5d0b96bd0d4b61cab854b922acc3e}{createLogicalDevice}}()\ \{}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_queue_family_indices}{QueueFamilyIndices}}\ indices\ =\ \mbox{\hyperlink{class_vulkan_bridge_aab6c85644f94184ed29a18738ffce8a2}{findQueueFamilies}}(\mbox{\hyperlink{class_vulkan_bridge_a9ca04938323957de08c600ae79430277}{physicalDevice}});}
+\DoxyCodeLine{00285\ }
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ std::vector<VkDeviceQueueCreateInfo>\ queueCreateInfos;}
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ std::set<uint32\_t>\ uniqueQueueFamilies\ =\ \{indices.\mbox{\hyperlink{struct_queue_family_indices_a1e525a27a080ff5b5a4e545bdbc4da09}{graphicsFamily}}.value(),\ indices.\mbox{\hyperlink{struct_queue_family_indices_a7229b20d9ad2a8179565812fcf650775}{presentFamily}}.value()\};}
+\DoxyCodeLine{00288\ }
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ queuePriority\ =\ 1.0f;}
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (uint32\_t\ queueFamily\ :\ uniqueQueueFamilies)\ \{}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \ \ \ \ VkDeviceQueueCreateInfo\ queueCreateInfo\{\};}
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ \ \ \ \ queueCreateInfo.sType\ =\ VK\_STRUCTURE\_TYPE\_DEVICE\_QUEUE\_CREATE\_INFO;}
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ \ \ \ \ queueCreateInfo.queueFamilyIndex\ =\ queueFamily;}
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ \ \ \ \ queueCreateInfo.queueCount\ =\ 1;}
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ \ \ \ \ queueCreateInfo.pQueuePriorities\ =\ \&queuePriority;}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \ \ \ \ queueCreateInfos.push\_back(queueCreateInfo);}
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00298\ }
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ VkPhysicalDeviceFeatures\ deviceFeatures\{\};}
+\DoxyCodeLine{00300\ }
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ VkDeviceCreateInfo\ createInfo\{\};}
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ createInfo.sType\ =\ VK\_STRUCTURE\_TYPE\_DEVICE\_CREATE\_INFO;}
+\DoxyCodeLine{00303\ }
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ createInfo.queueCreateInfoCount\ =\ \textcolor{keyword}{static\_cast<}uint32\_t\textcolor{keyword}{>}(queueCreateInfos.size());}
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ createInfo.pQueueCreateInfos\ =\ queueCreateInfos.data();}
+\DoxyCodeLine{00306\ }
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ createInfo.pEnabledFeatures\ =\ \&deviceFeatures;}
+\DoxyCodeLine{00308\ }
+\DoxyCodeLine{00309\ \ \ \ \ \ \ \ \ createInfo.enabledExtensionCount\ =\ \textcolor{keyword}{static\_cast<}uint32\_t\textcolor{keyword}{>}(\mbox{\hyperlink{vulkan_8hpp_ae9f2e52186582e1f54bb6e686671c24c}{deviceExtensions}}.size());}
+\DoxyCodeLine{00310\ \ \ \ \ \ \ \ \ createInfo.ppEnabledExtensionNames\ =\ \mbox{\hyperlink{vulkan_8hpp_ae9f2e52186582e1f54bb6e686671c24c}{deviceExtensions}}.data();}
+\DoxyCodeLine{00311\ }
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{vulkan_8hpp_aebf0191c8cb852209eefbb50d9cbf7ba}{enableValidationLayers}})\ \{}
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ \ \ \ \ createInfo.enabledLayerCount\ =\ \textcolor{keyword}{static\_cast<}uint32\_t\textcolor{keyword}{>}(\mbox{\hyperlink{vulkan_8hpp_a7ca66b16460bd6b27fa5176e228218e8}{validationLayers}}.size());}
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ \ \ \ \ createInfo.ppEnabledLayerNames\ =\ \mbox{\hyperlink{vulkan_8hpp_a7ca66b16460bd6b27fa5176e228218e8}{validationLayers}}.data();}
+\DoxyCodeLine{00315\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ \ \ \ \ createInfo.enabledLayerCount\ =\ 0;}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00318\ }
+\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (vkCreateDevice(\mbox{\hyperlink{class_vulkan_bridge_a9ca04938323957de08c600ae79430277}{physicalDevice}},\ \&createInfo,\ \textcolor{keyword}{nullptr},\ \&\mbox{\hyperlink{class_vulkan_bridge_a92f3e9d49c5eece722f735ace9298631}{device}})\ !=\ VK\_SUCCESS)\ \{}
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}failed\ to\ create\ logical\ device!"{}});}
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00322\ }
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ vkGetDeviceQueue(\mbox{\hyperlink{class_vulkan_bridge_a92f3e9d49c5eece722f735ace9298631}{device}},\ indices.\mbox{\hyperlink{struct_queue_family_indices_a1e525a27a080ff5b5a4e545bdbc4da09}{graphicsFamily}}.value(),\ 0,\ \&\mbox{\hyperlink{class_vulkan_bridge_ac482f24428c54e2ac64e3bce39e0b259}{graphicsQueue}});}
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ vkGetDeviceQueue(\mbox{\hyperlink{class_vulkan_bridge_a92f3e9d49c5eece722f735ace9298631}{device}},\ indices.\mbox{\hyperlink{struct_queue_family_indices_a7229b20d9ad2a8179565812fcf650775}{presentFamily}}.value(),\ 0,\ \&\mbox{\hyperlink{class_vulkan_bridge_ae8774647d244cbaba1198194a15063d0}{presentQueue}});}
+\DoxyCodeLine{00325\ \ \ \ \ \}}
+\DoxyCodeLine{00326\ }
+\DoxyCodeLine{00327\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_vulkan_bridge_acdc5dbb36041013a02a13907a8ef97da}{createSwapChain}}()\ \{}
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_swap_chain_support_details}{SwapChainSupportDetails}}\ swapChainSupport\ =\ \mbox{\hyperlink{class_vulkan_bridge_a4729bdf96d8cd8ec110c2fa560eab7f7}{querySwapChainSupport}}(\mbox{\hyperlink{class_vulkan_bridge_a9ca04938323957de08c600ae79430277}{physicalDevice}});}
+\DoxyCodeLine{00329\ }
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ VkSurfaceFormatKHR\ surfaceFormat\ =\ \mbox{\hyperlink{class_vulkan_bridge_a7b7807e3ad47884acf804e2d99b01f9d}{chooseSwapSurfaceFormat}}(swapChainSupport.\mbox{\hyperlink{struct_swap_chain_support_details_a22cda9622ff2cd725ec00311e2007a7f}{formats}});}
+\DoxyCodeLine{00331\ \ \ \ \ \ \ \ \ VkPresentModeKHR\ presentMode\ =\ \mbox{\hyperlink{class_vulkan_bridge_a9c8c8ebc5cd66268d32abb897463cfc9}{chooseSwapPresentMode}}(swapChainSupport.\mbox{\hyperlink{struct_swap_chain_support_details_ae4fff3c89a63ae4cf896b6b385e2dad9}{presentModes}});}
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ VkExtent2D\ extent\ =\ \mbox{\hyperlink{class_vulkan_bridge_a9754ab00e6bd2a78159afef40cb53c53}{chooseSwapExtent}}(swapChainSupport.\mbox{\hyperlink{struct_swap_chain_support_details_a8918f9f5496b29a701e8d094aa455b2a}{capabilities}});}
+\DoxyCodeLine{00333\ }
+\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ uint32\_t\ imageCount\ =\ swapChainSupport.\mbox{\hyperlink{struct_swap_chain_support_details_a8918f9f5496b29a701e8d094aa455b2a}{capabilities}}.minImageCount\ +\ 1;}
+\DoxyCodeLine{00335\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (swapChainSupport.\mbox{\hyperlink{struct_swap_chain_support_details_a8918f9f5496b29a701e8d094aa455b2a}{capabilities}}.maxImageCount\ >\ 0\ \&\&\ imageCount\ >\ swapChainSupport.\mbox{\hyperlink{struct_swap_chain_support_details_a8918f9f5496b29a701e8d094aa455b2a}{capabilities}}.maxImageCount)\ \{}
+\DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ \ \ \ \ imageCount\ =\ swapChainSupport.\mbox{\hyperlink{struct_swap_chain_support_details_a8918f9f5496b29a701e8d094aa455b2a}{capabilities}}.maxImageCount;}
+\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00338\ }
+\DoxyCodeLine{00339\ \ \ \ \ \ \ \ \ VkSwapchainCreateInfoKHR\ createInfo\{\};}
+\DoxyCodeLine{00340\ \ \ \ \ \ \ \ \ createInfo.sType\ =\ VK\_STRUCTURE\_TYPE\_SWAPCHAIN\_CREATE\_INFO\_KHR;}
+\DoxyCodeLine{00341\ \ \ \ \ \ \ \ \ createInfo.surface\ =\ \mbox{\hyperlink{class_vulkan_bridge_a927fe85f5a126c0d6f6816eaa5776f9c}{surface}};}
+\DoxyCodeLine{00342\ }
+\DoxyCodeLine{00343\ \ \ \ \ \ \ \ \ createInfo.minImageCount\ =\ imageCount;}
+\DoxyCodeLine{00344\ \ \ \ \ \ \ \ \ createInfo.imageFormat\ =\ surfaceFormat.format;}
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \ \ createInfo.imageColorSpace\ =\ surfaceFormat.colorSpace;}
+\DoxyCodeLine{00346\ \ \ \ \ \ \ \ \ createInfo.imageExtent\ =\ extent;}
+\DoxyCodeLine{00347\ \ \ \ \ \ \ \ \ createInfo.imageArrayLayers\ =\ 1;}
+\DoxyCodeLine{00348\ \ \ \ \ \ \ \ \ createInfo.imageUsage\ =\ VK\_IMAGE\_USAGE\_COLOR\_ATTACHMENT\_BIT;}
+\DoxyCodeLine{00349\ }
+\DoxyCodeLine{00350\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_queue_family_indices}{QueueFamilyIndices}}\ indices\ =\ \mbox{\hyperlink{class_vulkan_bridge_aab6c85644f94184ed29a18738ffce8a2}{findQueueFamilies}}(\mbox{\hyperlink{class_vulkan_bridge_a9ca04938323957de08c600ae79430277}{physicalDevice}});}
+\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ uint32\_t\ queueFamilyIndices[]\ =\ \{indices.\mbox{\hyperlink{struct_queue_family_indices_a1e525a27a080ff5b5a4e545bdbc4da09}{graphicsFamily}}.value(),\ indices.\mbox{\hyperlink{struct_queue_family_indices_a7229b20d9ad2a8179565812fcf650775}{presentFamily}}.value()\};}
+\DoxyCodeLine{00352\ }
+\DoxyCodeLine{00353\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (indices.\mbox{\hyperlink{struct_queue_family_indices_a1e525a27a080ff5b5a4e545bdbc4da09}{graphicsFamily}}\ !=\ indices.\mbox{\hyperlink{struct_queue_family_indices_a7229b20d9ad2a8179565812fcf650775}{presentFamily}})\ \{}
+\DoxyCodeLine{00354\ \ \ \ \ \ \ \ \ \ \ \ \ createInfo.imageSharingMode\ =\ VK\_SHARING\_MODE\_CONCURRENT;}
+\DoxyCodeLine{00355\ \ \ \ \ \ \ \ \ \ \ \ \ createInfo.queueFamilyIndexCount\ =\ 2;}
+\DoxyCodeLine{00356\ \ \ \ \ \ \ \ \ \ \ \ \ createInfo.pQueueFamilyIndices\ =\ queueFamilyIndices;}
+\DoxyCodeLine{00357\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00358\ \ \ \ \ \ \ \ \ \ \ \ \ createInfo.imageSharingMode\ =\ VK\_SHARING\_MODE\_EXCLUSIVE;}
+\DoxyCodeLine{00359\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00360\ }
+\DoxyCodeLine{00361\ \ \ \ \ \ \ \ \ createInfo.preTransform\ =\ swapChainSupport.\mbox{\hyperlink{struct_swap_chain_support_details_a8918f9f5496b29a701e8d094aa455b2a}{capabilities}}.currentTransform;}
+\DoxyCodeLine{00362\ \ \ \ \ \ \ \ \ createInfo.compositeAlpha\ =\ VK\_COMPOSITE\_ALPHA\_OPAQUE\_BIT\_KHR;}
+\DoxyCodeLine{00363\ \ \ \ \ \ \ \ \ createInfo.presentMode\ =\ presentMode;}
+\DoxyCodeLine{00364\ \ \ \ \ \ \ \ \ createInfo.clipped\ =\ VK\_TRUE;}
+\DoxyCodeLine{00365\ }
+\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ createInfo.oldSwapchain\ =\ VK\_NULL\_HANDLE;}
+\DoxyCodeLine{00367\ }
+\DoxyCodeLine{00368\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (vkCreateSwapchainKHR(\mbox{\hyperlink{class_vulkan_bridge_a92f3e9d49c5eece722f735ace9298631}{device}},\ \&createInfo,\ \textcolor{keyword}{nullptr},\ \&\mbox{\hyperlink{class_vulkan_bridge_a771029af85bafaeeb7edfbda9cb16f71}{swapChain}})\ !=\ VK\_SUCCESS)\ \{}
+\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}failed\ to\ create\ swap\ chain!"{}});}
+\DoxyCodeLine{00370\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00371\ }
+\DoxyCodeLine{00372\ \ \ \ \ \ \ \ \ vkGetSwapchainImagesKHR(\mbox{\hyperlink{class_vulkan_bridge_a92f3e9d49c5eece722f735ace9298631}{device}},\ \mbox{\hyperlink{class_vulkan_bridge_a771029af85bafaeeb7edfbda9cb16f71}{swapChain}},\ \&imageCount,\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00373\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_vulkan_bridge_a2ce2dc52f462b98396014efa7dc7d787}{swapChainImages}}.resize(imageCount);}
+\DoxyCodeLine{00374\ \ \ \ \ \ \ \ \ vkGetSwapchainImagesKHR(\mbox{\hyperlink{class_vulkan_bridge_a92f3e9d49c5eece722f735ace9298631}{device}},\ \mbox{\hyperlink{class_vulkan_bridge_a771029af85bafaeeb7edfbda9cb16f71}{swapChain}},\ \&imageCount,\ \mbox{\hyperlink{class_vulkan_bridge_a2ce2dc52f462b98396014efa7dc7d787}{swapChainImages}}.data());}
+\DoxyCodeLine{00375\ }
+\DoxyCodeLine{00376\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_vulkan_bridge_a24bafb01b8e6098a4f84084499f557b2}{swapChainImageFormat}}\ =\ surfaceFormat.format;}
+\DoxyCodeLine{00377\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_vulkan_bridge_aeef7bd8382b37d5026d3a26c27578f07}{swapChainExtent}}\ =\ extent;}
+\DoxyCodeLine{00378\ \ \ \ \ \}}
+\DoxyCodeLine{00379\ }
+\DoxyCodeLine{00380\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_vulkan_bridge_ae5f5f083987e838977efca9c539fe60c}{createImageViews}}()\ \{}
+\DoxyCodeLine{00381\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_vulkan_bridge_aa7a09ab973bdf49f1537d44705b25ffc}{swapChainImageViews}}.resize(\mbox{\hyperlink{class_vulkan_bridge_a2ce2dc52f462b98396014efa7dc7d787}{swapChainImages}}.size());}
+\DoxyCodeLine{00382\ }
+\DoxyCodeLine{00383\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{class_vulkan_bridge_a2ce2dc52f462b98396014efa7dc7d787}{swapChainImages}}.size();\ i++)\ \{}
+\DoxyCodeLine{00384\ \ \ \ \ \ \ \ \ \ \ \ \ VkImageViewCreateInfo\ createInfo\{\};}
+\DoxyCodeLine{00385\ \ \ \ \ \ \ \ \ \ \ \ \ createInfo.sType\ =\ VK\_STRUCTURE\_TYPE\_IMAGE\_VIEW\_CREATE\_INFO;}
+\DoxyCodeLine{00386\ \ \ \ \ \ \ \ \ \ \ \ \ createInfo.image\ =\ \mbox{\hyperlink{class_vulkan_bridge_a2ce2dc52f462b98396014efa7dc7d787}{swapChainImages}}[i];}
+\DoxyCodeLine{00387\ \ \ \ \ \ \ \ \ \ \ \ \ createInfo.viewType\ =\ VK\_IMAGE\_VIEW\_TYPE\_2D;}
+\DoxyCodeLine{00388\ \ \ \ \ \ \ \ \ \ \ \ \ createInfo.format\ =\ \mbox{\hyperlink{class_vulkan_bridge_a24bafb01b8e6098a4f84084499f557b2}{swapChainImageFormat}};}
+\DoxyCodeLine{00389\ \ \ \ \ \ \ \ \ \ \ \ \ createInfo.components.r\ =\ VK\_COMPONENT\_SWIZZLE\_IDENTITY;}
+\DoxyCodeLine{00390\ \ \ \ \ \ \ \ \ \ \ \ \ createInfo.components.g\ =\ VK\_COMPONENT\_SWIZZLE\_IDENTITY;}
+\DoxyCodeLine{00391\ \ \ \ \ \ \ \ \ \ \ \ \ createInfo.components.b\ =\ VK\_COMPONENT\_SWIZZLE\_IDENTITY;}
+\DoxyCodeLine{00392\ \ \ \ \ \ \ \ \ \ \ \ \ createInfo.components.a\ =\ VK\_COMPONENT\_SWIZZLE\_IDENTITY;}
+\DoxyCodeLine{00393\ \ \ \ \ \ \ \ \ \ \ \ \ createInfo.subresourceRange.aspectMask\ =\ VK\_IMAGE\_ASPECT\_COLOR\_BIT;}
+\DoxyCodeLine{00394\ \ \ \ \ \ \ \ \ \ \ \ \ createInfo.subresourceRange.baseMipLevel\ =\ 0;}
+\DoxyCodeLine{00395\ \ \ \ \ \ \ \ \ \ \ \ \ createInfo.subresourceRange.levelCount\ =\ 1;}
+\DoxyCodeLine{00396\ \ \ \ \ \ \ \ \ \ \ \ \ createInfo.subresourceRange.baseArrayLayer\ =\ 0;}
+\DoxyCodeLine{00397\ \ \ \ \ \ \ \ \ \ \ \ \ createInfo.subresourceRange.layerCount\ =\ 1;}
+\DoxyCodeLine{00398\ }
+\DoxyCodeLine{00399\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (vkCreateImageView(\mbox{\hyperlink{class_vulkan_bridge_a92f3e9d49c5eece722f735ace9298631}{device}},\ \&createInfo,\ \textcolor{keyword}{nullptr},\ \&\mbox{\hyperlink{class_vulkan_bridge_aa7a09ab973bdf49f1537d44705b25ffc}{swapChainImageViews}}[i])\ !=\ VK\_SUCCESS)\ \{}
+\DoxyCodeLine{00400\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}failed\ to\ create\ image\ views!"{}});}
+\DoxyCodeLine{00401\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00402\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00403\ \ \ \ \ \}}
+\DoxyCodeLine{00404\ }
+\DoxyCodeLine{00405\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_vulkan_bridge_a547638a27e2bbf448d6bd5b04e16d93e}{createRenderPass}}()\ \{}
+\DoxyCodeLine{00406\ \ \ \ \ \ \ \ \ VkAttachmentDescription\ colorAttachment\{\};}
+\DoxyCodeLine{00407\ \ \ \ \ \ \ \ \ colorAttachment.format\ =\ \mbox{\hyperlink{class_vulkan_bridge_a24bafb01b8e6098a4f84084499f557b2}{swapChainImageFormat}};}
+\DoxyCodeLine{00408\ \ \ \ \ \ \ \ \ colorAttachment.samples\ =\ VK\_SAMPLE\_COUNT\_1\_BIT;}
+\DoxyCodeLine{00409\ \ \ \ \ \ \ \ \ colorAttachment.loadOp\ =\ VK\_ATTACHMENT\_LOAD\_OP\_CLEAR;}
+\DoxyCodeLine{00410\ \ \ \ \ \ \ \ \ colorAttachment.storeOp\ =\ VK\_ATTACHMENT\_STORE\_OP\_STORE;}
+\DoxyCodeLine{00411\ \ \ \ \ \ \ \ \ colorAttachment.stencilLoadOp\ =\ VK\_ATTACHMENT\_LOAD\_OP\_DONT\_CARE;}
+\DoxyCodeLine{00412\ \ \ \ \ \ \ \ \ colorAttachment.stencilStoreOp\ =\ VK\_ATTACHMENT\_STORE\_OP\_DONT\_CARE;}
+\DoxyCodeLine{00413\ \ \ \ \ \ \ \ \ colorAttachment.initialLayout\ =\ VK\_IMAGE\_LAYOUT\_UNDEFINED;}
+\DoxyCodeLine{00414\ \ \ \ \ \ \ \ \ colorAttachment.finalLayout\ =\ VK\_IMAGE\_LAYOUT\_PRESENT\_SRC\_KHR;}
+\DoxyCodeLine{00415\ }
+\DoxyCodeLine{00416\ \ \ \ \ \ \ \ \ VkAttachmentReference\ colorAttachmentRef\{\};}
+\DoxyCodeLine{00417\ \ \ \ \ \ \ \ \ colorAttachmentRef.attachment\ =\ 0;}
+\DoxyCodeLine{00418\ \ \ \ \ \ \ \ \ colorAttachmentRef.layout\ =\ VK\_IMAGE\_LAYOUT\_COLOR\_ATTACHMENT\_OPTIMAL;}
+\DoxyCodeLine{00419\ }
+\DoxyCodeLine{00420\ \ \ \ \ \ \ \ \ VkSubpassDescription\ subpass\{\};}
+\DoxyCodeLine{00421\ \ \ \ \ \ \ \ \ subpass.pipelineBindPoint\ =\ VK\_PIPELINE\_BIND\_POINT\_GRAPHICS;}
+\DoxyCodeLine{00422\ \ \ \ \ \ \ \ \ subpass.colorAttachmentCount\ =\ 1;}
+\DoxyCodeLine{00423\ \ \ \ \ \ \ \ \ subpass.pColorAttachments\ =\ \&colorAttachmentRef;}
+\DoxyCodeLine{00424\ }
+\DoxyCodeLine{00425\ \ \ \ \ \ \ \ \ VkSubpassDependency\ dependency\{\};}
+\DoxyCodeLine{00426\ \ \ \ \ \ \ \ \ dependency.srcSubpass\ =\ VK\_SUBPASS\_EXTERNAL;}
+\DoxyCodeLine{00427\ \ \ \ \ \ \ \ \ dependency.dstSubpass\ =\ 0;}
+\DoxyCodeLine{00428\ \ \ \ \ \ \ \ \ dependency.srcStageMask\ =\ VK\_PIPELINE\_STAGE\_COLOR\_ATTACHMENT\_OUTPUT\_BIT;}
+\DoxyCodeLine{00429\ \ \ \ \ \ \ \ \ dependency.srcAccessMask\ =\ 0;}
+\DoxyCodeLine{00430\ \ \ \ \ \ \ \ \ dependency.dstStageMask\ =\ VK\_PIPELINE\_STAGE\_COLOR\_ATTACHMENT\_OUTPUT\_BIT;}
+\DoxyCodeLine{00431\ \ \ \ \ \ \ \ \ dependency.dstAccessMask\ =\ VK\_ACCESS\_COLOR\_ATTACHMENT\_WRITE\_BIT;}
+\DoxyCodeLine{00432\ }
+\DoxyCodeLine{00433\ \ \ \ \ \ \ \ \ VkRenderPassCreateInfo\ renderPassInfo\{\};}
+\DoxyCodeLine{00434\ \ \ \ \ \ \ \ \ renderPassInfo.sType\ =\ VK\_STRUCTURE\_TYPE\_RENDER\_PASS\_CREATE\_INFO;}
+\DoxyCodeLine{00435\ \ \ \ \ \ \ \ \ renderPassInfo.attachmentCount\ =\ 1;}
+\DoxyCodeLine{00436\ \ \ \ \ \ \ \ \ renderPassInfo.pAttachments\ =\ \&colorAttachment;}
+\DoxyCodeLine{00437\ \ \ \ \ \ \ \ \ renderPassInfo.subpassCount\ =\ 1;}
+\DoxyCodeLine{00438\ \ \ \ \ \ \ \ \ renderPassInfo.pSubpasses\ =\ \&subpass;}
+\DoxyCodeLine{00439\ \ \ \ \ \ \ \ \ renderPassInfo.dependencyCount\ =\ 1;}
+\DoxyCodeLine{00440\ \ \ \ \ \ \ \ \ renderPassInfo.pDependencies\ =\ \&dependency;}
+\DoxyCodeLine{00441\ }
+\DoxyCodeLine{00442\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (vkCreateRenderPass(\mbox{\hyperlink{class_vulkan_bridge_a92f3e9d49c5eece722f735ace9298631}{device}},\ \&renderPassInfo,\ \textcolor{keyword}{nullptr},\ \&\mbox{\hyperlink{class_vulkan_bridge_a1f3ad7da450eebf87354fd17769a1856}{renderPass}})\ !=\ VK\_SUCCESS)\ \{}
+\DoxyCodeLine{00443\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}failed\ to\ create\ render\ pass!"{}});}
+\DoxyCodeLine{00444\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00445\ \ \ \ \ \}}
+\DoxyCodeLine{00446\ }
+\DoxyCodeLine{00447\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_vulkan_bridge_a539c9e5f41c6b7998c039b49c188dbc0}{createGraphicsPipeline}}()\ \{}
+\DoxyCodeLine{00448\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ vertShaderCode\ =\ \mbox{\hyperlink{class_vulkan_bridge_a02b76bf14e34f825621a968a47e5afb1}{readFile}}(\textcolor{stringliteral}{"{}shaders/bin/vert.spv"{}});}
+\DoxyCodeLine{00449\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ fragShaderCode\ =\ \mbox{\hyperlink{class_vulkan_bridge_a02b76bf14e34f825621a968a47e5afb1}{readFile}}(\textcolor{stringliteral}{"{}shaders/bin/frag.spv"{}});}
+\DoxyCodeLine{00450\ }
+\DoxyCodeLine{00451\ \ \ \ \ \ \ \ \ VkShaderModule\ vertShaderModule\ =\ \mbox{\hyperlink{class_vulkan_bridge_a94129fe9b93ca4c0d33b7a73989ac3ec}{createShaderModule}}(vertShaderCode);}
+\DoxyCodeLine{00452\ \ \ \ \ \ \ \ \ VkShaderModule\ fragShaderModule\ =\ \mbox{\hyperlink{class_vulkan_bridge_a94129fe9b93ca4c0d33b7a73989ac3ec}{createShaderModule}}(fragShaderCode);}
+\DoxyCodeLine{00453\ }
+\DoxyCodeLine{00454\ \ \ \ \ \ \ \ \ VkPipelineShaderStageCreateInfo\ vertShaderStageInfo\{\};}
+\DoxyCodeLine{00455\ \ \ \ \ \ \ \ \ vertShaderStageInfo.sType\ =\ VK\_STRUCTURE\_TYPE\_PIPELINE\_SHADER\_STAGE\_CREATE\_INFO;}
+\DoxyCodeLine{00456\ \ \ \ \ \ \ \ \ vertShaderStageInfo.stage\ =\ VK\_SHADER\_STAGE\_VERTEX\_BIT;}
+\DoxyCodeLine{00457\ \ \ \ \ \ \ \ \ vertShaderStageInfo.module\ =\ vertShaderModule;}
+\DoxyCodeLine{00458\ \ \ \ \ \ \ \ \ vertShaderStageInfo.pName\ =\ \textcolor{stringliteral}{"{}main"{}};}
+\DoxyCodeLine{00459\ }
+\DoxyCodeLine{00460\ \ \ \ \ \ \ \ \ VkPipelineShaderStageCreateInfo\ fragShaderStageInfo\{\};}
+\DoxyCodeLine{00461\ \ \ \ \ \ \ \ \ fragShaderStageInfo.sType\ =\ VK\_STRUCTURE\_TYPE\_PIPELINE\_SHADER\_STAGE\_CREATE\_INFO;}
+\DoxyCodeLine{00462\ \ \ \ \ \ \ \ \ fragShaderStageInfo.stage\ =\ VK\_SHADER\_STAGE\_FRAGMENT\_BIT;}
+\DoxyCodeLine{00463\ \ \ \ \ \ \ \ \ fragShaderStageInfo.module\ =\ fragShaderModule;}
+\DoxyCodeLine{00464\ \ \ \ \ \ \ \ \ fragShaderStageInfo.pName\ =\ \textcolor{stringliteral}{"{}main"{}};}
+\DoxyCodeLine{00465\ }
+\DoxyCodeLine{00466\ \ \ \ \ \ \ \ \ VkPipelineShaderStageCreateInfo\ shaderStages[]\ =\ \{vertShaderStageInfo,\ fragShaderStageInfo\};}
+\DoxyCodeLine{00467\ }
+\DoxyCodeLine{00468\ \ \ \ \ \ \ \ \ VkPipelineVertexInputStateCreateInfo\ vertexInputInfo\{\};}
+\DoxyCodeLine{00469\ \ \ \ \ \ \ \ \ vertexInputInfo.sType\ =\ VK\_STRUCTURE\_TYPE\_PIPELINE\_VERTEX\_INPUT\_STATE\_CREATE\_INFO;}
+\DoxyCodeLine{00470\ \ \ \ \ \ \ \ \ vertexInputInfo.vertexBindingDescriptionCount\ =\ 0;}
+\DoxyCodeLine{00471\ \ \ \ \ \ \ \ \ vertexInputInfo.vertexAttributeDescriptionCount\ =\ 0;}
+\DoxyCodeLine{00472\ }
+\DoxyCodeLine{00473\ \ \ \ \ \ \ \ \ VkPipelineInputAssemblyStateCreateInfo\ inputAssembly\{\};}
+\DoxyCodeLine{00474\ \ \ \ \ \ \ \ \ inputAssembly.sType\ =\ VK\_STRUCTURE\_TYPE\_PIPELINE\_INPUT\_ASSEMBLY\_STATE\_CREATE\_INFO;}
+\DoxyCodeLine{00475\ \ \ \ \ \ \ \ \ inputAssembly.topology\ =\ VK\_PRIMITIVE\_TOPOLOGY\_TRIANGLE\_LIST;}
+\DoxyCodeLine{00476\ \ \ \ \ \ \ \ \ inputAssembly.primitiveRestartEnable\ =\ VK\_FALSE;}
+\DoxyCodeLine{00477\ }
+\DoxyCodeLine{00478\ \ \ \ \ \ \ \ \ VkPipelineViewportStateCreateInfo\ viewportState\{\};}
+\DoxyCodeLine{00479\ \ \ \ \ \ \ \ \ viewportState.sType\ =\ VK\_STRUCTURE\_TYPE\_PIPELINE\_VIEWPORT\_STATE\_CREATE\_INFO;}
+\DoxyCodeLine{00480\ \ \ \ \ \ \ \ \ viewportState.viewportCount\ =\ 1;}
+\DoxyCodeLine{00481\ \ \ \ \ \ \ \ \ viewportState.scissorCount\ =\ 1;}
+\DoxyCodeLine{00482\ }
+\DoxyCodeLine{00483\ \ \ \ \ \ \ \ \ VkPipelineRasterizationStateCreateInfo\ rasterizer\{\};}
+\DoxyCodeLine{00484\ \ \ \ \ \ \ \ \ rasterizer.sType\ =\ VK\_STRUCTURE\_TYPE\_PIPELINE\_RASTERIZATION\_STATE\_CREATE\_INFO;}
+\DoxyCodeLine{00485\ \ \ \ \ \ \ \ \ rasterizer.depthClampEnable\ =\ VK\_FALSE;}
+\DoxyCodeLine{00486\ \ \ \ \ \ \ \ \ rasterizer.rasterizerDiscardEnable\ =\ VK\_FALSE;}
+\DoxyCodeLine{00487\ \ \ \ \ \ \ \ \ rasterizer.polygonMode\ =\ VK\_POLYGON\_MODE\_FILL;}
+\DoxyCodeLine{00488\ \ \ \ \ \ \ \ \ rasterizer.lineWidth\ =\ 1.0f;}
+\DoxyCodeLine{00489\ \ \ \ \ \ \ \ \ rasterizer.cullMode\ =\ VK\_CULL\_MODE\_BACK\_BIT;}
+\DoxyCodeLine{00490\ \ \ \ \ \ \ \ \ rasterizer.frontFace\ =\ VK\_FRONT\_FACE\_CLOCKWISE;}
+\DoxyCodeLine{00491\ \ \ \ \ \ \ \ \ rasterizer.depthBiasEnable\ =\ VK\_FALSE;}
+\DoxyCodeLine{00492\ }
+\DoxyCodeLine{00493\ \ \ \ \ \ \ \ \ VkPipelineMultisampleStateCreateInfo\ multisampling\{\};}
+\DoxyCodeLine{00494\ \ \ \ \ \ \ \ \ multisampling.sType\ =\ VK\_STRUCTURE\_TYPE\_PIPELINE\_MULTISAMPLE\_STATE\_CREATE\_INFO;}
+\DoxyCodeLine{00495\ \ \ \ \ \ \ \ \ multisampling.sampleShadingEnable\ =\ VK\_FALSE;}
+\DoxyCodeLine{00496\ \ \ \ \ \ \ \ \ multisampling.rasterizationSamples\ =\ VK\_SAMPLE\_COUNT\_1\_BIT;}
+\DoxyCodeLine{00497\ }
+\DoxyCodeLine{00498\ \ \ \ \ \ \ \ \ VkPipelineColorBlendAttachmentState\ colorBlendAttachment\{\};}
+\DoxyCodeLine{00499\ \ \ \ \ \ \ \ \ colorBlendAttachment.colorWriteMask\ =\ VK\_COLOR\_COMPONENT\_R\_BIT\ |\ VK\_COLOR\_COMPONENT\_G\_BIT\ |\ VK\_COLOR\_COMPONENT\_B\_BIT\ |\ VK\_COLOR\_COMPONENT\_A\_BIT;}
+\DoxyCodeLine{00500\ \ \ \ \ \ \ \ \ colorBlendAttachment.blendEnable\ =\ VK\_FALSE;}
+\DoxyCodeLine{00501\ }
+\DoxyCodeLine{00502\ \ \ \ \ \ \ \ \ VkPipelineColorBlendStateCreateInfo\ colorBlending\{\};}
+\DoxyCodeLine{00503\ \ \ \ \ \ \ \ \ colorBlending.sType\ =\ VK\_STRUCTURE\_TYPE\_PIPELINE\_COLOR\_BLEND\_STATE\_CREATE\_INFO;}
+\DoxyCodeLine{00504\ \ \ \ \ \ \ \ \ colorBlending.logicOpEnable\ =\ VK\_FALSE;}
+\DoxyCodeLine{00505\ \ \ \ \ \ \ \ \ colorBlending.logicOp\ =\ VK\_LOGIC\_OP\_COPY;}
+\DoxyCodeLine{00506\ \ \ \ \ \ \ \ \ colorBlending.attachmentCount\ =\ 1;}
+\DoxyCodeLine{00507\ \ \ \ \ \ \ \ \ colorBlending.pAttachments\ =\ \&colorBlendAttachment;}
+\DoxyCodeLine{00508\ \ \ \ \ \ \ \ \ colorBlending.blendConstants[0]\ =\ 0.0f;}
+\DoxyCodeLine{00509\ \ \ \ \ \ \ \ \ colorBlending.blendConstants[1]\ =\ 0.0f;}
+\DoxyCodeLine{00510\ \ \ \ \ \ \ \ \ colorBlending.blendConstants[2]\ =\ 0.0f;}
+\DoxyCodeLine{00511\ \ \ \ \ \ \ \ \ colorBlending.blendConstants[3]\ =\ 0.0f;}
+\DoxyCodeLine{00512\ }
+\DoxyCodeLine{00513\ \ \ \ \ \ \ \ \ std::vector<VkDynamicState>\ dynamicStates\ =\ \{}
+\DoxyCodeLine{00514\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ VK\_DYNAMIC\_STATE\_VIEWPORT,}
+\DoxyCodeLine{00515\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ VK\_DYNAMIC\_STATE\_SCISSOR}
+\DoxyCodeLine{00516\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00517\ \ \ \ \ \ \ \ \ VkPipelineDynamicStateCreateInfo\ dynamicState\{\};}
+\DoxyCodeLine{00518\ \ \ \ \ \ \ \ \ dynamicState.sType\ =\ VK\_STRUCTURE\_TYPE\_PIPELINE\_DYNAMIC\_STATE\_CREATE\_INFO;}
+\DoxyCodeLine{00519\ \ \ \ \ \ \ \ \ dynamicState.dynamicStateCount\ =\ \textcolor{keyword}{static\_cast<}uint32\_t\textcolor{keyword}{>}(dynamicStates.size());}
+\DoxyCodeLine{00520\ \ \ \ \ \ \ \ \ dynamicState.pDynamicStates\ =\ dynamicStates.data();}
+\DoxyCodeLine{00521\ }
+\DoxyCodeLine{00522\ \ \ \ \ \ \ \ \ VkPipelineLayoutCreateInfo\ pipelineLayoutInfo\{\};}
+\DoxyCodeLine{00523\ \ \ \ \ \ \ \ \ pipelineLayoutInfo.sType\ =\ VK\_STRUCTURE\_TYPE\_PIPELINE\_LAYOUT\_CREATE\_INFO;}
+\DoxyCodeLine{00524\ \ \ \ \ \ \ \ \ pipelineLayoutInfo.setLayoutCount\ =\ 0;}
+\DoxyCodeLine{00525\ \ \ \ \ \ \ \ \ pipelineLayoutInfo.pushConstantRangeCount\ =\ 0;}
+\DoxyCodeLine{00526\ }
+\DoxyCodeLine{00527\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (vkCreatePipelineLayout(\mbox{\hyperlink{class_vulkan_bridge_a92f3e9d49c5eece722f735ace9298631}{device}},\ \&pipelineLayoutInfo,\ \textcolor{keyword}{nullptr},\ \&\mbox{\hyperlink{class_vulkan_bridge_acc903d20c44b1f8e977d658d815a7cad}{pipelineLayout}})\ !=\ VK\_SUCCESS)\ \{}
+\DoxyCodeLine{00528\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}failed\ to\ create\ pipeline\ layout!"{}});}
+\DoxyCodeLine{00529\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00530\ }
+\DoxyCodeLine{00531\ \ \ \ \ \ \ \ \ VkGraphicsPipelineCreateInfo\ pipelineInfo\{\};}
+\DoxyCodeLine{00532\ \ \ \ \ \ \ \ \ pipelineInfo.sType\ =\ VK\_STRUCTURE\_TYPE\_GRAPHICS\_PIPELINE\_CREATE\_INFO;}
+\DoxyCodeLine{00533\ \ \ \ \ \ \ \ \ pipelineInfo.stageCount\ =\ 2;}
+\DoxyCodeLine{00534\ \ \ \ \ \ \ \ \ pipelineInfo.pStages\ =\ shaderStages;}
+\DoxyCodeLine{00535\ \ \ \ \ \ \ \ \ pipelineInfo.pVertexInputState\ =\ \&vertexInputInfo;}
+\DoxyCodeLine{00536\ \ \ \ \ \ \ \ \ pipelineInfo.pInputAssemblyState\ =\ \&inputAssembly;}
+\DoxyCodeLine{00537\ \ \ \ \ \ \ \ \ pipelineInfo.pViewportState\ =\ \&viewportState;}
+\DoxyCodeLine{00538\ \ \ \ \ \ \ \ \ pipelineInfo.pRasterizationState\ =\ \&rasterizer;}
+\DoxyCodeLine{00539\ \ \ \ \ \ \ \ \ pipelineInfo.pMultisampleState\ =\ \&multisampling;}
+\DoxyCodeLine{00540\ \ \ \ \ \ \ \ \ pipelineInfo.pColorBlendState\ =\ \&colorBlending;}
+\DoxyCodeLine{00541\ \ \ \ \ \ \ \ \ pipelineInfo.pDynamicState\ =\ \&dynamicState;}
+\DoxyCodeLine{00542\ \ \ \ \ \ \ \ \ pipelineInfo.layout\ =\ \mbox{\hyperlink{class_vulkan_bridge_acc903d20c44b1f8e977d658d815a7cad}{pipelineLayout}};}
+\DoxyCodeLine{00543\ \ \ \ \ \ \ \ \ pipelineInfo.renderPass\ =\ \mbox{\hyperlink{class_vulkan_bridge_a1f3ad7da450eebf87354fd17769a1856}{renderPass}};}
+\DoxyCodeLine{00544\ \ \ \ \ \ \ \ \ pipelineInfo.subpass\ =\ 0;}
+\DoxyCodeLine{00545\ \ \ \ \ \ \ \ \ pipelineInfo.basePipelineHandle\ =\ VK\_NULL\_HANDLE;}
+\DoxyCodeLine{00546\ }
+\DoxyCodeLine{00547\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (vkCreateGraphicsPipelines(\mbox{\hyperlink{class_vulkan_bridge_a92f3e9d49c5eece722f735ace9298631}{device}},\ VK\_NULL\_HANDLE,\ 1,\ \&pipelineInfo,\ \textcolor{keyword}{nullptr},\ \&\mbox{\hyperlink{class_vulkan_bridge_afdde90b07cb452eb971458ca7bcfefe1}{graphicsPipeline}})\ !=\ VK\_SUCCESS)\ \{}
+\DoxyCodeLine{00548\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}failed\ to\ create\ graphics\ pipeline!"{}});}
+\DoxyCodeLine{00549\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00550\ }
+\DoxyCodeLine{00551\ \ \ \ \ \ \ \ \ vkDestroyShaderModule(\mbox{\hyperlink{class_vulkan_bridge_a92f3e9d49c5eece722f735ace9298631}{device}},\ fragShaderModule,\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00552\ \ \ \ \ \ \ \ \ vkDestroyShaderModule(\mbox{\hyperlink{class_vulkan_bridge_a92f3e9d49c5eece722f735ace9298631}{device}},\ vertShaderModule,\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00553\ \ \ \ \ \}}
+\DoxyCodeLine{00554\ }
+\DoxyCodeLine{00555\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_vulkan_bridge_a4672a744a67eab803497c63fa8e78aef}{createFramebuffers}}()\ \{}
+\DoxyCodeLine{00556\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_vulkan_bridge_ac8701397ccd9dc9f8d2f53dce586c2f7}{swapChainFramebuffers}}.resize(\mbox{\hyperlink{class_vulkan_bridge_aa7a09ab973bdf49f1537d44705b25ffc}{swapChainImageViews}}.size());}
+\DoxyCodeLine{00557\ }
+\DoxyCodeLine{00558\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{class_vulkan_bridge_aa7a09ab973bdf49f1537d44705b25ffc}{swapChainImageViews}}.size();\ i++)\ \{}
+\DoxyCodeLine{00559\ \ \ \ \ \ \ \ \ \ \ \ \ VkImageView\ attachments[]\ =\ \{}
+\DoxyCodeLine{00560\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_vulkan_bridge_aa7a09ab973bdf49f1537d44705b25ffc}{swapChainImageViews}}[i]}
+\DoxyCodeLine{00561\ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00562\ }
+\DoxyCodeLine{00563\ \ \ \ \ \ \ \ \ \ \ \ \ VkFramebufferCreateInfo\ framebufferInfo\{\};}
+\DoxyCodeLine{00564\ \ \ \ \ \ \ \ \ \ \ \ \ framebufferInfo.sType\ =\ VK\_STRUCTURE\_TYPE\_FRAMEBUFFER\_CREATE\_INFO;}
+\DoxyCodeLine{00565\ \ \ \ \ \ \ \ \ \ \ \ \ framebufferInfo.renderPass\ =\ \mbox{\hyperlink{class_vulkan_bridge_a1f3ad7da450eebf87354fd17769a1856}{renderPass}};}
+\DoxyCodeLine{00566\ \ \ \ \ \ \ \ \ \ \ \ \ framebufferInfo.attachmentCount\ =\ 1;}
+\DoxyCodeLine{00567\ \ \ \ \ \ \ \ \ \ \ \ \ framebufferInfo.pAttachments\ =\ attachments;}
+\DoxyCodeLine{00568\ \ \ \ \ \ \ \ \ \ \ \ \ framebufferInfo.width\ =\ \mbox{\hyperlink{class_vulkan_bridge_aeef7bd8382b37d5026d3a26c27578f07}{swapChainExtent}}.width;}
+\DoxyCodeLine{00569\ \ \ \ \ \ \ \ \ \ \ \ \ framebufferInfo.height\ =\ \mbox{\hyperlink{class_vulkan_bridge_aeef7bd8382b37d5026d3a26c27578f07}{swapChainExtent}}.height;}
+\DoxyCodeLine{00570\ \ \ \ \ \ \ \ \ \ \ \ \ framebufferInfo.layers\ =\ 1;}
+\DoxyCodeLine{00571\ }
+\DoxyCodeLine{00572\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (vkCreateFramebuffer(\mbox{\hyperlink{class_vulkan_bridge_a92f3e9d49c5eece722f735ace9298631}{device}},\ \&framebufferInfo,\ \textcolor{keyword}{nullptr},\ \&\mbox{\hyperlink{class_vulkan_bridge_ac8701397ccd9dc9f8d2f53dce586c2f7}{swapChainFramebuffers}}[i])\ !=\ VK\_SUCCESS)\ \{}
+\DoxyCodeLine{00573\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}failed\ to\ create\ framebuffer!"{}});}
+\DoxyCodeLine{00574\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00575\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00576\ \ \ \ \ \}}
+\DoxyCodeLine{00577\ }
+\DoxyCodeLine{00578\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_vulkan_bridge_a4a782160403b1f52157dc21dc8534abc}{createCommandPool}}()\ \{}
+\DoxyCodeLine{00579\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_queue_family_indices}{QueueFamilyIndices}}\ queueFamilyIndices\ =\ \mbox{\hyperlink{class_vulkan_bridge_aab6c85644f94184ed29a18738ffce8a2}{findQueueFamilies}}(\mbox{\hyperlink{class_vulkan_bridge_a9ca04938323957de08c600ae79430277}{physicalDevice}});}
+\DoxyCodeLine{00580\ }
+\DoxyCodeLine{00581\ \ \ \ \ \ \ \ \ VkCommandPoolCreateInfo\ poolInfo\{\};}
+\DoxyCodeLine{00582\ \ \ \ \ \ \ \ \ poolInfo.sType\ =\ VK\_STRUCTURE\_TYPE\_COMMAND\_POOL\_CREATE\_INFO;}
+\DoxyCodeLine{00583\ \ \ \ \ \ \ \ \ poolInfo.flags\ =\ VK\_COMMAND\_POOL\_CREATE\_RESET\_COMMAND\_BUFFER\_BIT;}
+\DoxyCodeLine{00584\ \ \ \ \ \ \ \ \ poolInfo.queueFamilyIndex\ =\ queueFamilyIndices.\mbox{\hyperlink{struct_queue_family_indices_a1e525a27a080ff5b5a4e545bdbc4da09}{graphicsFamily}}.value();}
+\DoxyCodeLine{00585\ }
+\DoxyCodeLine{00586\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (vkCreateCommandPool(\mbox{\hyperlink{class_vulkan_bridge_a92f3e9d49c5eece722f735ace9298631}{device}},\ \&poolInfo,\ \textcolor{keyword}{nullptr},\ \&\mbox{\hyperlink{class_vulkan_bridge_a2d8071b7c5bedd3d928919ec4f3539c9}{commandPool}})\ !=\ VK\_SUCCESS)\ \{}
+\DoxyCodeLine{00587\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}failed\ to\ create\ command\ pool!"{}});}
+\DoxyCodeLine{00588\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00589\ \ \ \ \ \}}
+\DoxyCodeLine{00590\ }
+\DoxyCodeLine{00591\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_vulkan_bridge_a562aa8464625deb0e21b9501e9860a6d}{createCommandBuffer}}()\ \{}
+\DoxyCodeLine{00592\ \ \ \ \ \ \ \ \ VkCommandBufferAllocateInfo\ allocInfo\{\};}
+\DoxyCodeLine{00593\ \ \ \ \ \ \ \ \ allocInfo.sType\ =\ VK\_STRUCTURE\_TYPE\_COMMAND\_BUFFER\_ALLOCATE\_INFO;}
+\DoxyCodeLine{00594\ \ \ \ \ \ \ \ \ allocInfo.commandPool\ =\ \mbox{\hyperlink{class_vulkan_bridge_a2d8071b7c5bedd3d928919ec4f3539c9}{commandPool}};}
+\DoxyCodeLine{00595\ \ \ \ \ \ \ \ \ allocInfo.level\ =\ VK\_COMMAND\_BUFFER\_LEVEL\_PRIMARY;}
+\DoxyCodeLine{00596\ \ \ \ \ \ \ \ \ allocInfo.commandBufferCount\ =\ 1;}
+\DoxyCodeLine{00597\ }
+\DoxyCodeLine{00598\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (vkAllocateCommandBuffers(\mbox{\hyperlink{class_vulkan_bridge_a92f3e9d49c5eece722f735ace9298631}{device}},\ \&allocInfo,\ \&\mbox{\hyperlink{class_vulkan_bridge_a299cd0eff01368a5ae3f81f5ead17b1b}{commandBuffer}})\ !=\ VK\_SUCCESS)\ \{}
+\DoxyCodeLine{00599\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}failed\ to\ allocate\ command\ buffers!"{}});}
+\DoxyCodeLine{00600\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00601\ \ \ \ \ \}}
+\DoxyCodeLine{00602\ }
+\DoxyCodeLine{00603\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_vulkan_bridge_a850a998527507beff52690bdfd30d2a7}{recordCommandBuffer}}(VkCommandBuffer\ \mbox{\hyperlink{class_vulkan_bridge_a299cd0eff01368a5ae3f81f5ead17b1b}{commandBuffer}},\ uint32\_t\ imageIndex)\ \{}
+\DoxyCodeLine{00604\ \ \ \ \ \ \ \ \ VkCommandBufferBeginInfo\ beginInfo\{\};}
+\DoxyCodeLine{00605\ \ \ \ \ \ \ \ \ beginInfo.sType\ =\ VK\_STRUCTURE\_TYPE\_COMMAND\_BUFFER\_BEGIN\_INFO;}
+\DoxyCodeLine{00606\ }
+\DoxyCodeLine{00607\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (vkBeginCommandBuffer(\mbox{\hyperlink{class_vulkan_bridge_a299cd0eff01368a5ae3f81f5ead17b1b}{commandBuffer}},\ \&beginInfo)\ !=\ VK\_SUCCESS)\ \{}
+\DoxyCodeLine{00608\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}failed\ to\ begin\ recording\ command\ buffer!"{}});}
+\DoxyCodeLine{00609\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00610\ }
+\DoxyCodeLine{00611\ \ \ \ \ \ \ \ \ VkRenderPassBeginInfo\ renderPassInfo\{\};}
+\DoxyCodeLine{00612\ \ \ \ \ \ \ \ \ renderPassInfo.sType\ =\ VK\_STRUCTURE\_TYPE\_RENDER\_PASS\_BEGIN\_INFO;}
+\DoxyCodeLine{00613\ \ \ \ \ \ \ \ \ renderPassInfo.renderPass\ =\ \mbox{\hyperlink{class_vulkan_bridge_a1f3ad7da450eebf87354fd17769a1856}{renderPass}};}
+\DoxyCodeLine{00614\ \ \ \ \ \ \ \ \ renderPassInfo.framebuffer\ =\ \mbox{\hyperlink{class_vulkan_bridge_ac8701397ccd9dc9f8d2f53dce586c2f7}{swapChainFramebuffers}}[imageIndex];}
+\DoxyCodeLine{00615\ \ \ \ \ \ \ \ \ renderPassInfo.renderArea.offset\ =\ \{0,\ 0\};}
+\DoxyCodeLine{00616\ \ \ \ \ \ \ \ \ renderPassInfo.renderArea.extent\ =\ \mbox{\hyperlink{class_vulkan_bridge_aeef7bd8382b37d5026d3a26c27578f07}{swapChainExtent}};}
+\DoxyCodeLine{00617\ }
+\DoxyCodeLine{00618\ \ \ \ \ \ \ \ \ VkClearValue\ clearColor\ =\ \{\{\{0.0f,\ 0.0f,\ 0.0f,\ 1.0f\}\}\};}
+\DoxyCodeLine{00619\ \ \ \ \ \ \ \ \ renderPassInfo.clearValueCount\ =\ 1;}
+\DoxyCodeLine{00620\ \ \ \ \ \ \ \ \ renderPassInfo.pClearValues\ =\ \&clearColor;}
+\DoxyCodeLine{00621\ }
+\DoxyCodeLine{00622\ \ \ \ \ \ \ \ \ vkCmdBeginRenderPass(\mbox{\hyperlink{class_vulkan_bridge_a299cd0eff01368a5ae3f81f5ead17b1b}{commandBuffer}},\ \&renderPassInfo,\ VK\_SUBPASS\_CONTENTS\_INLINE);}
+\DoxyCodeLine{00623\ }
+\DoxyCodeLine{00624\ \ \ \ \ \ \ \ \ vkCmdBindPipeline(\mbox{\hyperlink{class_vulkan_bridge_a299cd0eff01368a5ae3f81f5ead17b1b}{commandBuffer}},\ VK\_PIPELINE\_BIND\_POINT\_GRAPHICS,\ \mbox{\hyperlink{class_vulkan_bridge_afdde90b07cb452eb971458ca7bcfefe1}{graphicsPipeline}});}
+\DoxyCodeLine{00625\ }
+\DoxyCodeLine{00626\ \ \ \ \ \ \ \ \ VkViewport\ viewport\{\};}
+\DoxyCodeLine{00627\ \ \ \ \ \ \ \ \ viewport.x\ =\ 0.0f;}
+\DoxyCodeLine{00628\ \ \ \ \ \ \ \ \ viewport.y\ =\ 0.0f;}
+\DoxyCodeLine{00629\ \ \ \ \ \ \ \ \ viewport.width\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{float}\textcolor{keyword}{>}(\mbox{\hyperlink{class_vulkan_bridge_aeef7bd8382b37d5026d3a26c27578f07}{swapChainExtent}}.width);}
+\DoxyCodeLine{00630\ \ \ \ \ \ \ \ \ viewport.height\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{float}\textcolor{keyword}{>}(\mbox{\hyperlink{class_vulkan_bridge_aeef7bd8382b37d5026d3a26c27578f07}{swapChainExtent}}.height);}
+\DoxyCodeLine{00631\ \ \ \ \ \ \ \ \ viewport.minDepth\ =\ 0.0f;}
+\DoxyCodeLine{00632\ \ \ \ \ \ \ \ \ viewport.maxDepth\ =\ 1.0f;}
+\DoxyCodeLine{00633\ \ \ \ \ \ \ \ \ vkCmdSetViewport(\mbox{\hyperlink{class_vulkan_bridge_a299cd0eff01368a5ae3f81f5ead17b1b}{commandBuffer}},\ 0,\ 1,\ \&viewport);}
+\DoxyCodeLine{00634\ }
+\DoxyCodeLine{00635\ \ \ \ \ \ \ \ \ VkRect2D\ scissor\{\};}
+\DoxyCodeLine{00636\ \ \ \ \ \ \ \ \ scissor.offset\ =\ \{0,\ 0\};}
+\DoxyCodeLine{00637\ \ \ \ \ \ \ \ \ scissor.extent\ =\ \mbox{\hyperlink{class_vulkan_bridge_aeef7bd8382b37d5026d3a26c27578f07}{swapChainExtent}};}
+\DoxyCodeLine{00638\ \ \ \ \ \ \ \ \ vkCmdSetScissor(\mbox{\hyperlink{class_vulkan_bridge_a299cd0eff01368a5ae3f81f5ead17b1b}{commandBuffer}},\ 0,\ 1,\ \&scissor);}
+\DoxyCodeLine{00639\ }
+\DoxyCodeLine{00640\ \ \ \ \ \ \ \ \ vkCmdDraw(\mbox{\hyperlink{class_vulkan_bridge_a299cd0eff01368a5ae3f81f5ead17b1b}{commandBuffer}},\ 3,\ 1,\ 0,\ 0);}
+\DoxyCodeLine{00641\ }
+\DoxyCodeLine{00642\ \ \ \ \ \ \ \ \ vkCmdEndRenderPass(\mbox{\hyperlink{class_vulkan_bridge_a299cd0eff01368a5ae3f81f5ead17b1b}{commandBuffer}});}
+\DoxyCodeLine{00643\ }
+\DoxyCodeLine{00644\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (vkEndCommandBuffer(\mbox{\hyperlink{class_vulkan_bridge_a299cd0eff01368a5ae3f81f5ead17b1b}{commandBuffer}})\ !=\ VK\_SUCCESS)\ \{}
+\DoxyCodeLine{00645\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}failed\ to\ record\ command\ buffer!"{}});}
+\DoxyCodeLine{00646\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00647\ \ \ \ \ \}}
+\DoxyCodeLine{00648\ }
+\DoxyCodeLine{00649\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_vulkan_bridge_aafd05bf2074b8b4917f866b7d66e817f}{createSyncObjects}}()\ \{}
+\DoxyCodeLine{00650\ \ \ \ \ \ \ \ \ VkSemaphoreCreateInfo\ semaphoreInfo\{\};}
+\DoxyCodeLine{00651\ \ \ \ \ \ \ \ \ semaphoreInfo.sType\ =\ VK\_STRUCTURE\_TYPE\_SEMAPHORE\_CREATE\_INFO;}
+\DoxyCodeLine{00652\ }
+\DoxyCodeLine{00653\ \ \ \ \ \ \ \ \ VkFenceCreateInfo\ fenceInfo\{\};}
+\DoxyCodeLine{00654\ \ \ \ \ \ \ \ \ fenceInfo.sType\ =\ VK\_STRUCTURE\_TYPE\_FENCE\_CREATE\_INFO;}
+\DoxyCodeLine{00655\ \ \ \ \ \ \ \ \ fenceInfo.flags\ =\ VK\_FENCE\_CREATE\_SIGNALED\_BIT;}
+\DoxyCodeLine{00656\ }
+\DoxyCodeLine{00657\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (vkCreateSemaphore(\mbox{\hyperlink{class_vulkan_bridge_a92f3e9d49c5eece722f735ace9298631}{device}},\ \&semaphoreInfo,\ \textcolor{keyword}{nullptr},\ \&\mbox{\hyperlink{class_vulkan_bridge_aa4226e5851a80a1f1dbd38ad074557ed}{imageAvailableSemaphore}})\ !=\ VK\_SUCCESS\ ||}
+\DoxyCodeLine{00658\ \ \ \ \ \ \ \ \ \ \ \ \ vkCreateSemaphore(\mbox{\hyperlink{class_vulkan_bridge_a92f3e9d49c5eece722f735ace9298631}{device}},\ \&semaphoreInfo,\ \textcolor{keyword}{nullptr},\ \&\mbox{\hyperlink{class_vulkan_bridge_a52eba625ac5308d29ac38a4e571efbbd}{renderFinishedSemaphore}})\ !=\ VK\_SUCCESS\ ||}
+\DoxyCodeLine{00659\ \ \ \ \ \ \ \ \ \ \ \ \ vkCreateFence(\mbox{\hyperlink{class_vulkan_bridge_a92f3e9d49c5eece722f735ace9298631}{device}},\ \&fenceInfo,\ \textcolor{keyword}{nullptr},\ \&\mbox{\hyperlink{class_vulkan_bridge_a31d6017b521178e8f3ea4a16ba26efc5}{inFlightFence}})\ !=\ VK\_SUCCESS)\ \{}
+\DoxyCodeLine{00660\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}failed\ to\ create\ synchronization\ objects\ for\ a\ frame!"{}});}
+\DoxyCodeLine{00661\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00662\ }
+\DoxyCodeLine{00663\ \ \ \ \ \}}
+\DoxyCodeLine{00664\ }
+\DoxyCodeLine{00665\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_vulkan_bridge_a02ea9a0c266b52dd23b37a7b4cd4a0da}{drawFrame}}()\ \{}
+\DoxyCodeLine{00666\ \ \ \ \ \ \ \ \ vkWaitForFences(\mbox{\hyperlink{class_vulkan_bridge_a92f3e9d49c5eece722f735ace9298631}{device}},\ 1,\ \&\mbox{\hyperlink{class_vulkan_bridge_a31d6017b521178e8f3ea4a16ba26efc5}{inFlightFence}},\ VK\_TRUE,\ UINT64\_MAX);}
+\DoxyCodeLine{00667\ \ \ \ \ \ \ \ \ vkResetFences(\mbox{\hyperlink{class_vulkan_bridge_a92f3e9d49c5eece722f735ace9298631}{device}},\ 1,\ \&\mbox{\hyperlink{class_vulkan_bridge_a31d6017b521178e8f3ea4a16ba26efc5}{inFlightFence}});}
+\DoxyCodeLine{00668\ }
+\DoxyCodeLine{00669\ \ \ \ \ \ \ \ \ uint32\_t\ imageIndex;}
+\DoxyCodeLine{00670\ \ \ \ \ \ \ \ \ vkAcquireNextImageKHR(\mbox{\hyperlink{class_vulkan_bridge_a92f3e9d49c5eece722f735ace9298631}{device}},\ \mbox{\hyperlink{class_vulkan_bridge_a771029af85bafaeeb7edfbda9cb16f71}{swapChain}},\ UINT64\_MAX,\ \mbox{\hyperlink{class_vulkan_bridge_aa4226e5851a80a1f1dbd38ad074557ed}{imageAvailableSemaphore}},\ VK\_NULL\_HANDLE,\ \&imageIndex);}
+\DoxyCodeLine{00671\ }
+\DoxyCodeLine{00672\ \ \ \ \ \ \ \ \ vkResetCommandBuffer(\mbox{\hyperlink{class_vulkan_bridge_a299cd0eff01368a5ae3f81f5ead17b1b}{commandBuffer}},\ \textcolor{comment}{/*VkCommandBufferResetFlagBits*/}\ 0);}
+\DoxyCodeLine{00673\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_vulkan_bridge_a850a998527507beff52690bdfd30d2a7}{recordCommandBuffer}}(\mbox{\hyperlink{class_vulkan_bridge_a299cd0eff01368a5ae3f81f5ead17b1b}{commandBuffer}},\ imageIndex);}
+\DoxyCodeLine{00674\ }
+\DoxyCodeLine{00675\ \ \ \ \ \ \ \ \ VkSubmitInfo\ submitInfo\{\};}
+\DoxyCodeLine{00676\ \ \ \ \ \ \ \ \ submitInfo.sType\ =\ VK\_STRUCTURE\_TYPE\_SUBMIT\_INFO;}
+\DoxyCodeLine{00677\ }
+\DoxyCodeLine{00678\ \ \ \ \ \ \ \ \ VkSemaphore\ waitSemaphores[]\ =\ \{\mbox{\hyperlink{class_vulkan_bridge_aa4226e5851a80a1f1dbd38ad074557ed}{imageAvailableSemaphore}}\};}
+\DoxyCodeLine{00679\ \ \ \ \ \ \ \ \ VkPipelineStageFlags\ waitStages[]\ =\ \{VK\_PIPELINE\_STAGE\_COLOR\_ATTACHMENT\_OUTPUT\_BIT\};}
+\DoxyCodeLine{00680\ \ \ \ \ \ \ \ \ submitInfo.waitSemaphoreCount\ =\ 1;}
+\DoxyCodeLine{00681\ \ \ \ \ \ \ \ \ submitInfo.pWaitSemaphores\ =\ waitSemaphores;}
+\DoxyCodeLine{00682\ \ \ \ \ \ \ \ \ submitInfo.pWaitDstStageMask\ =\ waitStages;}
+\DoxyCodeLine{00683\ }
+\DoxyCodeLine{00684\ \ \ \ \ \ \ \ \ submitInfo.commandBufferCount\ =\ 1;}
+\DoxyCodeLine{00685\ \ \ \ \ \ \ \ \ submitInfo.pCommandBuffers\ =\ \&\mbox{\hyperlink{class_vulkan_bridge_a299cd0eff01368a5ae3f81f5ead17b1b}{commandBuffer}};}
+\DoxyCodeLine{00686\ }
+\DoxyCodeLine{00687\ \ \ \ \ \ \ \ \ VkSemaphore\ signalSemaphores[]\ =\ \{\mbox{\hyperlink{class_vulkan_bridge_a52eba625ac5308d29ac38a4e571efbbd}{renderFinishedSemaphore}}\};}
+\DoxyCodeLine{00688\ \ \ \ \ \ \ \ \ submitInfo.signalSemaphoreCount\ =\ 1;}
+\DoxyCodeLine{00689\ \ \ \ \ \ \ \ \ submitInfo.pSignalSemaphores\ =\ signalSemaphores;}
+\DoxyCodeLine{00690\ }
+\DoxyCodeLine{00691\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (vkQueueSubmit(\mbox{\hyperlink{class_vulkan_bridge_ac482f24428c54e2ac64e3bce39e0b259}{graphicsQueue}},\ 1,\ \&submitInfo,\ \mbox{\hyperlink{class_vulkan_bridge_a31d6017b521178e8f3ea4a16ba26efc5}{inFlightFence}})\ !=\ VK\_SUCCESS)\ \{}
+\DoxyCodeLine{00692\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}failed\ to\ submit\ draw\ command\ buffer!"{}});}
+\DoxyCodeLine{00693\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00694\ }
+\DoxyCodeLine{00695\ \ \ \ \ \ \ \ \ VkPresentInfoKHR\ presentInfo\{\};}
+\DoxyCodeLine{00696\ \ \ \ \ \ \ \ \ presentInfo.sType\ =\ VK\_STRUCTURE\_TYPE\_PRESENT\_INFO\_KHR;}
+\DoxyCodeLine{00697\ }
+\DoxyCodeLine{00698\ \ \ \ \ \ \ \ \ presentInfo.waitSemaphoreCount\ =\ 1;}
+\DoxyCodeLine{00699\ \ \ \ \ \ \ \ \ presentInfo.pWaitSemaphores\ =\ signalSemaphores;}
+\DoxyCodeLine{00700\ }
+\DoxyCodeLine{00701\ \ \ \ \ \ \ \ \ VkSwapchainKHR\ swapChains[]\ =\ \{\mbox{\hyperlink{class_vulkan_bridge_a771029af85bafaeeb7edfbda9cb16f71}{swapChain}}\};}
+\DoxyCodeLine{00702\ \ \ \ \ \ \ \ \ presentInfo.swapchainCount\ =\ 1;}
+\DoxyCodeLine{00703\ \ \ \ \ \ \ \ \ presentInfo.pSwapchains\ =\ swapChains;}
+\DoxyCodeLine{00704\ }
+\DoxyCodeLine{00705\ \ \ \ \ \ \ \ \ presentInfo.pImageIndices\ =\ \&imageIndex;}
+\DoxyCodeLine{00706\ }
+\DoxyCodeLine{00707\ \ \ \ \ \ \ \ \ vkQueuePresentKHR(\mbox{\hyperlink{class_vulkan_bridge_ae8774647d244cbaba1198194a15063d0}{presentQueue}},\ \&presentInfo);}
+\DoxyCodeLine{00708\ \ \ \ \ \}}
+\DoxyCodeLine{00709\ }
+\DoxyCodeLine{00710\ \ \ \ \ VkShaderModule\ \mbox{\hyperlink{class_vulkan_bridge_a94129fe9b93ca4c0d33b7a73989ac3ec}{createShaderModule}}(\textcolor{keyword}{const}\ std::vector<char>\&\ code)\ \{}
+\DoxyCodeLine{00711\ \ \ \ \ \ \ \ \ VkShaderModuleCreateInfo\ createInfo\{\};}
+\DoxyCodeLine{00712\ \ \ \ \ \ \ \ \ createInfo.sType\ =\ VK\_STRUCTURE\_TYPE\_SHADER\_MODULE\_CREATE\_INFO;}
+\DoxyCodeLine{00713\ \ \ \ \ \ \ \ \ createInfo.codeSize\ =\ code.size();}
+\DoxyCodeLine{00714\ \ \ \ \ \ \ \ \ createInfo.pCode\ =\ \textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }uint32\_t*\textcolor{keyword}{>}(code.data());}
+\DoxyCodeLine{00715\ }
+\DoxyCodeLine{00716\ \ \ \ \ \ \ \ \ VkShaderModule\ shaderModule;}
+\DoxyCodeLine{00717\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (vkCreateShaderModule(\mbox{\hyperlink{class_vulkan_bridge_a92f3e9d49c5eece722f735ace9298631}{device}},\ \&createInfo,\ \textcolor{keyword}{nullptr},\ \&shaderModule)\ !=\ VK\_SUCCESS)\ \{}
+\DoxyCodeLine{00718\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}failed\ to\ create\ shader\ module!"{}});}
+\DoxyCodeLine{00719\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00720\ }
+\DoxyCodeLine{00721\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ shaderModule;}
+\DoxyCodeLine{00722\ \ \ \ \ \}}
+\DoxyCodeLine{00723\ }
+\DoxyCodeLine{00724\ \ \ \ \ VkSurfaceFormatKHR\ \mbox{\hyperlink{class_vulkan_bridge_a7b7807e3ad47884acf804e2d99b01f9d}{chooseSwapSurfaceFormat}}(\textcolor{keyword}{const}\ std::vector<VkSurfaceFormatKHR>\&\ availableFormats)\ \{}
+\DoxyCodeLine{00725\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ availableFormat\ :\ availableFormats)\ \{}
+\DoxyCodeLine{00726\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (availableFormat.format\ ==\ VK\_FORMAT\_B8G8R8A8\_SRGB\ \&\&\ availableFormat.colorSpace\ ==\ VK\_COLOR\_SPACE\_SRGB\_NONLINEAR\_KHR)\ \{}
+\DoxyCodeLine{00727\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ availableFormat;}
+\DoxyCodeLine{00728\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00729\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00730\ }
+\DoxyCodeLine{00731\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ availableFormats[0];}
+\DoxyCodeLine{00732\ \ \ \ \ \}}
+\DoxyCodeLine{00733\ }
+\DoxyCodeLine{00734\ \ \ \ \ VkPresentModeKHR\ \mbox{\hyperlink{class_vulkan_bridge_a9c8c8ebc5cd66268d32abb897463cfc9}{chooseSwapPresentMode}}(\textcolor{keyword}{const}\ std::vector<VkPresentModeKHR>\&\ availablePresentModes)\ \{}
+\DoxyCodeLine{00735\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ availablePresentMode\ :\ availablePresentModes)\ \{}
+\DoxyCodeLine{00736\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (availablePresentMode\ ==\ VK\_PRESENT\_MODE\_MAILBOX\_KHR)\ \{}
+\DoxyCodeLine{00737\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ availablePresentMode;}
+\DoxyCodeLine{00738\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00739\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00740\ }
+\DoxyCodeLine{00741\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ VK\_PRESENT\_MODE\_FIFO\_KHR;}
+\DoxyCodeLine{00742\ \ \ \ \ \}}
+\DoxyCodeLine{00743\ }
+\DoxyCodeLine{00744\ \ \ \ \ VkExtent2D\ \mbox{\hyperlink{class_vulkan_bridge_a9754ab00e6bd2a78159afef40cb53c53}{chooseSwapExtent}}(\textcolor{keyword}{const}\ VkSurfaceCapabilitiesKHR\&\ capabilities)\ \{}
+\DoxyCodeLine{00745\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (capabilities.currentExtent.width\ !=\ std::numeric\_limits<uint32\_t>::max())\ \{}
+\DoxyCodeLine{00746\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ capabilities.currentExtent;}
+\DoxyCodeLine{00747\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00748\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ width,\ height;}
+\DoxyCodeLine{00749\ \ \ \ \ \ \ \ \ \ \ \ \ glfwGetFramebufferSize(\mbox{\hyperlink{class_vulkan_bridge_a15f27ff4c8a8c081ec81c5ececdd040e}{window}},\ \&width,\ \&height);}
+\DoxyCodeLine{00750\ }
+\DoxyCodeLine{00751\ \ \ \ \ \ \ \ \ \ \ \ \ VkExtent2D\ actualExtent\ =\ \{}
+\DoxyCodeLine{00752\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_cast<}uint32\_t\textcolor{keyword}{>}(width),}
+\DoxyCodeLine{00753\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_cast<}uint32\_t\textcolor{keyword}{>}(height)}
+\DoxyCodeLine{00754\ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00755\ }
+\DoxyCodeLine{00756\ \ \ \ \ \ \ \ \ \ \ \ \ actualExtent.width\ =\ std::clamp(actualExtent.width,\ capabilities.minImageExtent.width,\ capabilities.maxImageExtent.width);}
+\DoxyCodeLine{00757\ \ \ \ \ \ \ \ \ \ \ \ \ actualExtent.height\ =\ std::clamp(actualExtent.height,\ capabilities.minImageExtent.height,\ capabilities.maxImageExtent.height);}
+\DoxyCodeLine{00758\ }
+\DoxyCodeLine{00759\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ actualExtent;}
+\DoxyCodeLine{00760\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00761\ \ \ \ \ \}}
+\DoxyCodeLine{00762\ }
+\DoxyCodeLine{00763\ \ \ \ \ \mbox{\hyperlink{struct_swap_chain_support_details}{SwapChainSupportDetails}}\ \mbox{\hyperlink{class_vulkan_bridge_a4729bdf96d8cd8ec110c2fa560eab7f7}{querySwapChainSupport}}(VkPhysicalDevice\ \mbox{\hyperlink{class_vulkan_bridge_a92f3e9d49c5eece722f735ace9298631}{device}})\ \{}
+\DoxyCodeLine{00764\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_swap_chain_support_details}{SwapChainSupportDetails}}\ details;}
+\DoxyCodeLine{00765\ }
+\DoxyCodeLine{00766\ \ \ \ \ \ \ \ \ vkGetPhysicalDeviceSurfaceCapabilitiesKHR(\mbox{\hyperlink{class_vulkan_bridge_a92f3e9d49c5eece722f735ace9298631}{device}},\ \mbox{\hyperlink{class_vulkan_bridge_a927fe85f5a126c0d6f6816eaa5776f9c}{surface}},\ \&details.\mbox{\hyperlink{struct_swap_chain_support_details_a8918f9f5496b29a701e8d094aa455b2a}{capabilities}});}
+\DoxyCodeLine{00767\ }
+\DoxyCodeLine{00768\ \ \ \ \ \ \ \ \ uint32\_t\ formatCount;}
+\DoxyCodeLine{00769\ \ \ \ \ \ \ \ \ vkGetPhysicalDeviceSurfaceFormatsKHR(\mbox{\hyperlink{class_vulkan_bridge_a92f3e9d49c5eece722f735ace9298631}{device}},\ \mbox{\hyperlink{class_vulkan_bridge_a927fe85f5a126c0d6f6816eaa5776f9c}{surface}},\ \&formatCount,\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00770\ }
+\DoxyCodeLine{00771\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (formatCount\ !=\ 0)\ \{}
+\DoxyCodeLine{00772\ \ \ \ \ \ \ \ \ \ \ \ \ details.\mbox{\hyperlink{struct_swap_chain_support_details_a22cda9622ff2cd725ec00311e2007a7f}{formats}}.resize(formatCount);}
+\DoxyCodeLine{00773\ \ \ \ \ \ \ \ \ \ \ \ \ vkGetPhysicalDeviceSurfaceFormatsKHR(\mbox{\hyperlink{class_vulkan_bridge_a92f3e9d49c5eece722f735ace9298631}{device}},\ \mbox{\hyperlink{class_vulkan_bridge_a927fe85f5a126c0d6f6816eaa5776f9c}{surface}},\ \&formatCount,\ details.\mbox{\hyperlink{struct_swap_chain_support_details_a22cda9622ff2cd725ec00311e2007a7f}{formats}}.data());}
+\DoxyCodeLine{00774\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00775\ }
+\DoxyCodeLine{00776\ \ \ \ \ \ \ \ \ uint32\_t\ presentModeCount;}
+\DoxyCodeLine{00777\ \ \ \ \ \ \ \ \ vkGetPhysicalDeviceSurfacePresentModesKHR(\mbox{\hyperlink{class_vulkan_bridge_a92f3e9d49c5eece722f735ace9298631}{device}},\ \mbox{\hyperlink{class_vulkan_bridge_a927fe85f5a126c0d6f6816eaa5776f9c}{surface}},\ \&presentModeCount,\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00778\ }
+\DoxyCodeLine{00779\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (presentModeCount\ !=\ 0)\ \{}
+\DoxyCodeLine{00780\ \ \ \ \ \ \ \ \ \ \ \ \ details.\mbox{\hyperlink{struct_swap_chain_support_details_ae4fff3c89a63ae4cf896b6b385e2dad9}{presentModes}}.resize(presentModeCount);}
+\DoxyCodeLine{00781\ \ \ \ \ \ \ \ \ \ \ \ \ vkGetPhysicalDeviceSurfacePresentModesKHR(\mbox{\hyperlink{class_vulkan_bridge_a92f3e9d49c5eece722f735ace9298631}{device}},\ \mbox{\hyperlink{class_vulkan_bridge_a927fe85f5a126c0d6f6816eaa5776f9c}{surface}},\ \&presentModeCount,\ details.\mbox{\hyperlink{struct_swap_chain_support_details_ae4fff3c89a63ae4cf896b6b385e2dad9}{presentModes}}.data());}
+\DoxyCodeLine{00782\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00783\ }
+\DoxyCodeLine{00784\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ details;}
+\DoxyCodeLine{00785\ \ \ \ \ \}}
+\DoxyCodeLine{00786\ }
+\DoxyCodeLine{00787\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_vulkan_bridge_a028a8b29c71aa6db6f42b38ee4f902b5}{isDeviceSuitable}}(VkPhysicalDevice\ \mbox{\hyperlink{class_vulkan_bridge_a92f3e9d49c5eece722f735ace9298631}{device}})\ \{}
+\DoxyCodeLine{00788\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_queue_family_indices}{QueueFamilyIndices}}\ indices\ =\ \mbox{\hyperlink{class_vulkan_bridge_aab6c85644f94184ed29a18738ffce8a2}{findQueueFamilies}}(\mbox{\hyperlink{class_vulkan_bridge_a92f3e9d49c5eece722f735ace9298631}{device}});}
+\DoxyCodeLine{00789\ }
+\DoxyCodeLine{00790\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ extensionsSupported\ =\ \mbox{\hyperlink{class_vulkan_bridge_a37063223c591170f58384887ce983baf}{checkDeviceExtensionSupport}}(\mbox{\hyperlink{class_vulkan_bridge_a92f3e9d49c5eece722f735ace9298631}{device}});}
+\DoxyCodeLine{00791\ }
+\DoxyCodeLine{00792\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ swapChainAdequate\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00793\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (extensionsSupported)\ \{}
+\DoxyCodeLine{00794\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_swap_chain_support_details}{SwapChainSupportDetails}}\ swapChainSupport\ =\ \mbox{\hyperlink{class_vulkan_bridge_a4729bdf96d8cd8ec110c2fa560eab7f7}{querySwapChainSupport}}(\mbox{\hyperlink{class_vulkan_bridge_a92f3e9d49c5eece722f735ace9298631}{device}});}
+\DoxyCodeLine{00795\ \ \ \ \ \ \ \ \ \ \ \ \ swapChainAdequate\ =\ !swapChainSupport.\mbox{\hyperlink{struct_swap_chain_support_details_a22cda9622ff2cd725ec00311e2007a7f}{formats}}.empty()\ \&\&\ !swapChainSupport.\mbox{\hyperlink{struct_swap_chain_support_details_ae4fff3c89a63ae4cf896b6b385e2dad9}{presentModes}}.empty();}
+\DoxyCodeLine{00796\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00797\ }
+\DoxyCodeLine{00798\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ indices.\mbox{\hyperlink{struct_queue_family_indices_a652cdfabe4719ae21a701e77d57e7899}{isComplete}}()\ \&\&\ extensionsSupported\ \&\&\ swapChainAdequate;}
+\DoxyCodeLine{00799\ \ \ \ \ \}}
+\DoxyCodeLine{00800\ }
+\DoxyCodeLine{00801\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_vulkan_bridge_a37063223c591170f58384887ce983baf}{checkDeviceExtensionSupport}}(VkPhysicalDevice\ \mbox{\hyperlink{class_vulkan_bridge_a92f3e9d49c5eece722f735ace9298631}{device}})\ \{}
+\DoxyCodeLine{00802\ \ \ \ \ \ \ \ \ uint32\_t\ extensionCount;}
+\DoxyCodeLine{00803\ \ \ \ \ \ \ \ \ vkEnumerateDeviceExtensionProperties(\mbox{\hyperlink{class_vulkan_bridge_a92f3e9d49c5eece722f735ace9298631}{device}},\ \textcolor{keyword}{nullptr},\ \&extensionCount,\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00804\ }
+\DoxyCodeLine{00805\ \ \ \ \ \ \ \ \ std::vector<VkExtensionProperties>\ availableExtensions(extensionCount);}
+\DoxyCodeLine{00806\ \ \ \ \ \ \ \ \ vkEnumerateDeviceExtensionProperties(\mbox{\hyperlink{class_vulkan_bridge_a92f3e9d49c5eece722f735ace9298631}{device}},\ \textcolor{keyword}{nullptr},\ \&extensionCount,\ availableExtensions.data());}
+\DoxyCodeLine{00807\ }
+\DoxyCodeLine{00808\ \ \ \ \ \ \ \ \ std::set<std::string>\ requiredExtensions(\mbox{\hyperlink{vulkan_8hpp_ae9f2e52186582e1f54bb6e686671c24c}{deviceExtensions}}.begin(),\ \mbox{\hyperlink{vulkan_8hpp_ae9f2e52186582e1f54bb6e686671c24c}{deviceExtensions}}.end());}
+\DoxyCodeLine{00809\ }
+\DoxyCodeLine{00810\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ extension\ :\ availableExtensions)\ \{}
+\DoxyCodeLine{00811\ \ \ \ \ \ \ \ \ \ \ \ \ requiredExtensions.erase(extension.extensionName);}
+\DoxyCodeLine{00812\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00813\ }
+\DoxyCodeLine{00814\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ requiredExtensions.empty();}
+\DoxyCodeLine{00815\ \ \ \ \ \}}
+\DoxyCodeLine{00816\ }
+\DoxyCodeLine{00817\ \ \ \ \ \mbox{\hyperlink{struct_queue_family_indices}{QueueFamilyIndices}}\ \mbox{\hyperlink{class_vulkan_bridge_aab6c85644f94184ed29a18738ffce8a2}{findQueueFamilies}}(VkPhysicalDevice\ \mbox{\hyperlink{class_vulkan_bridge_a92f3e9d49c5eece722f735ace9298631}{device}})\ \{}
+\DoxyCodeLine{00818\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_queue_family_indices}{QueueFamilyIndices}}\ indices;}
+\DoxyCodeLine{00819\ }
+\DoxyCodeLine{00820\ \ \ \ \ \ \ \ \ uint32\_t\ queueFamilyCount\ =\ 0;}
+\DoxyCodeLine{00821\ \ \ \ \ \ \ \ \ vkGetPhysicalDeviceQueueFamilyProperties(\mbox{\hyperlink{class_vulkan_bridge_a92f3e9d49c5eece722f735ace9298631}{device}},\ \&queueFamilyCount,\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00822\ }
+\DoxyCodeLine{00823\ \ \ \ \ \ \ \ \ std::vector<VkQueueFamilyProperties>\ queueFamilies(queueFamilyCount);}
+\DoxyCodeLine{00824\ \ \ \ \ \ \ \ \ vkGetPhysicalDeviceQueueFamilyProperties(\mbox{\hyperlink{class_vulkan_bridge_a92f3e9d49c5eece722f735ace9298631}{device}},\ \&queueFamilyCount,\ queueFamilies.data());}
+\DoxyCodeLine{00825\ }
+\DoxyCodeLine{00826\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ i\ =\ 0;}
+\DoxyCodeLine{00827\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ queueFamily\ :\ queueFamilies)\ \{}
+\DoxyCodeLine{00828\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (queueFamily.queueFlags\ \&\ VK\_QUEUE\_GRAPHICS\_BIT)\ \{}
+\DoxyCodeLine{00829\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ indices.\mbox{\hyperlink{struct_queue_family_indices_a1e525a27a080ff5b5a4e545bdbc4da09}{graphicsFamily}}\ =\ i;}
+\DoxyCodeLine{00830\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00831\ }
+\DoxyCodeLine{00832\ \ \ \ \ \ \ \ \ \ \ \ \ VkBool32\ presentSupport\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00833\ \ \ \ \ \ \ \ \ \ \ \ \ vkGetPhysicalDeviceSurfaceSupportKHR(\mbox{\hyperlink{class_vulkan_bridge_a92f3e9d49c5eece722f735ace9298631}{device}},\ i,\ \mbox{\hyperlink{class_vulkan_bridge_a927fe85f5a126c0d6f6816eaa5776f9c}{surface}},\ \&presentSupport);}
+\DoxyCodeLine{00834\ }
+\DoxyCodeLine{00835\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (presentSupport)\ \{}
+\DoxyCodeLine{00836\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ indices.\mbox{\hyperlink{struct_queue_family_indices_a7229b20d9ad2a8179565812fcf650775}{presentFamily}}\ =\ i;}
+\DoxyCodeLine{00837\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00838\ }
+\DoxyCodeLine{00839\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (indices.\mbox{\hyperlink{struct_queue_family_indices_a652cdfabe4719ae21a701e77d57e7899}{isComplete}}())\ \{}
+\DoxyCodeLine{00840\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00841\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00842\ }
+\DoxyCodeLine{00843\ \ \ \ \ \ \ \ \ \ \ \ \ i++;}
+\DoxyCodeLine{00844\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00845\ }
+\DoxyCodeLine{00846\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ indices;}
+\DoxyCodeLine{00847\ \ \ \ \ \}}
+\DoxyCodeLine{00848\ }
+\DoxyCodeLine{00849\ \ \ \ \ std::vector<const\ char*>\ \mbox{\hyperlink{class_vulkan_bridge_a3b67fc8a97ec9244b58771cf8d7406c1}{getRequiredExtensions}}()\ \{}
+\DoxyCodeLine{00850\ \ \ \ \ \ \ \ \ uint32\_t\ glfwExtensionCount\ =\ 0;}
+\DoxyCodeLine{00851\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}**\ glfwExtensions;}
+\DoxyCodeLine{00852\ \ \ \ \ \ \ \ \ glfwExtensions\ =\ glfwGetRequiredInstanceExtensions(\&glfwExtensionCount);}
+\DoxyCodeLine{00853\ }
+\DoxyCodeLine{00854\ \ \ \ \ \ \ \ \ std::vector<const\ char*>\ extensions(glfwExtensions,\ glfwExtensions\ +\ glfwExtensionCount);}
+\DoxyCodeLine{00855\ }
+\DoxyCodeLine{00856\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{vulkan_8hpp_aebf0191c8cb852209eefbb50d9cbf7ba}{enableValidationLayers}})\ \{}
+\DoxyCodeLine{00857\ \ \ \ \ \ \ \ \ \ \ \ \ extensions.push\_back(VK\_EXT\_DEBUG\_UTILS\_EXTENSION\_NAME);}
+\DoxyCodeLine{00858\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00859\ }
+\DoxyCodeLine{00860\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ extensions;}
+\DoxyCodeLine{00861\ \ \ \ \ \}}
+\DoxyCodeLine{00862\ }
+\DoxyCodeLine{00863\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_vulkan_bridge_a39f507d776c29c29bbb999d5c715b8f8}{checkValidationLayerSupport}}()\ \{}
+\DoxyCodeLine{00864\ \ \ \ \ \ \ \ \ uint32\_t\ layerCount;}
+\DoxyCodeLine{00865\ \ \ \ \ \ \ \ \ vkEnumerateInstanceLayerProperties(\&layerCount,\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00866\ }
+\DoxyCodeLine{00867\ \ \ \ \ \ \ \ \ std::vector<VkLayerProperties>\ availableLayers(layerCount);}
+\DoxyCodeLine{00868\ \ \ \ \ \ \ \ \ vkEnumerateInstanceLayerProperties(\&layerCount,\ availableLayers.data());}
+\DoxyCodeLine{00869\ }
+\DoxyCodeLine{00870\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ layerName\ :\ \mbox{\hyperlink{vulkan_8hpp_a7ca66b16460bd6b27fa5176e228218e8}{validationLayers}})\ \{}
+\DoxyCodeLine{00871\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ layerFound\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00872\ }
+\DoxyCodeLine{00873\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ layerProperties\ :\ availableLayers)\ \{}
+\DoxyCodeLine{00874\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (strcmp(layerName,\ layerProperties.layerName)\ ==\ 0)\ \{}
+\DoxyCodeLine{00875\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ layerFound\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00876\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00877\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00878\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00879\ }
+\DoxyCodeLine{00880\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!layerFound)\ \{}
+\DoxyCodeLine{00881\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00882\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00883\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00884\ }
+\DoxyCodeLine{00885\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00886\ \ \ \ \ \}}
+\DoxyCodeLine{00887\ }
+\DoxyCodeLine{00888\ \ \ \ \ \textcolor{keyword}{static}\ std::vector<char>\ \mbox{\hyperlink{class_vulkan_bridge_a02b76bf14e34f825621a968a47e5afb1}{readFile}}(\textcolor{keyword}{const}\ std::string\&\ path)\ \{}
+\DoxyCodeLine{00889\ \ \ \ \ \ \ \ \ std::ifstream\ file(path,\ std::ios::ate\ |\ std::ios::binary);}
+\DoxyCodeLine{00890\ }
+\DoxyCodeLine{00891\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!file.is\_open())\ \{}
+\DoxyCodeLine{00892\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}failed\ to\ open\ file!"{}});}
+\DoxyCodeLine{00893\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00894\ }
+\DoxyCodeLine{00895\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ fileSize\ =\ file.tellg();}
+\DoxyCodeLine{00896\ \ \ \ \ \ \ \ \ std::vector<char>\ buffer(fileSize);}
+\DoxyCodeLine{00897\ }
+\DoxyCodeLine{00898\ \ \ \ \ \ \ \ \ file.seekg(0);}
+\DoxyCodeLine{00899\ \ \ \ \ \ \ \ \ file.read(buffer.data(),\ fileSize);}
+\DoxyCodeLine{00900\ }
+\DoxyCodeLine{00901\ \ \ \ \ \ \ \ \ file.close();}
+\DoxyCodeLine{00902\ }
+\DoxyCodeLine{00903\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ buffer;}
+\DoxyCodeLine{00904\ \ \ \ \ \}}
+\DoxyCodeLine{00905\ }
+\DoxyCodeLine{00906\ \ \ \ \ \textcolor{keyword}{static}\ VKAPI\_ATTR\ VkBool32\ VKAPI\_CALL\ \mbox{\hyperlink{class_vulkan_bridge_a56acde222a2605dc6ca8406740e4c05f}{debugCallback}}(VkDebugUtilsMessageSeverityFlagBitsEXT\ messageSeverity,\ VkDebugUtilsMessageTypeFlagsEXT\ messageType,\ \textcolor{keyword}{const}\ VkDebugUtilsMessengerCallbackDataEXT*\ pCallbackData,\ \textcolor{keywordtype}{void}*\ pUserData)\ \{}
+\DoxyCodeLine{00907\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ now\ =\ std::chrono::system\_clock::now();}
+\DoxyCodeLine{00908\ \ \ \ \ \ \ \ \ std::time\_t\ end\_time\ =\ std::chrono::system\_clock::to\_time\_t(now);}
+\DoxyCodeLine{00909\ \ \ \ \ \ \ \ \ std::string\ time\ =\ std::ctime(\&end\_time);}
+\DoxyCodeLine{00910\ \ \ \ \ \ \ \ \ time.erase(time.find\_last\_not\_of(\textcolor{charliteral}{'\(\backslash\)n'})\ +\ 1);\ \textcolor{comment}{//\ Remove\ the\ newline\ character}}
+\DoxyCodeLine{00911\ }
+\DoxyCodeLine{00912\ \textcolor{preprocessor}{\#ifdef\ C\_ENGINE\_USE\_VKLOG}}
+\DoxyCodeLine{00913\ \textcolor{preprocessor}{\#ifdef\ C\_ENGINE\_VKLOG\_FILTER\_ALL}}
+\DoxyCodeLine{00914\ \ \ \ \ \ \ \ \ vulkan\_log\_buffer\ +=\ \textcolor{stringliteral}{"{}["{}}\ +\ time\ +\ \textcolor{stringliteral}{"{}]"{}}\ +\ \textcolor{stringliteral}{"{}\ |\ [VULKAN]:\ "{}}\ +\ pCallbackData-\/>pMessage\ +\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00915\ \textcolor{preprocessor}{\#elifdef\ C\_ENGINE\_VKLOG\_FILTER\_IMPORTANT}}
+\DoxyCodeLine{00916\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (messageSeverity\ >=\ VK\_DEBUG\_UTILS\_MESSAGE\_SEVERITY\_WARNING\_BIT\_EXT)\ \{}
+\DoxyCodeLine{00917\ \ \ \ \ \ \ \ \ \ \ \ \ vulkan\_log\_buffer\ +=\ \textcolor{stringliteral}{"{}["{}}\ +\ time\ +\ \textcolor{stringliteral}{"{}]"{}}\ +\ \textcolor{stringliteral}{"{}\ |\ [VULKAN]:\ "{}}\ +\ pCallbackData-\/>pMessage\ +\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00918\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00919\ \textcolor{preprocessor}{\#elifdef\ C\_ENGINE\_VKLOG\_FILTER\_ERROR}}
+\DoxyCodeLine{00920\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (messageSeverity\ ==\ VK\_DEBUG\_UTILS\_MESSAGE\_SEVERITY\_ERROR\_BIT\_EXT)\ \{}
+\DoxyCodeLine{00921\ \ \ \ \ \ \ \ \ \ \ \ \ vulkan\_log\_buffer\ +=\ \textcolor{stringliteral}{"{}["{}}\ +\ time\ +\ \textcolor{stringliteral}{"{}]"{}}\ +\ \textcolor{stringliteral}{"{}\ |\ [VULKAN]:\ "{}}\ +\ pCallbackData-\/>pMessage\ +\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00922\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00923\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00924\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00925\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ VK\_FALSE;}
+\DoxyCodeLine{00926\ \ \ \ \ \}}
+\DoxyCodeLine{00927\ \};}
+\DoxyCodeLine{00928\ }
+\DoxyCodeLine{00929\ \textcolor{preprocessor}{\#ifdef\ C\_ENGINE\_USE\_VKLOG}}
+\DoxyCodeLine{00930\ std::string\ VulkanBridge::vulkan\_log\_buffer;}
+\DoxyCodeLine{00931\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00932\ }
+\DoxyCodeLine{00933\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//C\_ENGINE\_VULKAN\_HPP}}
+
+\end{DoxyCode}

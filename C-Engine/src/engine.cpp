@@ -1,330 +1,202 @@
-#include <vector>
 #include <string>
 #include <fstream>
-#include <cstring>
-#include <cstdlib>
+#include <CFG.hpp>
+#include <task.hpp>
 #include <iostream>
+#include <cxxabi.h>
 #include <stdexcept>
-#include <windows.h>
 #include <filesystem>
-#include <curl/curl.h>
-#include <minizip/unzip.h>
 
-#include "../include/CFG.hpp"
-
-namespace fs = std::filesystem;
+#include <utility>
 
 using _av = std::vector<std::any>;
-
-void createDirectoryIfNotExists(const std::string& path) {
-    fs::path dirPath(path);
-    if (!fs::exists(dirPath)) {
-        fs::create_directories(dirPath);
-    }
-}
-
-void createFileIfNotExists(const std::string& path) {
-    namespace fs = std::filesystem;
-
-    // Check if the file exists
-    if(fs::exists(path)) {
-        return;
-    }
-
-    // Ensure parent directories exist
-    fs::path filePath(path);
-    if(!fs::create_directories(filePath.parent_path())) {
-        throw std::runtime_error("Unable to create file: " + path);
-    }
-
-    // Attempt to create the file
-    std::ofstream file(path, std::ios::out);
-    if(file.is_open()) {
-        file.close(); // Close the file after creation
-        return;
-    }
-
-    throw std::runtime_error("Unable to create file: " + path);
-}
-
-void writeFile(const std::string& filePath, const std::string& data) {
-    std::ofstream outFile(filePath, std::ios::binary);
-    if (outFile) {
-        outFile.write(data.data(), data.size());
-    } else {
-        throw std::runtime_error("Failed to open file for writing: " + filePath);
-    }
-}
-
-void unzip(const std::string& outputDir, const std::string& path) {
-    unzFile zipFile = unzOpen(path.c_str());
-    if (zipFile == nullptr) {
-        throw std::runtime_error("Failed to open ZIP file: " + path);
-    }
-
-    int result = unzGoToFirstFile(zipFile);
-    if (result != UNZ_OK) {
-        unzClose(zipFile);
-        throw std::runtime_error("Failed to go to first file in ZIP: " + path);
-    }
-
-    do {
-        char filename[256];
-        unz_file_info fileInfo;
-
-        result = unzGetCurrentFileInfo(zipFile, &fileInfo, filename, sizeof(filename), nullptr, 0, nullptr, 0);
-        if (result != UNZ_OK) {
-            unzClose(zipFile);
-            throw std::runtime_error("Failed to get file info: " + path);
-        }
-
-        std::string fullPath = outputDir + "/" + filename;
-
-        if (filename[strlen(filename) - 1] == '/') {
-            // Directory
-            createDirectoryIfNotExists(fullPath);
-        } else {
-            // File
-            createDirectoryIfNotExists(fs::path(fullPath).parent_path().string());
-
-            result = unzOpenCurrentFile(zipFile);
-            if (result != UNZ_OK) {
-                unzClose(zipFile);
-                throw std::runtime_error("Failed to open file in ZIP: " + path);
-            }
-
-            std::string fileData(fileInfo.uncompressed_size, '\0');
-            result = unzReadCurrentFile(zipFile, fileData.data(), fileInfo.uncompressed_size);
-            if (result < 0) {
-                unzCloseCurrentFile(zipFile);
-                unzClose(zipFile);
-                throw std::runtime_error("Failed to read file in ZIP: " + path);
-            }
-            unzCloseCurrentFile(zipFile);
-
-            writeFile(fullPath, fileData);
-        }
-
-        result = unzGoToNextFile(zipFile);
-    } while (result == UNZ_OK);
-
-    unzClose(zipFile);
-}
-
-
-// Function to write data to a file
-size_t WriteCallback(void* ptr, size_t size, size_t nmemb, void* stream) {
-    std::ofstream* out = static_cast<std::ofstream*>(stream);
-    out->write(static_cast<char*>(ptr), size * nmemb);
-    return size * nmemb;
-}
-
-// Function to download a file from a URL
-bool installFile(const std::string& destination, const std::string& URL) {
-
-    CURL* curl;
-    CURLcode res;
-    curl = curl_easy_init();
-    if (curl) {
-        createFileIfNotExists(destination);
-        std::ofstream outFile(destination, std::ios::binary);
-        if (!outFile.is_open()) {
-            std::cerr << "Unable to open file for writing: " << destination << std::endl;
-            return false;
-        }
-
-        curl_easy_setopt(curl, CURLOPT_URL, URL.c_str());
-        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
-        curl_easy_setopt(curl, CURLOPT_WRITEDATA, &outFile);
-        curl_easy_setopt(curl, CURLOPT_USERAGENT, "libcurl-agent/1.0"); // Adding User-Agent
-        curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L); // Follow redirects
-        res = curl_easy_perform(curl);
-
-        if (res != CURLE_OK) {
-            std::cerr << "Curl download error: " << curl_easy_strerror(res) << std::endl;
-        }
-
-        curl_easy_cleanup(curl);
-        outFile.close();
-        return (res == CURLE_OK);
-    } else {
-        std::cerr << "Failed to initialize CURL." << std::endl;
-    }
-    return false;
-}
-
-void UpdatePathVariable(const std::string& newValue) {
-    // Open the registry key where the user PATH is stored
-    HKEY hKey;
-    if (RegOpenKeyExA(HKEY_CURRENT_USER, "Environment", 0, KEY_READ | KEY_WRITE, &hKey) != ERROR_SUCCESS) {
-        std::cerr << "Failed to open registry key.\n";
-        exit(4);
-    }
-
-    // Get the current value of PATH
-    char currentPath[32767];
-    DWORD bufferSize = sizeof(currentPath);
-    if (RegQueryValueExA(hKey, "PATH", nullptr, nullptr, reinterpret_cast<LPBYTE>(currentPath), &bufferSize) != ERROR_SUCCESS) {
-        std::cerr << "Failed to read current PATH value.\n";
-        RegCloseKey(hKey);
-        exit(5);
-    }
-
-    std::string newPath = currentPath;
-    newPath += ";";
-    newPath += newValue;
-
-    // Update the PATH variable in the registry
-    if (RegSetValueExA(hKey, "PATH", 0, REG_EXPAND_SZ, reinterpret_cast<const BYTE*>(newPath.c_str()), newPath.size() + 1) != ERROR_SUCCESS) {
-        std::cerr << "Failed to set new PATH value.\n";
-        RegCloseKey(hKey);
-        exit(6);
-    }
-
-    // Notify the system about the environment variable change
-    SendMessageTimeoutA(HWND_BROADCAST, WM_SETTINGCHANGE, 0, reinterpret_cast<LPARAM>("Environment"), SMTO_ABORTIFHUNG, 5000, nullptr);
-
-    std::cout << "PATH updated successfully." << std::endl;
-    RegCloseKey(hKey);
-}
-
-std::string getFile(fs::path p) {
-
-    std::ifstream file(p);
-
-    if (!file.is_open()) {
-        std::cerr << "File: " << p.filename() << ", Not found at: " << p.string() << "!";
-        exit(4);
-    }
-
-    std::stringstream ss;
-    ss << file.rdbuf();
-    return ss.str();
-}
-
-std::vector<fs::path> getSubdirectories(const fs::path& directory) {
-    std::vector<fs::path> subdirs;
-
-    // Iterate over the directory entries
-    for (const auto& entry : fs::directory_iterator(directory)) {
-        if (fs::is_directory(entry.path())) {
-            subdirs.push_back(entry.path());
-        }
-    }
-
-    return subdirs;
-}
 
 std::vector<std::any> av(std::any v) {
     return std::any_cast<std::vector<std::any>>(v);
 }
 
-void installExtension(const std::string& url) {
-    std::cout << "Installing extension at: " << url << "...\n";
-    std::cout << "Downloading...\n";
-    installFile("C:/C-Engine/Build/Extensions/tmp/data.zip", url);
-    std::cout << "Success\n";
-    std::cout << "Unpacking...\n";
-    unzip("C:/C-Engine/Build/Extensions/tmp/", "C:/C-Engine/Build/Extensions/tmp/data.zip");
-    std::cout << "Success\n";
-    std::cout << "Copying...\n";
-    Node root;
-    for (auto dir : getSubdirectories("C:/C-Engine/Build/Extensions/tmp/")) {
-        std::cout << "\tSearching for \"extension.cfg\" in: " << dir.string() << "\n";
-        engine::cfg_parse(getFile(dir.string() + "/extension.cfg"), root);
-        std::cout << "\tSuccess\n";
-        auto extName = std::any_cast<std::string>(av(root["Info"]("Name"))[0]);
-        fs::create_directories("C:/C-Engine/Build/Extensions/" + extName);
-        const auto copyOptions = fs::copy_options::overwrite_existing
-                                 | fs::copy_options::recursive;
-        std::cout << "\tPreparing...\n";
-        fs::remove_all("C:/C-Engine/Build/Extensions/" + extName);
-        std::cout << "\tSuccess\n";
-        fs::copy(dir.string(), "C:/C-Engine/Build/Extensions/" + extName, copyOptions);
-        std::cout << "\tCopied " << extName << " at: " << dir.string() << " to: " << "C:/C-Engine/Build/Extensions/" + extName << "\n";
+class TPH {
+private:
+    std::string _p;
+    task& _t;
+public:
+    TPH(std::string process, task& t) : _p(std::move(process)), _t(t) {
+        t.setToutProcess(t.getToutProcess() + _p);
     }
-    std::cout << "Success\n";
-    std::cout << "Cleanup...\n";
-    fs::remove_all("C:/C-Engine/Build/Extensions/tmp");
-    std::cout << "Success\n";
+
+    ~TPH() {
+        _t.setToutProcess(_t.getToutProcess().substr(0, _t.getToutProcess().size() - _p.size()));
+    }
+};
+
+std::string getFile(const std::ifstream& file) {
+    std::stringstream ss;
+    ss << file.rdbuf();
+    return ss.str();
 }
 
-int main(int argc, char** argv) {
-    if (argc < 2) {
-        std::cerr << "No arguments provided\nCorrect usage:\nengine <args>\n";
-        exit(2);
+std::string demangle(const char* name) {
+    int status = -1;
+    std::unique_ptr<char[], void(*)(void*)> res {
+            abi::__cxa_demangle(name, NULL, NULL, &status),
+            std::free
+    };
+    return (status == 0) ? res.get() : name;
+}
+
+void createData(task& t, std::any args) {
+    t.tout("Creating Data.cfg...");
+    std::ofstream file("C:/C-Engine/Data.cfg");
+    if (!file.is_open()) {
+        t.tout("Failed to create Data.cfg");
+        throw std::runtime_error("Failed to create Data.cfg");
+    }
+    t.tout("Data.cfg created successfully");
+}
+
+void getData(task& t, std::any args) {
+#ifndef NDEBUG
+    {
+        TPH tph("[DEBUG] ", t);
+        t.tout("Supplied args.type: " + demangle(args.type().name()));
+        t.tout("Required args.type: std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, Node&> / std::pair<std::string, Node&>");
+    }
+#endif
+    if (demangle(args.type().name()) != "std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, Node&>") {
+        t.tout("Invalid arguments passed to getData");
+        throw std::runtime_error("Invalid arguments passed to getData");
     }
 
-    std::vector<std::string> args(argv, argv + argc);
-
-    if (args[1] == "-setPath") {
-        if (argc < 3) {  // Checking if the version argument is provided
-            std::cerr << "No version provided.\nCorrect usage:\nengine -setPath <version>\n";
-            exit(2);
-        }
-
-        // Building the version-specific path
-        std::string versionPath = "C:/C-Engine/Build/Base/C-Engine-" + args[2];
-        if (!fs::exists(versionPath)) {
-            std::cerr << "No such version: " + args[2] + "\n";
-            exit(3);
-        }
-
-        // Add the directory (not the executable) to the PATH
-        std::string binPath = versionPath + R"(\C-Engine\bin)";
-        UpdatePathVariable(binPath);
-
-    } else if (args[1] == "-hello") {
-        std::cout << "Hello, World!\n";
-    } else if (args[1] == "-install") {
-        if (argc < 3) {
-            std::cerr << "No version provided.\nCorrect usage:\nengine -install <URL>\n";
-            exit(2);
-        }
-
-        installExtension(args[2]);
-    } else if (args[1] == "-build") {
-        Node root;
-        engine::cfg_parse(getFile(fs::current_path().string() + "/application.cfg"), root);
-        if (root.size() <= 1) {
-            std::cerr << "No application.cfg found in: " << fs::current_path().string() << "\n";
-            exit(4);
-        }
-        std::cout << "Building...\n";
-        std::cout << "Success\n";
-    } else if (args[1] == "-new") {
-        Node root;
-        Node application;
-        Node _info("Info");
-
-        std::string title;
-
-        std::cout << "Title: ";
-        std::cin >> title;
-        std::cout << std::endl;
-        std::cout << "Searching for user.cfg...\n";
-        engine::cfg_parse(getFile("C:/C-Engine/user.cfg"), root);
-        std::cout << "Success\n";
-        std::cout << "Pushing Author as: " << std::any_cast<std::string>(root["Ingo"]("Tag"))[0] << "...\n";
-        _info.pushValue("Author", _av{root["Info"]("Tag")});
-        std::cout << "Success\n";
-        _info.pushValue("Title", _av{title});
-        _info.pushValue("Version", _av{0, 0, 1, 0});
-        application << _info;
-        std::cout << "Generating {application.cfg} at: " << fs::current_path().string() << "/application.cfg...\n";
-        std::ofstream file("application.cfg", std::ios::app);
-        file << engine::cfg_serialize(application, 0);
-        std::cout << "Success\n";
-    } else if (args[1] == "-setup") {
-        std::string tag;
-        std::cout << "Please enter Tag: ";
-        std::cin >> tag;
-        std::cout << "\n";
-        std::fstream file("C:/C-Engine/user.cfg", std::ios::out | std::ios::in | std::ios::app);
-        file.clear();
-        Node Info("Info");
-        Info.pushValue("Author", _av{tag});
+    t.tout("Getting Data.cfg...");
+    std::ifstream file("C:/C-Engine/Data.cfg");
+    if (!file.is_open()) {
+        t.tout("Failed to open Data.cfg");
+        t.tout("Creating Data.cfg...");
+        task CreateData;
+        CreateData.setID(0x0000); // Set ID to 0x0000 for ERROR:FIX
+        CreateData.setName("Create Data");
+        CreateData.setFunction(createData);
+        CreateData.tRun();
+        file.open("C:/C-Engine/Data.cfg");
     }
 
-    return EXIT_SUCCESS;
+    Node n;
+    engine::cfg_parse(getFile(file), n);
+
+    std::any_cast<std::pair<std::string, Node&>>(args).second = n;
+}
+
+void getUsr(task& t, std::any args) {
+#ifndef NDEBUG
+    {
+        TPH tph("[DEBUG] ", t);
+    }
+#endif
+    auto it = t.getChildArgs().find("Get Data");
+    if (it == t.getChildArgs().end()) {
+        t.tout("Required task Get Data not found");
+        throw std::runtime_error("Required task Get Data not found");
+    }
+
+    auto cd = std::any_cast<std::pair<std::string, Node&>>(t.getChildArgs()["Get Data"].second);
+    Node data = cd.second;
+    t.tout("Getting User (Local)...");
+    if (!data["Users"].contains("Number") || std::any_cast<int>(av(data["Users"]("Number"))[0]) == 0) {
+        t.tout("No users found");
+        t.tout("Register New User? (y / n)");
+        std::cout << "> ";
+        std::string res;
+        std::getline(std::cin, res);
+        if (res == "y") {
+            t.tout("Registering New User...");
+            Node newUser;
+            t.tout("Please enter your local name:");
+            std::cout << "> ";
+            std::getline(std::cin, res);
+            newUser.setName(res);
+            t.tout("Please enter your name");
+            std::cout << "> ";
+            std::getline(std::cin, res);
+            newUser.pushValue("Name", _av{res});
+            t.tout("Generating User ID...");
+            newUser.pushValue("ID", _av{0});
+            t.tout("User ID: " + std::to_string(data["Users"].size() - 1));
+            t.tout("Pushing User to Data.cfg...");
+            data["Users"] << newUser;
+            t.tout("Updating User Count...");
+            if (!data["Users"].contains("Number")) {
+                data["Users"].pushValue("Number", _av{1});
+            } else {
+                data["Users"]("Number") = _av{1};
+            }
+            t.tout("Successfully Updated User Count");
+            t.tout("Opening Data.cfg...");
+
+            std::ofstream file("C:/C-Engine/Data.cfg", std::ios::out | std::ios::trunc);
+            if (!file.is_open()) {
+                t.tout("Failed to open Data.cfg");
+                throw std::runtime_error("Failed to open Data.cfg");
+            }
+
+#ifndef NDEBUG
+            {
+                TPH tph("[DEBUG] ", t);
+                t.tout("Data: " + engine::cfg_serialize_(data, 0));
+            }
+#endif
+            file << engine::cfg_serialize_(data, 0);
+            file.flush(); // Ensure data is written to the file
+            file.close(); // Close the file after writing
+            t.tout("User Registered Successfully");
+            t.tout("Please restart engine.exe");
+            exit(0);
+        } else {
+            t.tout("Exiting...");
+            exit(0);
+        }
+    } else if (std::any_cast<int>(av(data["Users"]("Number"))[0]) == 1) {
+        t.tout("User found");
+        for (auto usr : data["Users"].getSubNodes()) {
+            t.tout("User ID: " + std::to_string(std::any_cast<int>(av(usr.second("ID"))[0])));
+            t.tout("User Name: " + std::any_cast<std::string>(av(usr.second("Name"))[0]));
+        }
+    } else {
+        t.tout("Multiple users found");
+        t.tout("Please select a user:");
+        for (size_t i = 0; i < std::any_cast<int>(av(data["Users"]("Number"))[0]); ++i) {
+            t.tout("[" +  + "] " + std::any_cast<std::string>(av(data["Users"]("Name"))[i]));
+        }
+        t.tout("Please enter the local user Name:");
+        std::cout << "> ";
+        std::string res;
+        std::getline(std::cin, res);
+        t.tout("Setting Current User to: " + res + "...");
+        args = data["Users"][res];
+    }
+
+}
+
+int main() {
+    Node data;
+    task GetData;
+    GetData.setID(0x0001);
+    GetData.setName("Get Data");
+    GetData.setFunction(getData);
+    GetData.setArgs(std::pair<std::string, Node&>("C:/C-Engine/Data.cfg", data));
+
+    task GetUsrLocal;
+    GetUsrLocal.setID(0x0002);
+    GetUsrLocal.setName("Get User (Local)");
+    GetUsrLocal.setFunction(getUsr);
+    GetUsrLocal.setRequiredTasks({&GetData});
+
+    try {
+        GetUsrLocal.tRun();
+    } catch (std::exception& e) {
+        std::cerr << e.what() << "\n";
+    }
+
+    system("pause");
+
+    return 0;
 }

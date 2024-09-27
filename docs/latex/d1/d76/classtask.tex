@@ -1,0 +1,425 @@
+\doxysection{task Class Reference}
+\hypertarget{classtask}{}\label{classtask}\index{task@{task}}
+
+
+Represents a task that can be executed, with dependencies on other tasks.  
+
+
+
+
+{\ttfamily \#include $<$task.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+auto \mbox{\hyperlink{classtask_a2a063103b2032f57dc0bf9dcd60769c2}{get\+Child\+Args}} ()
+\begin{DoxyCompactList}\small\item\em Gets the arguments for child tasks. \end{DoxyCompactList}\item 
+const std\+::string \& \mbox{\hyperlink{classtask_a592c54314ef70f05ecd318cd6d16ac3b}{get\+Tout\+Process}} ()
+\begin{DoxyCompactList}\small\item\em Gets the current process information for logging. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classtask_ac893d84bc5bd747ffedf66c7b4f6b4c7}{set\+Tout\+Process}} (const std\+::string \&process)
+\begin{DoxyCompactList}\small\item\em Sets the current process information for logging. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classtask_a3749d6c3a4e066359e0e82f583e6431c}{get\+ID}} () const
+\begin{DoxyCompactList}\small\item\em Gets the ID of the task. \end{DoxyCompactList}\item 
+const std\+::string \& \mbox{\hyperlink{classtask_a63c5a2169f4a91f608909e67329094cf}{get\+Name}} () const
+\begin{DoxyCompactList}\small\item\em Gets the name of the task. \end{DoxyCompactList}\item 
+const std\+::function$<$ void(\mbox{\hyperlink{classtask}{task}} \&, std\+::any)$>$ \& \mbox{\hyperlink{classtask_a6bef8f7c5ff53d253606c888c2a0a13a}{get\+Function}} () const
+\begin{DoxyCompactList}\small\item\em Gets the function to be executed by the task. \end{DoxyCompactList}\item 
+const std\+::vector$<$ \mbox{\hyperlink{classtask}{task}} \texorpdfstring{$\ast$}{*} $>$ \& \mbox{\hyperlink{classtask_acc8df3aa906fe8fcaab54c940be868fb}{get\+Required\+Tasks}} () const
+\begin{DoxyCompactList}\small\item\em Gets the tasks required to be executed before this task can run. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classtask_aabcbf9f16104b5e0a2b38abc4b2ee51d}{get\+Status}} () const
+\begin{DoxyCompactList}\small\item\em Gets the status of the task. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classtask}{task}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classtask_ac5e271436746e840b7117deccf7ce9c0}{get\+Parent}} () const
+\begin{DoxyCompactList}\small\item\em Gets the parent task. \end{DoxyCompactList}\item 
+const std\+::any \& \mbox{\hyperlink{classtask_a19cace8749559664e8be3d1fc2e40dc7}{get\+Args}} () const
+\begin{DoxyCompactList}\small\item\em Gets the arguments for the task function. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classtask_ac36e6cdbdaa13a378a11953529970af0}{set\+ID}} (int id)
+\begin{DoxyCompactList}\small\item\em Sets the ID of the task. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classtask_ae15c8c00ae2730079a7e7242ae460c5c}{set\+Name}} (const std\+::string \&name)
+\begin{DoxyCompactList}\small\item\em Sets the name of the task. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classtask_a3a7907451139edbda453f433d5a4808b}{set\+Function}} (const std\+::function$<$ void(\mbox{\hyperlink{classtask}{task}} \&, std\+::any)$>$ \&function)
+\begin{DoxyCompactList}\small\item\em Sets the function to be executed by the task. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classtask_af2fe4575a42d390ea385d7363abe16ef}{set\+Required\+Tasks}} (const std\+::vector$<$ \mbox{\hyperlink{classtask}{task}} \texorpdfstring{$\ast$}{*} $>$ \&tasks)
+\begin{DoxyCompactList}\small\item\em Sets the tasks required to be executed before this task can run. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classtask_a4ae23c42e83339733ec00eb3fb25a525}{set\+Status}} (int n\+Status)
+\begin{DoxyCompactList}\small\item\em Sets the status of the task. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classtask_a746771f900d947785a97ae9f4ff085ff}{set\+Parent}} (\mbox{\hyperlink{classtask}{task}} \&parent)
+\begin{DoxyCompactList}\small\item\em Sets the parent task. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classtask_a1af6fbd2213ff05006ba57ed959ad80a}{set\+Args}} (const std\+::any \&args)
+\begin{DoxyCompactList}\small\item\em Sets the arguments for the task function. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classtask_a8e76f0a019fffe5e86c961de799941c1}{tout}} (const std\+::string \&message)
+\begin{DoxyCompactList}\small\item\em Logs a message with the task\textquotesingle{}s name and process information. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classtask_a11da9e90439d53d205f9f8e2e23cf38b}{run}} ()
+\begin{DoxyCompactList}\small\item\em Runs the task and its required tasks sequentially. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classtask_ae237e1ff23d12b22a89039fda4936ca8}{t\+Run}} ()
+\begin{DoxyCompactList}\small\item\em Runs the task and its required tasks in parallel. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{classtask_a4b25c6299bb4fc23efa327d45420b889}{t\+ID}}
+\item 
+std\+::string \mbox{\hyperlink{classtask_a27a8b5decbf8040d91afdc3c0c6062df}{t\+Name}}
+\item 
+std\+::function$<$ void(\mbox{\hyperlink{classtask}{task}} \&, std\+::any)$>$ \mbox{\hyperlink{classtask_a5e00453b5815b649c405da02fe248bf4}{t\+Function}}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{classtask}{task}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classtask_a445b78c4f55f9d77237de8c65f8e47f3}{required\+Tasks}}
+\item 
+int \mbox{\hyperlink{classtask_a05e30a9f75c7fa88eb1e25537744d0d9}{status}} = 0
+\item 
+\mbox{\hyperlink{classtask}{task}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classtask_a69c31dfe25ab91fe6749ed9847fb896d}{parent\+Task}} = nullptr
+\item 
+std\+::any \mbox{\hyperlink{classtask_a5eef5a259abfbdd0787e3b9af03a7e7d}{t\+Args}}
+\item 
+std\+::unordered\+\_\+map$<$ std\+::string, std\+::pair$<$ std\+::any, std\+::any $>$ $>$ \mbox{\hyperlink{classtask_a6e8881a6b4b94393721fb8d12cf213cd}{child\+Args}}
+\item 
+std\+::string \mbox{\hyperlink{classtask_a7f55ddaa423512be7ad62c436b68acd6}{tout\+Process}}
+\item 
+std\+::mutex \mbox{\hyperlink{classtask_afaa5b2b4196a79b564df1c57a5679cb7}{tout\+Mutex}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a task that can be executed, with dependencies on other tasks. 
+
+The task class encapsulates a unit of work that can be executed. Each task can have dependencies on other tasks, and it can be run either sequentially or in parallel with its dependencies. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classtask_a19cace8749559664e8be3d1fc2e40dc7}\index{task@{task}!getArgs@{getArgs}}
+\index{getArgs@{getArgs}!task@{task}}
+\doxysubsubsection{\texorpdfstring{getArgs()}{getArgs()}}
+{\footnotesize\ttfamily \label{classtask_a19cace8749559664e8be3d1fc2e40dc7} 
+const std\+::any \& task\+::get\+Args (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the arguments for the task function. 
+
+\begin{DoxyReturn}{Returns}
+The arguments for the task function. 
+\end{DoxyReturn}
+\Hypertarget{classtask_a2a063103b2032f57dc0bf9dcd60769c2}\index{task@{task}!getChildArgs@{getChildArgs}}
+\index{getChildArgs@{getChildArgs}!task@{task}}
+\doxysubsubsection{\texorpdfstring{getChildArgs()}{getChildArgs()}}
+{\footnotesize\ttfamily \label{classtask_a2a063103b2032f57dc0bf9dcd60769c2} 
+auto task\+::get\+Child\+Args (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the arguments for child tasks. 
+
+\begin{DoxyReturn}{Returns}
+A map of child task arguments. 
+\end{DoxyReturn}
+\Hypertarget{classtask_a6bef8f7c5ff53d253606c888c2a0a13a}\index{task@{task}!getFunction@{getFunction}}
+\index{getFunction@{getFunction}!task@{task}}
+\doxysubsubsection{\texorpdfstring{getFunction()}{getFunction()}}
+{\footnotesize\ttfamily \label{classtask_a6bef8f7c5ff53d253606c888c2a0a13a} 
+const std\+::function$<$ void(\mbox{\hyperlink{classtask}{task}} \&, std\+::any)$>$ \& task\+::get\+Function (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the function to be executed by the task. 
+
+\begin{DoxyReturn}{Returns}
+The function to be executed by the task. 
+\end{DoxyReturn}
+\Hypertarget{classtask_a3749d6c3a4e066359e0e82f583e6431c}\index{task@{task}!getID@{getID}}
+\index{getID@{getID}!task@{task}}
+\doxysubsubsection{\texorpdfstring{getID()}{getID()}}
+{\footnotesize\ttfamily \label{classtask_a3749d6c3a4e066359e0e82f583e6431c} 
+int task\+::get\+ID (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the ID of the task. 
+
+\begin{DoxyReturn}{Returns}
+The ID of the task. 
+\end{DoxyReturn}
+\Hypertarget{classtask_a63c5a2169f4a91f608909e67329094cf}\index{task@{task}!getName@{getName}}
+\index{getName@{getName}!task@{task}}
+\doxysubsubsection{\texorpdfstring{getName()}{getName()}}
+{\footnotesize\ttfamily \label{classtask_a63c5a2169f4a91f608909e67329094cf} 
+const std\+::string \& task\+::get\+Name (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the name of the task. 
+
+\begin{DoxyReturn}{Returns}
+The name of the task. 
+\end{DoxyReturn}
+\Hypertarget{classtask_ac5e271436746e840b7117deccf7ce9c0}\index{task@{task}!getParent@{getParent}}
+\index{getParent@{getParent}!task@{task}}
+\doxysubsubsection{\texorpdfstring{getParent()}{getParent()}}
+{\footnotesize\ttfamily \label{classtask_ac5e271436746e840b7117deccf7ce9c0} 
+\mbox{\hyperlink{classtask}{task}} \texorpdfstring{$\ast$}{*} task\+::get\+Parent (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the parent task. 
+
+\begin{DoxyReturn}{Returns}
+A pointer to the parent task. 
+\end{DoxyReturn}
+\Hypertarget{classtask_acc8df3aa906fe8fcaab54c940be868fb}\index{task@{task}!getRequiredTasks@{getRequiredTasks}}
+\index{getRequiredTasks@{getRequiredTasks}!task@{task}}
+\doxysubsubsection{\texorpdfstring{getRequiredTasks()}{getRequiredTasks()}}
+{\footnotesize\ttfamily \label{classtask_acc8df3aa906fe8fcaab54c940be868fb} 
+const std\+::vector$<$ \mbox{\hyperlink{classtask}{task}} \texorpdfstring{$\ast$}{*} $>$ \& task\+::get\+Required\+Tasks (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the tasks required to be executed before this task can run. 
+
+\begin{DoxyReturn}{Returns}
+A vector of required tasks. 
+\end{DoxyReturn}
+\Hypertarget{classtask_aabcbf9f16104b5e0a2b38abc4b2ee51d}\index{task@{task}!getStatus@{getStatus}}
+\index{getStatus@{getStatus}!task@{task}}
+\doxysubsubsection{\texorpdfstring{getStatus()}{getStatus()}}
+{\footnotesize\ttfamily \label{classtask_aabcbf9f16104b5e0a2b38abc4b2ee51d} 
+int task\+::get\+Status (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the status of the task. 
+
+\begin{DoxyReturn}{Returns}
+The status of the task. 
+\end{DoxyReturn}
+\Hypertarget{classtask_a592c54314ef70f05ecd318cd6d16ac3b}\index{task@{task}!getToutProcess@{getToutProcess}}
+\index{getToutProcess@{getToutProcess}!task@{task}}
+\doxysubsubsection{\texorpdfstring{getToutProcess()}{getToutProcess()}}
+{\footnotesize\ttfamily \label{classtask_a592c54314ef70f05ecd318cd6d16ac3b} 
+const std\+::string \& task\+::get\+Tout\+Process (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the current process information for logging. 
+
+\begin{DoxyReturn}{Returns}
+The current process information. 
+\end{DoxyReturn}
+\Hypertarget{classtask_a11da9e90439d53d205f9f8e2e23cf38b}\index{task@{task}!run@{run}}
+\index{run@{run}!task@{task}}
+\doxysubsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily \label{classtask_a11da9e90439d53d205f9f8e2e23cf38b} 
+void task\+::run (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Runs the task and its required tasks sequentially. 
+
+This method runs the task and ensures that all required tasks are completed before running the main task. It logs the progress and execution time of the task. \Hypertarget{classtask_a1af6fbd2213ff05006ba57ed959ad80a}\index{task@{task}!setArgs@{setArgs}}
+\index{setArgs@{setArgs}!task@{task}}
+\doxysubsubsection{\texorpdfstring{setArgs()}{setArgs()}}
+{\footnotesize\ttfamily \label{classtask_a1af6fbd2213ff05006ba57ed959ad80a} 
+void task\+::set\+Args (\begin{DoxyParamCaption}\item[{const std\+::any \&}]{args}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Sets the arguments for the task function. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em args} & The arguments to set. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classtask_a3a7907451139edbda453f433d5a4808b}\index{task@{task}!setFunction@{setFunction}}
+\index{setFunction@{setFunction}!task@{task}}
+\doxysubsubsection{\texorpdfstring{setFunction()}{setFunction()}}
+{\footnotesize\ttfamily \label{classtask_a3a7907451139edbda453f433d5a4808b} 
+void task\+::set\+Function (\begin{DoxyParamCaption}\item[{const std\+::function$<$ void(\mbox{\hyperlink{classtask}{task}} \&, std\+::any)$>$ \&}]{function}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Sets the function to be executed by the task. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em function} & The function to set. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classtask_ac36e6cdbdaa13a378a11953529970af0}\index{task@{task}!setID@{setID}}
+\index{setID@{setID}!task@{task}}
+\doxysubsubsection{\texorpdfstring{setID()}{setID()}}
+{\footnotesize\ttfamily \label{classtask_ac36e6cdbdaa13a378a11953529970af0} 
+void task\+::set\+ID (\begin{DoxyParamCaption}\item[{int}]{id}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Sets the ID of the task. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The ID to set. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classtask_ae15c8c00ae2730079a7e7242ae460c5c}\index{task@{task}!setName@{setName}}
+\index{setName@{setName}!task@{task}}
+\doxysubsubsection{\texorpdfstring{setName()}{setName()}}
+{\footnotesize\ttfamily \label{classtask_ae15c8c00ae2730079a7e7242ae460c5c} 
+void task\+::set\+Name (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Sets the name of the task. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name to set. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classtask_a746771f900d947785a97ae9f4ff085ff}\index{task@{task}!setParent@{setParent}}
+\index{setParent@{setParent}!task@{task}}
+\doxysubsubsection{\texorpdfstring{setParent()}{setParent()}}
+{\footnotesize\ttfamily \label{classtask_a746771f900d947785a97ae9f4ff085ff} 
+void task\+::set\+Parent (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classtask}{task}} \&}]{parent}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Sets the parent task. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent} & The parent task to set. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classtask_af2fe4575a42d390ea385d7363abe16ef}\index{task@{task}!setRequiredTasks@{setRequiredTasks}}
+\index{setRequiredTasks@{setRequiredTasks}!task@{task}}
+\doxysubsubsection{\texorpdfstring{setRequiredTasks()}{setRequiredTasks()}}
+{\footnotesize\ttfamily \label{classtask_af2fe4575a42d390ea385d7363abe16ef} 
+void task\+::set\+Required\+Tasks (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \mbox{\hyperlink{classtask}{task}} \texorpdfstring{$\ast$}{*} $>$ \&}]{tasks}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Sets the tasks required to be executed before this task can run. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tasks} & A vector of required tasks. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classtask_a4ae23c42e83339733ec00eb3fb25a525}\index{task@{task}!setStatus@{setStatus}}
+\index{setStatus@{setStatus}!task@{task}}
+\doxysubsubsection{\texorpdfstring{setStatus()}{setStatus()}}
+{\footnotesize\ttfamily \label{classtask_a4ae23c42e83339733ec00eb3fb25a525} 
+void task\+::set\+Status (\begin{DoxyParamCaption}\item[{int}]{n\+Status}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Sets the status of the task. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n\+Status} & The status to set. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classtask_ac893d84bc5bd747ffedf66c7b4f6b4c7}\index{task@{task}!setToutProcess@{setToutProcess}}
+\index{setToutProcess@{setToutProcess}!task@{task}}
+\doxysubsubsection{\texorpdfstring{setToutProcess()}{setToutProcess()}}
+{\footnotesize\ttfamily \label{classtask_ac893d84bc5bd747ffedf66c7b4f6b4c7} 
+void task\+::set\+Tout\+Process (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{process}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Sets the current process information for logging. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em process} & The process information to set. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classtask_a8e76f0a019fffe5e86c961de799941c1}\index{task@{task}!tout@{tout}}
+\index{tout@{tout}!task@{task}}
+\doxysubsubsection{\texorpdfstring{tout()}{tout()}}
+{\footnotesize\ttfamily \label{classtask_a8e76f0a019fffe5e86c961de799941c1} 
+void task\+::tout (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{message}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Logs a message with the task\textquotesingle{}s name and process information. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em message} & The message to log. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classtask_ae237e1ff23d12b22a89039fda4936ca8}\index{task@{task}!tRun@{tRun}}
+\index{tRun@{tRun}!task@{task}}
+\doxysubsubsection{\texorpdfstring{tRun()}{tRun()}}
+{\footnotesize\ttfamily \label{classtask_ae237e1ff23d12b22a89039fda4936ca8} 
+void task\+::t\+Run (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Runs the task and its required tasks in parallel. 
+
+This method runs the task and its required tasks in separate threads, allowing for parallel execution. 
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classtask_a6e8881a6b4b94393721fb8d12cf213cd}\index{task@{task}!childArgs@{childArgs}}
+\index{childArgs@{childArgs}!task@{task}}
+\doxysubsubsection{\texorpdfstring{childArgs}{childArgs}}
+{\footnotesize\ttfamily \label{classtask_a6e8881a6b4b94393721fb8d12cf213cd} 
+std\+::unordered\+\_\+map$<$std\+::string, std\+::pair$<$std\+::any, std\+::any$>$ $>$ task\+::child\+Args\hspace{0.3cm}{\ttfamily [private]}}
+
+Arguments for child tasks. \Hypertarget{classtask_a69c31dfe25ab91fe6749ed9847fb896d}\index{task@{task}!parentTask@{parentTask}}
+\index{parentTask@{parentTask}!task@{task}}
+\doxysubsubsection{\texorpdfstring{parentTask}{parentTask}}
+{\footnotesize\ttfamily \label{classtask_a69c31dfe25ab91fe6749ed9847fb896d} 
+\mbox{\hyperlink{classtask}{task}}\texorpdfstring{$\ast$}{*} task\+::parent\+Task = nullptr\hspace{0.3cm}{\ttfamily [private]}}
+
+Pointer to the parent task. \Hypertarget{classtask_a445b78c4f55f9d77237de8c65f8e47f3}\index{task@{task}!requiredTasks@{requiredTasks}}
+\index{requiredTasks@{requiredTasks}!task@{task}}
+\doxysubsubsection{\texorpdfstring{requiredTasks}{requiredTasks}}
+{\footnotesize\ttfamily \label{classtask_a445b78c4f55f9d77237de8c65f8e47f3} 
+std\+::vector$<$\mbox{\hyperlink{classtask}{task}}\texorpdfstring{$\ast$}{*}$>$ task\+::required\+Tasks\hspace{0.3cm}{\ttfamily [private]}}
+
+Tasks required to be executed before this task can run. \Hypertarget{classtask_a05e30a9f75c7fa88eb1e25537744d0d9}\index{task@{task}!status@{status}}
+\index{status@{status}!task@{task}}
+\doxysubsubsection{\texorpdfstring{status}{status}}
+{\footnotesize\ttfamily \label{classtask_a05e30a9f75c7fa88eb1e25537744d0d9} 
+int task\+::status = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+The status of the task\+: 0 = Idle, 1 = Running, 2 = Finished. \Hypertarget{classtask_a5eef5a259abfbdd0787e3b9af03a7e7d}\index{task@{task}!tArgs@{tArgs}}
+\index{tArgs@{tArgs}!task@{task}}
+\doxysubsubsection{\texorpdfstring{tArgs}{tArgs}}
+{\footnotesize\ttfamily \label{classtask_a5eef5a259abfbdd0787e3b9af03a7e7d} 
+std\+::any task\+::t\+Args\hspace{0.3cm}{\ttfamily [private]}}
+
+Arguments for the task function. \Hypertarget{classtask_a5e00453b5815b649c405da02fe248bf4}\index{task@{task}!tFunction@{tFunction}}
+\index{tFunction@{tFunction}!task@{task}}
+\doxysubsubsection{\texorpdfstring{tFunction}{tFunction}}
+{\footnotesize\ttfamily \label{classtask_a5e00453b5815b649c405da02fe248bf4} 
+std\+::function$<$void(\mbox{\hyperlink{classtask}{task}}\&, std\+::any)$>$ task\+::t\+Function\hspace{0.3cm}{\ttfamily [private]}}
+
+The function to be executed by the task. \Hypertarget{classtask_a4b25c6299bb4fc23efa327d45420b889}\index{task@{task}!tID@{tID}}
+\index{tID@{tID}!task@{task}}
+\doxysubsubsection{\texorpdfstring{tID}{tID}}
+{\footnotesize\ttfamily \label{classtask_a4b25c6299bb4fc23efa327d45420b889} 
+int task\+::t\+ID\hspace{0.3cm}{\ttfamily [private]}}
+
+The ID of the task. \Hypertarget{classtask_a27a8b5decbf8040d91afdc3c0c6062df}\index{task@{task}!tName@{tName}}
+\index{tName@{tName}!task@{task}}
+\doxysubsubsection{\texorpdfstring{tName}{tName}}
+{\footnotesize\ttfamily \label{classtask_a27a8b5decbf8040d91afdc3c0c6062df} 
+std\+::string task\+::t\+Name\hspace{0.3cm}{\ttfamily [private]}}
+
+The name of the task. \Hypertarget{classtask_afaa5b2b4196a79b564df1c57a5679cb7}\index{task@{task}!toutMutex@{toutMutex}}
+\index{toutMutex@{toutMutex}!task@{task}}
+\doxysubsubsection{\texorpdfstring{toutMutex}{toutMutex}}
+{\footnotesize\ttfamily \label{classtask_afaa5b2b4196a79b564df1c57a5679cb7} 
+std\+::mutex task\+::tout\+Mutex\hspace{0.3cm}{\ttfamily [private]}}
+
+Mutex for thread safety. \Hypertarget{classtask_a7f55ddaa423512be7ad62c436b68acd6}\index{task@{task}!toutProcess@{toutProcess}}
+\index{toutProcess@{toutProcess}!task@{task}}
+\doxysubsubsection{\texorpdfstring{toutProcess}{toutProcess}}
+{\footnotesize\ttfamily \label{classtask_a7f55ddaa423512be7ad62c436b68acd6} 
+std\+::string task\+::tout\+Process\hspace{0.3cm}{\ttfamily [private]}}
+
+Process information for logging. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{task_8hpp}{task.\+hpp}}\end{DoxyCompactItemize}

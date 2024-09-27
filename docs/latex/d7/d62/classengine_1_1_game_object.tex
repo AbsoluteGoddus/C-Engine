@@ -1,0 +1,106 @@
+\doxysection{engine\+::Game\+Object Class Reference}
+\hypertarget{classengine_1_1_game_object}{}\label{classengine_1_1_game_object}\index{engine::GameObject@{engine::GameObject}}
+
+
+Class for containing and executing Behaviors.  
+
+
+
+
+{\ttfamily \#include $<$Game\+Object.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classengine_1_1_game_object_a384b05372d9603aef58e8200e8ac8bbb}{init}} ()
+\begin{DoxyCompactList}\small\item\em Initializes all behaviors. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classengine_1_1_game_object_a33d740f8fab9208382f925c6d39dc498}{pre\+Update}} ()
+\begin{DoxyCompactList}\small\item\em Pre-\/update step for all behaviors. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classengine_1_1_game_object_aaf47f528862a2d631ee6969ba18e317e}{update}} ()
+\begin{DoxyCompactList}\small\item\em Updates all behaviors. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classengine_1_1_game_object_a309d0343e3477ecb56565983cca7495f}{post\+Update}} ()
+\begin{DoxyCompactList}\small\item\em Post-\/update step for all behaviors. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classengine_1_1_game_object_ab529d6de5da62c915fddd8f430dda199}{on\+Event}} (\mbox{\hyperlink{classengine_1_1_event}{engine\+::\+Event}} \&e)
+\begin{DoxyCompactList}\small\item\em Handles an event for all behaviors. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classengine_1_1_object_list}{Object\+List}}$<$ \mbox{\hyperlink{classengine_1_1_behavior_p_t_r}{Behavior\+PTR}} $>$ \mbox{\hyperlink{classengine_1_1_game_object_a7aedcbf1f9fde2cccea154b5853e1f83}{Behaviors}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class for containing and executing Behaviors. 
+
+The \doxylink{classengine_1_1_game_object}{Game\+Object} class manages a list of behaviors and provides methods to initialize, update, and handle events for these behaviors. It supports both single-\/threaded and multi-\/threaded execution based on the {\ttfamily C\+\_\+\+ENGINE\+\_\+\+USE\+\_\+\+THREADS} macro. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classengine_1_1_game_object_a384b05372d9603aef58e8200e8ac8bbb}\index{engine::GameObject@{engine::GameObject}!init@{init}}
+\index{init@{init}!engine::GameObject@{engine::GameObject}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily \label{classengine_1_1_game_object_a384b05372d9603aef58e8200e8ac8bbb} 
+void engine\+::\+Game\+Object\+::init (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Initializes all behaviors. 
+
+\Hypertarget{classengine_1_1_game_object_ab529d6de5da62c915fddd8f430dda199}\index{engine::GameObject@{engine::GameObject}!onEvent@{onEvent}}
+\index{onEvent@{onEvent}!engine::GameObject@{engine::GameObject}}
+\doxysubsubsection{\texorpdfstring{onEvent()}{onEvent()}}
+{\footnotesize\ttfamily \label{classengine_1_1_game_object_ab529d6de5da62c915fddd8f430dda199} 
+void engine\+::\+Game\+Object\+::on\+Event (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classengine_1_1_event}{engine\+::\+Event}} \&}]{e}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Handles an event for all behaviors. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The event to handle. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classengine_1_1_game_object_a309d0343e3477ecb56565983cca7495f}\index{engine::GameObject@{engine::GameObject}!postUpdate@{postUpdate}}
+\index{postUpdate@{postUpdate}!engine::GameObject@{engine::GameObject}}
+\doxysubsubsection{\texorpdfstring{postUpdate()}{postUpdate()}}
+{\footnotesize\ttfamily \label{classengine_1_1_game_object_a309d0343e3477ecb56565983cca7495f} 
+void engine\+::\+Game\+Object\+::post\+Update (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Post-\/update step for all behaviors. 
+
+\Hypertarget{classengine_1_1_game_object_a33d740f8fab9208382f925c6d39dc498}\index{engine::GameObject@{engine::GameObject}!preUpdate@{preUpdate}}
+\index{preUpdate@{preUpdate}!engine::GameObject@{engine::GameObject}}
+\doxysubsubsection{\texorpdfstring{preUpdate()}{preUpdate()}}
+{\footnotesize\ttfamily \label{classengine_1_1_game_object_a33d740f8fab9208382f925c6d39dc498} 
+void engine\+::\+Game\+Object\+::pre\+Update (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Pre-\/update step for all behaviors. 
+
+\Hypertarget{classengine_1_1_game_object_aaf47f528862a2d631ee6969ba18e317e}\index{engine::GameObject@{engine::GameObject}!update@{update}}
+\index{update@{update}!engine::GameObject@{engine::GameObject}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily \label{classengine_1_1_game_object_aaf47f528862a2d631ee6969ba18e317e} 
+void engine\+::\+Game\+Object\+::update (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Updates all behaviors. 
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classengine_1_1_game_object_a7aedcbf1f9fde2cccea154b5853e1f83}\index{engine::GameObject@{engine::GameObject}!Behaviors@{Behaviors}}
+\index{Behaviors@{Behaviors}!engine::GameObject@{engine::GameObject}}
+\doxysubsubsection{\texorpdfstring{Behaviors}{Behaviors}}
+{\footnotesize\ttfamily \label{classengine_1_1_game_object_a7aedcbf1f9fde2cccea154b5853e1f83} 
+\mbox{\hyperlink{classengine_1_1_object_list}{Object\+List}}$<$\mbox{\hyperlink{classengine_1_1_behavior_p_t_r}{Behavior\+PTR}}$>$ engine\+::\+Game\+Object\+::\+Behaviors}
+
+List of behaviors associated with the \doxylink{classengine_1_1_game_object}{Game\+Object}. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{_game_object_8hpp}{Game\+Object.\+hpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,28 @@
+\doxysection{Util.\+hpp}
+\hypertarget{_util_8hpp_source}{}\label{_util_8hpp_source}\index{include/Util.hpp@{include/Util.hpp}}
+\mbox{\hyperlink{_util_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ Created\ by\ absol\ on\ 7/2/2024.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#ifndef\ C\_ENGINE\_UTIL\_HPP}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ C\_ENGINE\_UTIL\_HPP}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <cassert>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <any>}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceengine}{engine}}\ \{}
+\DoxyCodeLine{00014\ \ \ \ \ std::string\ \mbox{\hyperlink{namespaceengine_ab73769d8e0b6b88c0639a54a819777a8}{remove}}(std::string\ \&str,\ \textcolor{keywordtype}{size\_t}\ start,\ \textcolor{keywordtype}{size\_t}\ length)\ \{}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ std::string\ out\ =\ str.substr(start,\ length);}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ std::string\ tmp\ =\ str.substr(start\ +\ length,\ str.size());}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ str\ =\ str.substr(0,\ start);}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ str\ +=\ tmp;}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ out;}
+\DoxyCodeLine{00020\ \ \ \ \ \}}
+\DoxyCodeLine{00021\ \}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//C\_ENGINE\_UTIL\_HPP}}
+
+\end{DoxyCode}
