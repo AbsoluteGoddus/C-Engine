@@ -82,6 +82,21 @@ namespace engine {
         };
 
         /**
+         * \brief Constructs an empty ObjectList.
+         */
+        ObjectList() = default;
+
+        /**
+         * \brief Constructs an ObjectList with a list of objects.
+         * @param list The list of objects to add.
+         */
+        ObjectList(std::initializer_list<OL_Type> list) {
+            for (const auto& item : list) {
+                addObject(item);
+            }
+        }
+
+        /**
          * \brief Adds an object to the list with an automatically assigned ID.
          * \param object The object to add.
          */
@@ -149,6 +164,24 @@ namespace engine {
                 _list.erase(it);
                 _idMap.erase(name);
             }
+        }
+
+        /**
+         * \brief Checks if an object with the specified name exists in the list.
+         * @param name The name of the object to check.
+         * @return If the object exists in the list.
+         */
+        bool contains(const std::string &name) {
+            return _idMap.find(name) != _idMap.end();
+        }
+
+        /**
+         * @brief Checks if an object with the specified ID exists in the list.
+         * @param ID The ID of the object to check.
+         * @return If the object exists in the list.
+         */
+        bool contains(int ID) {
+            return _list.find(ID) != _list.end();
         }
 
         /**

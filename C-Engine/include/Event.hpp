@@ -15,6 +15,7 @@
 
 #include <string>
 #include <any>
+#include <utility>
 #include "ObjectList.hpp"
 
 namespace engine {
@@ -41,7 +42,9 @@ namespace engine {
          * \param what The type of the event.
          * \param why The cause of the event.
          */
-        Event(std::string what, std::string why) { _type = what; _cause = why; }
+        Event(std::string what, std::string why) { _type = std::move(what); _cause = std::move(why); }
+
+        Event(std::string what, std::string why, ObjectList<std::any> data) {_type = std::move(what); _cause = std::move(why); _data = std::move(data);}
 
         /**
          * \brief Returns the type of the event.

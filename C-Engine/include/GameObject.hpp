@@ -38,6 +38,10 @@ namespace engine {
          */
         void init() {
             for (auto &b : Behaviors) {
+                b.onEvent(Event("GetGameObj", "GameObject initialized.", ObjectList<std::any>{this}));
+            }
+
+            for (auto &b : Behaviors) {
                 b.init();
             }
         }

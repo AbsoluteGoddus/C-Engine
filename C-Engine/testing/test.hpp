@@ -5,6 +5,14 @@
 #ifndef C_ENGINE_TEST_HPP
 #define C_ENGINE_TEST_HPP
 
+#include <iostream>
+#include <sstream>
+#include <bin.hpp>
+#include <compress.hpp>
+#include <CFG.hpp>
+#include <thread>
+/*#include <curl_hpp/curl.hpp>*/
+
 std::mutex console_mutex;
 
 void asyncWrite(const std::string& txt) {

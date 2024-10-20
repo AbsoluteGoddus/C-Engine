@@ -8,7 +8,9 @@
 #include <vector>
 #include "Scene.hpp"
 #include <functional>
+#ifdef C_ENGINE_USE_VULKAN
 #include "vulkan.hpp"
+#endif
 
 /**
  * \file engine.hpp
